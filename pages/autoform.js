@@ -3,7 +3,7 @@ import { Container, Header } from 'semantic-ui-react';
 import { AutoForm } from 'uniforms-semantic';
 import { createSchemaBridge } from '../libs/uniforms';
 import { withRouter } from 'next/router';
-import Registration from '../usecases/Registration';
+import { application } from '../src/Application.mjs';
 
 function AutoFormPage({ router, request, response, schema }) {
   console.log({ request });
@@ -26,8 +26,9 @@ function AutoFormPage({ router, request, response, schema }) {
 }
 export default withRouter(AutoFormPage);
 
-export async function getServerSideProps({ query: request }) {
-  const usecase = new Registration();
+export async function getServerSideProps({ query: request, req }) {
+  const scope = await application.createScope(req);
+  const usecase = scope.resolve('registration');
   const props = {
     request,
     response: await usecase.process(request),
