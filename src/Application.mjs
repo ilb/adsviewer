@@ -17,10 +17,13 @@ export default class Application {
     });
 
     // autoscan modules
-    await this.container.loadModules(['src/usecases/**/*.mjs'], {
-      formatName: 'camelCase',
-      esModules: true
-    });
+    await this.container.loadModules(
+      ['src/repositories/**/*.mjs', 'src/database/**/*.mjs', 'src/usecases/**/*.mjs'],
+      {
+        formatName: 'camelCase',
+        esModules: true
+      }
+    );
   }
 
   /**
