@@ -1,9 +1,8 @@
 {
-  "name": "nextjs-semantic",
-  "description": "Next.js + Fomantic-UI + Styled Components + Uniforms",
-  "version": "4.0.1",
-  "author": "Martín M.",
-  "license": "MIT",
+  "name": "adsviewer",
+  "description": "Сервис просмотра объявлений",
+  "version": "1.0.0",
+  "license": "SSPL",
   "scripts": {
     "dev": "next",
     "build": "next build",
