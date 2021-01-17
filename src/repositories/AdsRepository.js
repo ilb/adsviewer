@@ -7,6 +7,16 @@ export default class AdsRepository {
     this.connect = mysql({ config: dataSource });
   }
 
+  async search(q) {
+    const params = [q, q];
+    const results = await this.connect.query(
+      `select * from ADS where title like ? or description like ?`,
+      params
+    );
+    await this.connect.end();
+    return results;
+  }
+
   async list(params) {
     const results = await this.connect.query(`select * from ADS where ?`, params);
     await this.connect.end();

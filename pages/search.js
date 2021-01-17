@@ -28,11 +28,11 @@ export default withRouter(AutoFormPage);
 
 export async function getServerSideProps({ query: request, req }) {
   const scope = await application.createScope(req);
-  const usecase = scope.resolve('registration');
+  const usecase = scope.resolve('search');
   const props = {
     request,
     response: await usecase.process(request),
-    schema: usecase.getSchema(request)
+    schema: await usecase.getSchema(request)
   };
   return { props };
 }
