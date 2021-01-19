@@ -16,6 +16,12 @@ export default class DictionaryRepository {
   async find(params) {
     return await this.query(`select * from DICTIONARY where ?`, params);
   }
+  async findByParentCode(code, order) {
+    return await this.query(
+      `select d.* from DICTIONARY d join DICTIONARY p on d.parentId=p.id where p.code=? order by ?`,
+      [code, order]
+    );
+  }
 
   async save(values) {
     const params = [values, values];

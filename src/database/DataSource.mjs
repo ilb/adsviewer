@@ -1,4 +1,4 @@
-import * as urlapi from 'url';
+import urlapi from 'url';
 
 export default class DataSource {
   constructor({ url, user, password }) {

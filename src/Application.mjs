@@ -1,5 +1,6 @@
 import awilix from 'awilix';
-// const { asValue } = awilix;
+const { asFunction, asValue } = awilix;
+import DataSourceFactory from './database/DataSourceFactory';
 
 export default class Application {
   constructor() {
@@ -13,17 +14,15 @@ export default class Application {
     this.container = awilix.createContainer();
     // register currentUser, datasource
     this.container.register({
-      currentUser: awilix.asValue(process.env.USER)
+      currentUser: asValue(process.env.USER),
+      dataSource: asFunction(DataSourceFactory)
     });
 
     // autoscan modules
-    await this.container.loadModules(
-      ['src/repositories/**/*.mjs', 'src/database/**/*.mjs', 'src/usecases/**/*.mjs'],
-      {
-        formatName: 'camelCase',
-        esModules: true
-      }
-    );
+    await this.container.loadModules(['src/repositories/**/*.mjs', 'src/usecases/**/*.mjs'], {
+      formatName: 'camelCase',
+      esModules: true
+    });
   }
 
   /**
@@ -34,6 +33,8 @@ export default class Application {
     if (this.container == null) {
       await this.createContainer();
     }
+    // console.log(this.container);
+
     const xRemoteUser = req && req.headers && req.headers['x-remote-user'];
     const currentUser = xRemoteUser || process.env.USER;
 
