@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ads {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String   @db.VarChar(255)
+  description String   @db.VarChar(255)
+  type        type     @relation(fields: [typeId], references: [id])
+  typeId      Int
+  data        Json
+  category    category @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+}
+
+/// Тип объявления: куплю, продам, аренда...
+model type {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  code      String?  @db.VarChar(100)
+  name      String?  @db.VarChar(255)
+  ads       ads[]
+}
+
+// Категория объявления: Недвижимость, Авто...
+model category {
+  id         Int        @id @default(autoincrement())
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  code       String?    @db.VarChar(100)
+  name       String?    @db.VarChar(255)
+  avitoId    Int
+  parent     category?  @relation("categoryParent", fields: [parentId], references: [id])
+  categories category[] @relation("categoryParent")
+  parentId   Int?
+  ads        ads[]
+
+  @@unique([parentId, code, name], name: "UNQ_category_CODENAME")
+}

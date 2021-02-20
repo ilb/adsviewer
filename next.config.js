@@ -7,9 +7,9 @@ const withTM = require('next-transpile-modules')([
   'uniforms-semantic',
   'ajv'
 ]);
-
+const basePath = '/adsviewer';
 module.exports = withPlugins([withTM], {
-  basePath: '/adsviewer',
+  basePath,
   trailingSlash: false,
   webpack(config) {
     config.module.rules.push({
@@ -18,7 +18,7 @@ module.exports = withPlugins([withTM], {
         loader: 'url-loader',
         options: {
           limit: 8192,
-          publicPath: '/_next/static/',
+          publicPath: basePath + '/_next/static/',
           outputPath: 'static/',
           name: '[name].[ext]'
         }

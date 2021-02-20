@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "license": "SSPL",
   "scripts": {
-    "dev": "next",
+    "dev": "nodemon server.js",
+    "next": "next",
     "build": "next build",
     "start": "next start",
     "now-build": "npm run semantic:build && next build",
@@ -18,22 +19,24 @@
     "test": "jest"
   },
   "dependencies": {
-    "@zeit/next-css": "^1.0.1",
+    "@prisma/client": "^2.17.0",
     "ajv": "^7.0.3",
     "ajv-i18n": "^3.6.0",
     "awilix": "^4.3.1",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "next": "^10.0.4",
     "next-compose-plugins": "^2.2.1",
     "next-transpile-modules": "^6.0.0",
+    "nodemon": "^2.0.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "semantic-ui-react": "^2.0.1",
     "serverless-mysql": "^1.5.4",
     "styled-components": "^5.2.1",
-    "uniforms": "^3.0.0-rc.8",
-    "uniforms-bridge-json-schema": "^3.0.0-rc.8",
-    "uniforms-semantic": "^3.0.0-rc.8"
+    "uniforms": "^3.1.0",
+    "uniforms-bridge-json-schema": "^3.1.0",
+    "uniforms-semantic": "^3.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
@@ -51,6 +54,7 @@
     "inquirer": "^7.3.3",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
+    "prisma": "^2.17.0",
     "url-loader": "^4.1.1"
   }
 }

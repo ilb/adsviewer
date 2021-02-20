@@ -3,7 +3,7 @@ import { Container, Header } from 'semantic-ui-react';
 import { AutoForm } from 'uniforms-semantic';
 import { createSchemaBridge } from '../libs/uniforms';
 import { withRouter } from 'next/router';
-import { application } from '../src/Application.mjs';
+import application from '../libs/application.mjs';
 
 function AutoFormPage({ router, request, response, schema }) {
   console.log({ request });
