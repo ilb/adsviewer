@@ -2,7 +2,7 @@
   "name": "adsviewer",
   "description": "Сервис просмотра объявлений",
   "version": "1.0.0",
-  "license": "SSPL",
+  "license": "MIT",
   "scripts": {
     "dev": "nodemon server.js",
     "next": "next",
