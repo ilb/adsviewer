@@ -19,13 +19,14 @@ export default class Search {
 
   /*eslint no-unused-vars: ["error", { "args": "none" }]*/
   async getSchema(request) {
-    const categoryNames = await this.categoryRepository.getCategoryNames();
+    // const categoryNames = await this.categoryRepository.getCategoryNames();
+    const categoryNames = ['Недвижимость', 'Транспорт'];
     const schema = {
       title: 'Поиск объявлений',
       type: 'object',
       properties: {
-        category: { title: 'Категория22', type: 'string', enum: categoryNames },
-        q: { title: 'Поиск по объявлениям22', type: 'string', minLength: 1 }
+        category: { title: 'Категория', type: 'string', enum: categoryNames },
+        q: { title: 'Поиск по объявлениям', type: 'string', minLength: 1 }
       },
       required: ['q']
     };

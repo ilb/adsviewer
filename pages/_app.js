@@ -1,7 +1,8 @@
 import React from 'react';
 import App from 'next/app';
 
-import '../.semantic/dist/semantic.min.css';
+import 'semantic-ui-offline/semantic.min.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class MyApp extends App {
   render() {
