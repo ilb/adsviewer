@@ -4,6 +4,7 @@ import { AutoForm } from 'uniforms-semantic';
 import { createSchemaBridge } from '../libs/uniforms';
 import { withRouter } from 'next/router';
 import application from '../libs/application.mjs';
+import AdList from './_adlist';
 
 function AutoFormPage({ router, request, response, schema }) {
   console.log({ request });
@@ -21,6 +22,7 @@ function AutoFormPage({ router, request, response, schema }) {
         showInlineError={true}
       />
       {response.greeting && <Header as="h1">{response.greeting}</Header>}
+      <AdList></AdList>
     </Container>
   );
 }
