@@ -1,5 +1,6 @@
 import awilix from 'awilix';
-const { asFunction, asValue } = awilix;
+
+export const { asFunction, asValue } = awilix;
 import DataSourceFactory from './database/DataSourceFactory';
 
 export default class Application {
@@ -11,6 +12,7 @@ export default class Application {
    * initialize application
    */
   async createContainer() {
+    const awilix = require('awilix');
     this.container = awilix.createContainer();
     // register currentUser, datasource
     this.container.register({
@@ -52,4 +54,3 @@ export default class Application {
     return this.container.resolve(name);
   }
 }
-
