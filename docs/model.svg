@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="436px" preserveAspectRatio="none" style="width:512px;height:436px;" version="1.1" viewBox="0 0 512 436" width="512px" zoomAndPan="magnify"><defs><filter height="300%" id="f1w4nioswkrdqa" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[3240b2da80383c38367d8fb4f65496ac]
+class Ads--><rect fill="#FEFECE" filter="url(#f1w4nioswkrdqa)" height="176.9063" id="Ads" style="stroke: #A80036; stroke-width: 1.5;" width="217" x="67" y="12"/><ellipse cx="160.25" cy="28" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M160.2969,34.2031 C161.7969,34.2031 163.0313,33.6406 163.9375,32.5781 L162.5625,31.0625 C162.0156,31.6563 161.3594,32.0469 160.5625,32.0469 C158.8906,32.0469 157.7344,30.7188 157.7344,28.4375 C157.7344,26.2188 158.8906,24.875 160.4531,24.875 C161.2656,24.875 161.8594,25.1875 162.3906,25.6719 L163.7656,24.125 C163.0156,23.3906 161.8594,22.7188 160.4531,22.7188 C157.5,22.7188 155.1719,24.8594 155.1719,28.5313 C155.1719,32.25 157.5469,34.2031 160.2969,34.2031 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="22" x="180.75" y="32.1016">Ads</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="68" x2="283" y1="44" y2="44"/><ellipse cx="78" cy="55" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="92" x="87" y="58.2051">title «Заголовок»</text><ellipse cx="78" cy="67.8906" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="180" x="87" y="71.0957">description «Текст объявления»</text><ellipse cx="78" cy="80.7813" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="54" x="87" y="83.9863">type: Type</text><ellipse cx="78" cy="93.6719" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="100" x="87" y="96.877">category: Category</text><ellipse cx="78" cy="106.5625" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="35" x="87" y="109.7676">avitoId</text><ellipse cx="78" cy="119.4531" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="28" x="87" y="122.6582">price</text><ellipse cx="78" cy="132.3438" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="35" x="87" y="135.5488">region</text><ellipse cx="78" cy="145.2344" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="18" x="87" y="148.4395">city</text><ellipse cx="78" cy="158.125" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="120" x="87" y="161.3301">countAdsSamePhone</text><ellipse cx="78" cy="171.0156" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="191" x="87" y="174.2207">data: Json «Данные объявления»</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="68" x2="283" y1="180.9063" y2="180.9063"/><path d="M6,274.5 L6,299.7344 A0,0 0 0 0 6,299.7344 L101,299.7344 A0,0 0 0 0 101,299.7344 L101,284.5 L91,274.5 L65.8016,274.5 L116.2869,190.2464 L57.8016,274.5 L6,274.5 A0,0 0 0 0 6,274.5 " fill="#FBFB77" filter="url(#f1w4nioswkrdqa)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M91,274.5 L91,284.5 L101,284.5 L91,274.5 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="74" x="12" y="291.5605">Объявление</text><!--MD5=[a96594a83e2ecdc78cbf17c2ddf01934]
+class Category--><rect fill="#FEFECE" filter="url(#f1w4nioswkrdqa)" height="73.7813" id="Category" style="stroke: #A80036; stroke-width: 1.5;" width="81" x="136" y="250"/><ellipse cx="151" cy="266" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M151.0469,272.2031 C152.5469,272.2031 153.7813,271.6406 154.6875,270.5781 L153.3125,269.0625 C152.7656,269.6563 152.1094,270.0469 151.3125,270.0469 C149.6406,270.0469 148.4844,268.7188 148.4844,266.4375 C148.4844,264.2188 149.6406,262.875 151.2031,262.875 C152.0156,262.875 152.6094,263.1875 153.1406,263.6719 L154.5156,262.125 C153.7656,261.3906 152.6094,260.7188 151.2031,260.7188 C148.25,260.7188 145.9219,262.8594 145.9219,266.5313 C145.9219,270.25 148.2969,272.2031 151.0469,272.2031 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="49" x="165" y="270.1016">Category</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="137" x2="216" y1="282" y2="282"/><ellipse cx="147" cy="293" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="28" x="156" y="296.2051">code</text><ellipse cx="147" cy="305.8906" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="32" x="156" y="309.0957">name</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="137" x2="216" y1="315.7813" y2="315.7813"/><path d="M23.5,384 L23.5,424.4688 A0,0 0 0 0 23.5,424.4688 L253.5,424.4688 A0,0 0 0 0 253.5,424.4688 L253.5,394 L243.5,384 L149.0324,384 L164.4766,324.0195 L141.0324,384 L23.5,384 A0,0 0 0 0 23.5,384 " fill="#FBFB77" filter="url(#f1w4nioswkrdqa)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M243.5,384 L243.5,394 L253.5,394 L243.5,384 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="29.5" y="401.0605">Справочник категорий</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="209" x="29.5" y="416.2949">(Недвижимость, транспорт и т.д.)</text><!--MD5=[4296a1ab0576a383a1a509d52c22ebf0]
+class Type--><rect fill="#FEFECE" filter="url(#f1w4nioswkrdqa)" height="73.7813" id="Type" style="stroke: #A80036; stroke-width: 1.5;" width="59" x="327" y="250"/><ellipse cx="342" cy="266" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M342.0469,272.2031 C343.5469,272.2031 344.7813,271.6406 345.6875,270.5781 L344.3125,269.0625 C343.7656,269.6563 343.1094,270.0469 342.3125,270.0469 C340.6406,270.0469 339.4844,268.7188 339.4844,266.4375 C339.4844,264.2188 340.6406,262.875 342.2031,262.875 C343.0156,262.875 343.6094,263.1875 344.1406,263.6719 L345.5156,262.125 C344.7656,261.3906 343.6094,260.7188 342.2031,260.7188 C339.25,260.7188 336.9219,262.8594 336.9219,266.5313 C336.9219,270.25 339.2969,272.2031 342.0469,272.2031 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="27" x="356" y="270.1016">Type</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="328" x2="385" y1="282" y2="282"/><ellipse cx="338" cy="293" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="28" x="347" y="296.2051">code</text><ellipse cx="338" cy="305.8906" fill="none" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="32" x="347" y="309.0957">name</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="328" x2="385" y1="315.7813" y2="315.7813"/><path d="M289,384 L289,424.4688 A0,0 0 0 0 289,424.4688 L500,424.4688 A0,0 0 0 0 500,424.4688 L500,394 L490,384 L391.9676,384 L368.5234,324.0195 L383.9676,384 L289,384 A0,0 0 0 0 289,384 " fill="#FBFB77" filter="url(#f1w4nioswkrdqa)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M490,384 L490,394 L500,394 L490,384 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="190" x="295" y="401.0605">Справочник типов объявлений</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="295" y="416.2949">(куплю, продам и т.д.)</text><!--MD5=[cf8e0f4c58fc5b985de439547deb1983]
+link Ads to Category--><path d="M284.5,91 C328.5,91 302.4215,149.8152 284.5,190 C270.6935,220.958 241.5828,246.1613 217.0603,263.1114 " fill="none" id="Ads-Category" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><!--MD5=[9a88f5c7286b581d91b07157ae274f65]
+link Ads to Type--><path d="M284.5,79 C355.959,79 361.439,189.9856 359.2017,249.8138 " fill="none" id="Ads-Type" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><!--MD5=[9be324bc0a5601ffeec51e49c6347abf]
+@startuml model
+
+class Ads{
+    + title <<Заголовок>>
+    + description <<Текст объявления>>
+    + type: Type
+    + category: Category
+    + avitoId
+    + price
+    + region
+    + city
+    + countAdsSamePhone
+    + data: Json <<Данные объявления>>
+}
+
+
+note bottom of Ads
+  Объявление
+end note
+
+class Category{
+    + code
+    + name
+}
+Ads::category .. Category
+
+
+note bottom of Category
+  Справочник категорий
+  (Недвижимость, транспорт и т.д.)
+end note
+
+class Type{
+    + code
+    + name
+}
+Ads::type .. Type
+
+note bottom of Type
+  Справочник типов объявлений
+  (куплю, продам и т.д.)
+end note
+
+
+
+@enduml
+
+PlantUML version 1.2020.09(Sun May 10 14:51:06 SAMT 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.10+9-suse-lp152.2.9.1-x8664
+Operating System: Linux
+Default Encoding: UTF-8
+Language: ru
+Country: RU
+--></g></svg>

@@ -1,0 +1,14 @@
+@startuml usecases
+
+:Пользователь:
+(Искать объявления) as search
+(Просмотреть объявление) as view
+:Пользователь: -- search
+search --> view
+
+
+:Робот:
+
+(Загружать объявления) as load
+:Робот: -- load
+@enduml

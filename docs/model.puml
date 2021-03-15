@@ -1,0 +1,46 @@
+@startuml model
+
+class Ads{
+    + title <<Заголовок>>
+    + description <<Текст объявления>>
+    + type: Type
+    + category: Category
+    + avitoId
+    + price
+    + region
+    + city
+    + countAdsSamePhone
+    + data: Json <<Данные объявления>>
+}
+
+
+note bottom of Ads
+  Объявление
+end note
+
+class Category{
+    + code
+    + name
+}
+Ads::category .. Category
+
+
+note bottom of Category
+  Справочник категорий
+  (Недвижимость, транспорт и т.д.)
+end note
+
+class Type{
+    + code
+    + name
+}
+Ads::type .. Type
+
+note bottom of Type
+  Справочник типов объявлений
+  (куплю, продам и т.д.)
+end note
+
+
+
+@enduml

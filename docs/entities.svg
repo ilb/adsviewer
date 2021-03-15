@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="583px" preserveAspectRatio="none" style="width:1807px;height:583px;" version="1.1" viewBox="0 0 1807 583" width="1807px" zoomAndPan="magnify"><defs><filter height="300%" id="f1083jpdipk7rt" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[1b53bb4e6fe7c230f83c97d7cc722150]
+cluster Провайдеры--><polygon fill="#FFA500" filter="url(#f1083jpdipk7rt)" points="14,29,109,29,116,51.4063,473,51.4063,473,433,14,433,14,29" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="14" x2="116" y1="51.4063" y2="51.4063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="89" x="18" y="43.9883">Провайдеры</text><!--MD5=[3eee7a901706d4a5e5c93a9728216901]
+cluster Адаптеры--><polygon fill="#ADFF2F" filter="url(#f1083jpdipk7rt)" points="481,209,559,209,566,231.4063,914,231.4063,914,571,481,571,481,209" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="481" x2="566" y1="231.4063" y2="231.4063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="72" x="485" y="223.9883">Адаптеры</text><!--MD5=[0aa27a5d1075219e8f2d4e5fbc89f7d1]
+cluster Репозитории--><polygon fill="#ADFF2F" filter="url(#f1083jpdipk7rt)" points="492,16,590,16,597,38.4063,1346,38.4063,1346,178,492,178,492,16" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="492" x2="597" y1="38.4063" y2="38.4063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="92" x="496" y="30.9883">Репозитории</text><!--MD5=[74c947494c158f816a80b65197a8cee5]
+cluster Службы--><polygon fill="#90EE90" filter="url(#f1083jpdipk7rt)" points="1365,39.5,1429,39.5,1436,61.9063,1785,61.9063,1785,154.5,1365,154.5,1365,39.5" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="1365" x2="1436" y1="61.9063" y2="61.9063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="58" x="1369" y="54.4883">Службы</text><!--MD5=[29b5c62d5e1c77c5c99a139f2d804d9d]
+class AdsProvider--><rect fill="#FEFECE" filter="url(#f1083jpdipk7rt)" height="60.8906" id="AdsProvider" style="stroke: #A80036; stroke-width: 1.5;" width="160" x="22" y="76"/><ellipse cx="64.9" cy="92" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M64.9469,98.2031 C66.4469,98.2031 67.6813,97.6406 68.5875,96.5781 L67.2125,95.0625 C66.6656,95.6563 66.0094,96.0469 65.2125,96.0469 C63.5406,96.0469 62.3844,94.7188 62.3844,92.4375 C62.3844,90.2188 63.5406,88.875 65.1031,88.875 C65.9156,88.875 66.5094,89.1875 67.0406,89.6719 L68.4156,88.125 C67.6656,87.3906 66.5094,86.7188 65.1031,86.7188 C62.15,86.7188 59.8219,88.8594 59.8219,92.5313 C59.8219,96.25 62.1969,98.2031 64.9469,98.2031 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="66" x="85.1" y="96.1016">AdsProvider</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="23" x2="181" y1="108" y2="108"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="23" x2="181" y1="116" y2="116"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="148" x="28" y="130.2051">getAdsByDate(date1, date2)</text><path d="M217,56 L217,102.5 L182.2891,106.5 L217,110.5 L217,157.4063 A0,0 0 0 0 217,157.4063 L465,157.4063 A0,0 0 0 0 465,157.4063 L465,66 L455,56 L217,56 A0,0 0 0 0 217,56 " fill="#FBFB77" filter="url(#f1083jpdipk7rt)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M455,56 L455,66 L465,66 L455,56 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="223" y="73.0605">Базовый класс для задачи</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="208" x="223" y="88.2949">получения данных по поставщика</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="194" x="223" y="103.5293">объявлений. Содержит методы</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="169" x="223" y="118.7637">для получения объявлений.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="227" x="223" y="133.998">Может иметь несколько реализаций</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="158" x="223" y="149.2324">для разных поставщиков</text><!--MD5=[eb390bc697bdc5eb71d79f908ddbbbab]
+class AdsApiProvider--><rect fill="#FEFECE" filter="url(#f1083jpdipk7rt)" height="60.8906" id="AdsApiProvider" style="stroke: #A80036; stroke-width: 1.5;" width="160" x="48" y="364"/><ellipse cx="83.25" cy="380" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M83.2969,386.2031 C84.7969,386.2031 86.0313,385.6406 86.9375,384.5781 L85.5625,383.0625 C85.0156,383.6563 84.3594,384.0469 83.5625,384.0469 C81.8906,384.0469 80.7344,382.7188 80.7344,380.4375 C80.7344,378.2188 81.8906,376.875 83.4531,376.875 C84.2656,376.875 84.8594,377.1875 85.3906,377.6719 L86.7656,376.125 C86.0156,375.3906 84.8594,374.7188 83.4531,374.7188 C80.5,374.7188 78.1719,376.8594 78.1719,380.5313 C78.1719,384.25 80.5469,386.2031 83.2969,386.2031 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="83" x="101.75" y="384.1016">AdsApiProvider</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="49" x2="207" y1="396" y2="396"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="49" x2="207" y1="404" y2="404"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="148" x="54" y="418.2051">getAdsByDate(date1, date2)</text><path d="M243.5,374.5 L243.5,390.5 L208.2148,394.5 L243.5,398.5 L243.5,414.9688 A0,0 0 0 0 243.5,414.9688 L456.5,414.9688 A0,0 0 0 0 456.5,414.9688 L456.5,384.5 L446.5,374.5 L243.5,374.5 A0,0 0 0 0 243.5,374.5 " fill="#FBFB77" filter="url(#f1083jpdipk7rt)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M446.5,374.5 L446.5,384.5 L456.5,384.5 L446.5,374.5 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="148" x="249.5" y="391.5605">Кокретная реализация -</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="192" x="249.5" y="406.7949">адаптер для сервиса ads-api.ru</text><!--MD5=[af58d13f449eaebb5f4fb80930369d29]
+class AdsAdapter--><rect fill="#FEFECE" filter="url(#f1083jpdipk7rt)" height="67.0156" id="AdsAdapter" style="stroke: #A80036; stroke-width: 1.5;" width="157" x="489.5" y="236"/><ellipse cx="504.5" cy="255.0625" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M504.5469,261.2656 C506.0469,261.2656 507.2813,260.7031 508.1875,259.6406 L506.8125,258.125 C506.2656,258.7188 505.6094,259.1094 504.8125,259.1094 C503.1406,259.1094 501.9844,257.7813 501.9844,255.5 C501.9844,253.2813 503.1406,251.9375 504.7031,251.9375 C505.5156,251.9375 506.1094,252.25 506.6406,252.7344 L508.0156,251.1875 C507.2656,250.4531 506.1094,249.7813 504.7031,249.7813 C501.75,249.7813 499.4219,251.9219 499.4219,255.5938 C499.4219,259.3125 501.7969,261.2656 504.5469,261.2656 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="129" x="516.5" y="252.1328">«Адаптер объявлений»</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="64" x="549" y="266.1953">AdsAdapter</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="490.5" x2="645.5" y1="274.125" y2="274.125"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="490.5" x2="645.5" y1="282.125" y2="282.125"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="72" x="495.5" y="296.3301">convert(user)</text><path d="M682,241.5 L682,265.5 L646.5703,269.5 L682,273.5 L682,297.2031 A0,0 0 0 0 682,297.2031 L906,297.2031 A0,0 0 0 0 906,297.2031 L906,251.5 L896,241.5 L682,241.5 A0,0 0 0 0 682,241.5 " fill="#FBFB77" filter="url(#f1083jpdipk7rt)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M896,241.5 L896,251.5 L906,251.5 L896,241.5 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="688" y="258.5605">Базовый класс для задачи</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="203" x="688" y="273.7949">конвертации данных из формата</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="196" x="688" y="289.0293">поставщика в формат хранения</text><!--MD5=[5ad059b9030c403667cf5b7cb226da45]
+class AdsApiAdapter--><rect fill="#FEFECE" filter="url(#f1083jpdipk7rt)" height="60.8906" id="AdsApiAdapter" style="stroke: #A80036; stroke-width: 1.5;" width="113" x="500.5" y="502"/><ellipse cx="515.5" cy="518" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M515.5469,524.2031 C517.0469,524.2031 518.2813,523.6406 519.1875,522.5781 L517.8125,521.0625 C517.2656,521.6563 516.6094,522.0469 515.8125,522.0469 C514.1406,522.0469 512.9844,520.7188 512.9844,518.4375 C512.9844,516.2188 514.1406,514.875 515.7031,514.875 C516.5156,514.875 517.1094,515.1875 517.6406,515.6719 L519.0156,514.125 C518.2656,513.3906 517.1094,512.7188 515.7031,512.7188 C512.75,512.7188 510.4219,514.8594 510.4219,518.5313 C510.4219,522.25 512.7969,524.2031 515.5469,524.2031 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="81" x="529.5" y="522.1016">AdsApiAdapter</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="501.5" x2="612.5" y1="534" y2="534"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="501.5" x2="612.5" y1="542" y2="542"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="72" x="506.5" y="556.2051">convert(user)</text><path d="M649,520 L649,528.5 L613.7266,532.5 L649,536.5 L649,545.2344 A0,0 0 0 0 649,545.2344 L889,545.2344 A0,0 0 0 0 889,545.2344 L889,530 L879,520 L649,520 A0,0 0 0 0 649,520 " fill="#FBFB77" filter="url(#f1083jpdipk7rt)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M879,520 L879,530 L889,530 L879,520 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="219" x="655" y="537.0605">Реализация конвертера для AdsApi</text><!--MD5=[e188e7b53e0e0f3c7d267af3ee14e556]
+class AdsRepository--><rect fill="#FEFECE" filter="url(#f1083jpdipk7rt)" height="79.9063" id="AdsRepository" style="stroke: #A80036; stroke-width: 1.5;" width="112" x="965" y="66.5"/><ellipse cx="980" cy="85.5625" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M980.0469,91.7656 C981.5469,91.7656 982.7813,91.2031 983.6875,90.1406 L982.3125,88.625 C981.7656,89.2188 981.1094,89.6094 980.3125,89.6094 C978.6406,89.6094 977.4844,88.2813 977.4844,86 C977.4844,83.7813 978.6406,82.4375 980.2031,82.4375 C981.0156,82.4375 981.6094,82.75 982.1406,83.2344 L983.5156,81.6875 C982.7656,80.9531 981.6094,80.2813 980.2031,80.2813 C977.25,80.2813 974.9219,82.4219 974.9219,86.0938 C974.9219,89.8125 977.2969,91.7656 980.0469,91.7656 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="79" x="994.5" y="82.6328">«Объявления»</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="80" x="994" y="96.6953">AdsRepository</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="966" x2="1076" y1="104.625" y2="104.625"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="966" x2="1076" y1="112.625" y2="112.625"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="65" x="971" y="126.8301">list(params)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="57" x="971" y="139.7207">save(data)</text><path d="M1112.5,43 L1112.5,97.3203 L1036,123.0703 L1112.5,105.3203 L1112.5,159.6406 A0,0 0 0 0 1112.5,159.6406 L1337.5,159.6406 A0,0 0 0 0 1337.5,159.6406 L1337.5,53 L1327.5,43 L1112.5,43 A0,0 0 0 0 1112.5,43 " fill="#FBFB77" filter="url(#f1083jpdipk7rt)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1327.5,43 L1327.5,53 L1337.5,53 L1327.5,43 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="199" x="1118.5" y="60.0605">Возвращает список объявлений</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="191" x="1118.5" y="75.2949">с фильтрацией по параметрам,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="60" x="1118.5" y="90.5293">например</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1118.5" y="105.7637">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="198" x="1124.5" y="120.998">categoryName: "Недвижимость",</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="1124.5" y="136.2324">typeName: "Продам"</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="1118.5" y="151.4668">}</text><!--MD5=[b3c2230271250b561f28a9e8cd979a92]
+class CategoryRepository--><rect fill="#FEFECE" filter="url(#f1083jpdipk7rt)" height="79.9063" id="CategoryRepository" style="stroke: #A80036; stroke-width: 1.5;" width="139" x="500.5" y="66.5"/><ellipse cx="515.5" cy="85.5625" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M515.5469,91.7656 C517.0469,91.7656 518.2813,91.2031 519.1875,90.1406 L517.8125,88.625 C517.2656,89.2188 516.6094,89.6094 515.8125,89.6094 C514.1406,89.6094 512.9844,88.2813 512.9844,86 C512.9844,83.7813 514.1406,82.4375 515.7031,82.4375 C516.5156,82.4375 517.1094,82.75 517.6406,83.2344 L519.0156,81.6875 C518.2656,80.9531 517.1094,80.2813 515.7031,80.2813 C512.75,80.2813 510.4219,82.4219 510.4219,86.0938 C510.4219,89.8125 512.7969,91.7656 515.5469,91.7656 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="70" x="548" y="82.6328">«Категории»</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="107" x="529.5" y="96.6953">CategoryRepository</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="501.5" x2="638.5" y1="104.625" y2="104.625"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="501.5" x2="638.5" y1="112.625" y2="112.625"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="93" x="506.5" y="126.8301">findOne(params)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="57" x="506.5" y="139.7207">save(data)</text><path d="M674.5,66 L674.5,97.4688 L599.5,123.0703 L674.5,105.4688 L674.5,136.9375 A0,0 0 0 0 674.5,136.9375 L929.5,136.9375 A0,0 0 0 0 929.5,136.9375 L929.5,76 L919.5,66 L674.5,66 A0,0 0 0 0 674.5,66 " fill="#FBFB77" filter="url(#f1083jpdipk7rt)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M919.5,66 L919.5,76 L929.5,76 L919.5,66 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="234" x="680.5" y="83.0605">Возвращает категорию по параметру</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="680.5" y="98.2949">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="145" x="686.5" y="113.5293">name: "Недвижимость",</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="680.5" y="128.7637">}</text><!--MD5=[b5eb1f5ce3b7f7bd47349cfadba61c21]
+class AdsLoader--><rect fill="#FEFECE" filter="url(#f1083jpdipk7rt)" height="79.9063" id="AdsLoader" style="stroke: #A80036; stroke-width: 1.5;" width="166" x="1373" y="66.5"/><ellipse cx="1388" cy="85.5625" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1388.0469,91.7656 C1389.5469,91.7656 1390.7813,91.2031 1391.6875,90.1406 L1390.3125,88.625 C1389.7656,89.2188 1389.1094,89.6094 1388.3125,89.6094 C1386.6406,89.6094 1385.4844,88.2813 1385.4844,86 C1385.4844,83.7813 1386.6406,82.4375 1388.2031,82.4375 C1389.0156,82.4375 1389.6094,82.75 1390.1406,83.2344 L1391.5156,81.6875 C1390.7656,80.9531 1389.6094,80.2813 1388.2031,80.2813 C1385.25,80.2813 1382.9219,82.4219 1382.9219,86.0938 C1382.9219,89.8125 1385.2969,91.7656 1388.0469,91.7656 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="138" x="1400" y="82.6328">«Загрузчик объявлений»</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="59" x="1439.5" y="96.6953">AdsLoader</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="1374" x2="1538" y1="104.625" y2="104.625"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="1374" x2="1538" y1="112.625" y2="112.625"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="95" x="1379" y="126.8301">load(data1,date2)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="32" x="1379" y="139.7207">load()</text><path d="M1574.5,81.5 L1574.5,97.7344 L1474,123.0703 L1574.5,105.7344 L1574.5,121.9688 A0,0 0 0 0 1574.5,121.9688 L1777.5,121.9688 A0,0 0 0 0 1777.5,121.9688 L1777.5,91.5 L1767.5,81.5 L1574.5,81.5 A0,0 0 0 0 1574.5,81.5 " fill="#FBFB77" filter="url(#f1083jpdipk7rt)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1767.5,81.5 L1767.5,91.5 L1777.5,91.5 L1767.5,81.5 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="182" x="1580.5" y="98.5605">Загружает объявления в базу</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="100" x="1580.5" y="113.7949">за диапазон дат</text><!--MD5=[f8d6d47620911c609fef909719f55d89]
+reverse link AdsProvider to AdsApiProvider--><path d="M106.5786,157.2167 C111.9774,217.0183 120.7779,314.5009 125.2313,363.8314 " fill="none" id="AdsProvider&lt;-AdsApiProvider" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="99.5845,157.5968,104.7578,137.0484,113.5278,156.338,99.5845,157.5968" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[7114901c4b2d6d8038362676c0444180]
+reverse link AdsAdapter to AdsApiAdapter--><path d="M565.7499,323.2987 C563.4953,377.2036 560.1047,458.2706 558.2767,501.975 " fill="none" id="AdsAdapter&lt;-AdsApiAdapter" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="558.7659,322.7662,566.5957,303.0763,572.7537,323.3514,558.7659,322.7662" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[80511303a22ab8c46d7a81e6392f4856]
+link AdsApiProvider to AdsApiAdapter--><path d="M204.0098,425.0674 C211.4111,427.8307 218.8311,430.519 226,433 C318.8468,465.1318 428.3292,496.8641 495.1863,515.5637 " fill="none" id="AdsApiProvider-&gt;AdsApiAdapter" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="500.3237,516.9984,492.7312,510.7251,495.508,515.6536,490.5795,518.4303,500.3237,516.9984" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="71" x="344" y="468.0605">использует</text><!--MD5=[384921b634e408d0c37ea3baca39453f]
+link AdsRepository to AdsRepository$$$RIGHT--><!--MD5=[b2ed57b7d346182000515c037f889298]
+link CategoryRepository to CategoryRepository$$$RIGHT--><!--MD5=[72b2604b7ebb490bf49c0094556b56eb]
+link AdsLoader to AdsLoader$$$RIGHT--><!--MD5=[2c78af94ed3a9246104bc53327028ffd]
+@startuml entities
+
+
+
+package Провайдеры #Orange {
+  class AdsProvider {
+    getAdsByDate(date1, date2)
+  }
+
+  note right of AdsProvider
+    Базовый класс для задачи 
+    получения данных по поставщика
+    объявлений. Содержит методы
+    для получения объявлений.
+    Может иметь несколько реализаций
+    для разных поставщиков
+  end note
+
+
+  class AdsApiProvider extends AdsProvider {
+    getAdsByDate(date1, date2)
+  }
+  note right of AdsApiProvider {
+    Кокретная реализация - 
+    адаптер для сервиса ads-api.ru
+  }
+
+}
+
+ 
+package Адаптеры #GreenYellow {
+
+  class AdsAdapter <<Адаптер объявлений>> {
+    convert(user)
+  }
+
+  note right of AdsAdapter
+    Базовый класс для задачи 
+    конвертации данных из формата
+    поставщика в формат хранения
+  end note
+
+  class AdsApiAdapter extends AdsAdapter {
+    convert(user)
+  }
+
+  note right of AdsApiAdapter
+    Реализация конвертера для AdsApi
+  end note
+}
+AdsApiProvider - -> AdsApiAdapter : использует
+ 
+package Репозитории #GreenYellow {
+
+  class AdsRepository <<Объявления>> {
+    list(params)
+    save(data)
+  }
+  note right of AdsRepository::list
+    Возвращает список объявлений
+    с фильтрацией по параметрам,
+    например
+    { 
+      categoryName: "Недвижимость",
+      typeName: "Продам" 
+    } 
+  end note
+
+  class CategoryRepository <<Категории>> {
+    findOne(params)
+    save(data)
+  }
+
+  note right of CategoryRepository::findOne
+    Возвращает категорию по параметру
+    { 
+      name: "Недвижимость",
+    } 
+  end note
+
+}
+package Службы #LightGreen {
+
+  class AdsLoader <<Загрузчик объявлений>> {
+    load(data1,date2)
+    load()
+  }
+
+  note right of AdsLoader::load
+    Загружает объявления в базу
+    за диапазон дат
+  end note
+
+
+}
+
+@enduml
+
+PlantUML version 1.2020.09(Sun May 10 14:51:06 SAMT 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.10+9-suse-lp152.2.9.1-x8664
+Operating System: Linux
+Default Encoding: UTF-8
+Language: ru
+Country: RU
+--></g></svg>

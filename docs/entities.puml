@@ -1,0 +1,97 @@
+@startuml entities
+
+
+
+package Провайдеры #Orange {
+  class AdsProvider {
+    getAdsByDate(date1, date2)
+  }
+
+  note right of AdsProvider
+    Базовый класс для задачи 
+    получения данных по поставщика
+    объявлений. Содержит методы
+    для получения объявлений.
+    Может иметь несколько реализаций
+    для разных поставщиков
+  end note
+
+
+  class AdsApiProvider extends AdsProvider {
+    getAdsByDate(date1, date2)
+  }
+  note right of AdsApiProvider {
+    Кокретная реализация - 
+    адаптер для сервиса ads-api.ru
+  }
+
+}
+
+ 
+package Адаптеры #GreenYellow {
+
+  class AdsAdapter <<Адаптер объявлений>> {
+    convert(user)
+  }
+
+  note right of AdsAdapter
+    Базовый класс для задачи 
+    конвертации данных из формата
+    поставщика в формат хранения
+  end note
+
+  class AdsApiAdapter extends AdsAdapter {
+    convert(user)
+  }
+
+  note right of AdsApiAdapter
+    Реализация конвертера для AdsApi
+  end note
+}
+AdsApiProvider --> AdsApiAdapter : использует
+ 
+package Репозитории #GreenYellow {
+
+  class AdsRepository <<Объявления>> {
+    list(params)
+    save(data)
+  }
+  note right of AdsRepository::list
+    Возвращает список объявлений
+    с фильтрацией по параметрам,
+    например
+    { 
+      categoryName: "Недвижимость",
+      typeName: "Продам" 
+    } 
+  end note
+
+  class CategoryRepository <<Категории>> {
+    findOne(params)
+    save(data)
+  }
+
+  note right of CategoryRepository::findOne
+    Возвращает категорию по параметру
+    { 
+      name: "Недвижимость",
+    } 
+  end note
+
+}
+package Службы #LightGreen {
+
+  class AdsLoader <<Загрузчик объявлений>> {
+    load(data1,date2)
+    load()
+  }
+
+  note right of AdsLoader::load
+    Загружает объявления в базу
+    за диапазон дат
+  end note
+
+
+}
+
+@enduml
