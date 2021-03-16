@@ -53,16 +53,16 @@ AdsApiProvider --> AdsApiAdapter : использует
 package Репозитории #GreenYellow {
 
   class AdsRepository <<Объявления>> {
-    list(params)
+    search(params)
     save(data)
   }
-  note right of AdsRepository::list
+  note right of AdsRepository::search
     Возвращает список объявлений
     с фильтрацией по параметрам,
     например
     { 
-      categoryName: "Недвижимость",
-      typeName: "Продам" 
+      categoryId: 1,
+      title: 'Дом' 
     } 
   end note
 
