@@ -1,2 +1,1 @@
-PWD=`pwd`
-cat load.sql | sed "s^\$PWD^$PWD^" | sudo -u postgres psql adsviewer 
+cat comment.sql data.sql | sudo -u postgres psql adsviewer 

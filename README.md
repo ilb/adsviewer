@@ -29,6 +29,11 @@ cp .env.example .env
 npx prisma db push --preview-feature
 ```
 
+### Загрузить данные
+```bash
+cat sql/comment.sql sql/data.sql | sudo -u postgres psql adsviewer
+```
+
 ### Prisma Studio
 
 ```bash
