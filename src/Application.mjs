@@ -24,7 +24,12 @@ export default class Application {
     });
 
     // autoscan modules
-    await this.container.loadModules(['src/repositories/**/*.mjs', 'src/usecases/**/*.mjs'], {
+    await this.container.loadModules(
+      [
+        'src/repositories/**/*.mjs',
+        'src/usecases/**/*.mjs'
+      ],
+      {
       formatName: 'camelCase',
       esModules: true
     });
@@ -42,9 +47,9 @@ export default class Application {
 
     const xRemoteUser = req && req.headers && req.headers['x-remote-user'];
     const currentUser = xRemoteUser || process.env.USER;
-
     const scope = this.container.createScope();
-    scope.register({ currentUser });
+    scope.register({ currentUser: asValue(currentUser)
+    });
 
     return scope;
   }
