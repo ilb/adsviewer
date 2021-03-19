@@ -16,7 +16,7 @@ export default class Application {
   async createContainer() {
     this.container = awilix.createContainer();
     const prisma = new PrismaClient();
-    // register currentUser, datasource
+    // register currentUser, datasource, prisma
     this.container.register({
       currentUser: asValue(process.env.USER),
       dataSource: asFunction(DataSourceFactory),
@@ -43,13 +43,12 @@ export default class Application {
     if (this.container == null) {
       await this.createContainer();
     }
-    // console.log(this.container);
+    console.log(this.container);
 
     const xRemoteUser = req && req.headers && req.headers['x-remote-user'];
     const currentUser = xRemoteUser || process.env.USER;
     const scope = this.container.createScope();
-    scope.register({ currentUser: asValue(currentUser)
-    });
+    scope.register({ currentUser });
 
     return scope;
   }

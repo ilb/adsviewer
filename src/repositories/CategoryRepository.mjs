@@ -6,7 +6,7 @@ export default class CategoryRepository {
     this.prisma = prisma;
   }
 
-  async list() {
+  async getCategoryNames() {
     return this.prisma.category.findMany();
   }
 }

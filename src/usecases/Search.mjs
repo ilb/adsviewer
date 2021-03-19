@@ -18,9 +18,9 @@ export default class Search {
   }
 
   /*eslint no-unused-vars: ["error", { "args": "none" }]*/
-  async getSchema(request) {
+  async schema(request) {
     // const categoryNames = await this.categoryRepository.getCategoryNames();
-    const categoryNames = await this.categoryRepository.list();
+    const categoryNames = await this.categoryRepository.getCategoryNames();
     const itemNames = categoryNames.map((item) => {
       return item.name;
     });
