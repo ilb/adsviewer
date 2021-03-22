@@ -1,6 +1,8 @@
 import awilix from 'awilix';
 const { asFunction, asValue } = awilix;
 import DataSourceFactory from './database/DataSourceFactory';
+import Prisma from '@prisma/client';
+const { PrismaClient } = Prisma;
 
 export default class Application {
   constructor() {
@@ -12,10 +14,12 @@ export default class Application {
    */
   async createContainer() {
     this.container = awilix.createContainer();
+    const prisma = new PrismaClient();
     // register currentUser, datasource
     this.container.register({
       currentUser: asValue(process.env.USER),
-      dataSource: asFunction(DataSourceFactory)
+      dataSource: asFunction(DataSourceFactory),
+      prisma: asValue(prisma)
     });
 
     // autoscan modules
@@ -52,4 +56,3 @@ export default class Application {
     return this.container.resolve(name);
   }
 }
-
