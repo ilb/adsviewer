@@ -2,7 +2,6 @@ import awilix from 'awilix';
 const { asFunction, asValue } = awilix;
 import DataSourceFactory from './database/DataSourceFactory';
 import Prisma from '@prisma/client';
-
 const { PrismaClient } = Prisma;
 
 export default class Application {
@@ -16,7 +15,7 @@ export default class Application {
   async createContainer() {
     this.container = awilix.createContainer();
     const prisma = new PrismaClient();
-    // register currentUser, datasource, prisma
+    // register currentUser, datasource
     this.container.register({
       currentUser: asValue(process.env.USER),
       dataSource: asFunction(DataSourceFactory),
@@ -24,12 +23,7 @@ export default class Application {
     });
 
     // autoscan modules
-    await this.container.loadModules(
-      [
-        'src/repositories/**/*.mjs',
-        'src/usecases/**/*.mjs'
-      ],
-      {
+    await this.container.loadModules(['src/repositories/**/*.mjs', 'src/usecases/**/*.mjs'], {
       formatName: 'camelCase',
       esModules: true
     });
@@ -43,10 +37,11 @@ export default class Application {
     if (this.container == null) {
       await this.createContainer();
     }
-    console.log(this.container);
+    // console.log(this.container);
 
     const xRemoteUser = req && req.headers && req.headers['x-remote-user'];
     const currentUser = xRemoteUser || process.env.USER;
+
     const scope = this.container.createScope();
     scope.register({ currentUser });
 
@@ -61,4 +56,3 @@ export default class Application {
     return this.container.resolve(name);
   }
 }
-

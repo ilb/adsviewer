@@ -1,5 +1,5 @@
 /**
- * Search use case
+ * Tearch use case
  */
 export default class Search {
   constructor({ categoryRepository }) {
@@ -19,6 +19,7 @@ export default class Search {
 
   /*eslint no-unused-vars: ["error", { "args": "none" }]*/
   async schema(request) {
+    console.log("schema: ", request)
     // const categoryNames = await this.categoryRepository.getCategoryNames();
     const categoryNames = await this.categoryRepository.getCategoryNames();
     const itemNames = categoryNames.map((item) => {

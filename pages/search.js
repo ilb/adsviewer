@@ -1,16 +1,20 @@
 import React from 'react';
 import { Container, Header } from 'semantic-ui-react';
-import { AutoForm } from 'uniforms-semantic';
+import { AutoField, AutoForm } from 'uniforms-semantic';
 import { createSchemaBridge } from '../libs/uniforms';
 import { withRouter } from 'next/router';
 import { processUsecase } from '../libs/usecases/index';
 import AdsItem from '../components/ads-item';
+import pageSwitcher from '../utils/page-switcher';
 
 function AutoFormPage({ router, request, response, schema }) {
   console.log({ request });
 
   function onSubmit(query) {
     router.push({ pathname: 'autoform', query });
+  }
+  function onChange(query) {
+    router.push({ pathname: pageSwitcher(query)})
   }
 
   const testdata = [{ id: 1,
@@ -40,7 +44,11 @@ function AutoFormPage({ router, request, response, schema }) {
         model={request}
         onSubmit={onSubmit}
         showInlineError={true}
-      />
+      >
+        <AutoField name="category" onChange={onChange} />
+        <AutoField name="q" />
+      </AutoForm>
+
       {response.greeting && <Header as="h1">{response.greeting}</Header>}
       { testdata.map((items) => {
           return (
