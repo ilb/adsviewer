@@ -5,11 +5,19 @@ const prisma = new PrismaClient();
 const repository = new LastDateRepository({ prisma });
 
 it('TEST LastLoadRepository, should create table with fields id, name, date, dateCreate', async () => {
-  const createDate = await repository.setDate('adsapi', new Date('2018-02-25 20:15:56'));
+  // testBaseData(); // раскоментируйте чтобы протестировать таблица наполнится датами
   const getDate = await repository.getDate('adsapi');
   const received = getDate.lastloaddate;
-  const expected = new Date('2018-02-25 20:15:56');
+  const expected = new Date('2018-03-01 20:15:56');
   console.log({ getDate });
 
   expect(received).toStrictEqual(expected);
 });
+
+const testBaseData = async () => {
+  let i = 1;
+  while (i < 10) {
+    await repository.setDate('adsapi', new Date(`2018-02-2${i} 20:15:56`));
+    i++;
+  }
+};
