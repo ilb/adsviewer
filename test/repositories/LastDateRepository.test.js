@@ -4,7 +4,7 @@ import LastDateRepository from '../../src/repositories/LastDateRepository';
 const prisma = new PrismaClient();
 const repository = new LastDateRepository({ prisma });
 
-it('TEST LastLoadRepository, should create table with fields id, name, date, dateCreate', async () => {
+it('TEST LastLoadRepository, setDate - create fields data and name, get date - return last sampling date by name', async () => {
   // testBaseData(); // раскоментируйте чтобы протестировать таблица наполнится датами
   const getDate = await repository.getDate('adsapi');
   const received = getDate.lastloaddate;
