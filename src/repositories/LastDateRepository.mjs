@@ -4,21 +4,26 @@ export default class LastDateRepository {
   }
 
   async getDate(name) {
-    return this.prisma.lastdatedownload.findFirst({
+    return this.prisma.lastload.findUnique({
       where: {
         name
       },
-      take: -1,
       select: {
         lastloaddate: true
       }
     });
   }
-  setDate(name, date) {
-    return this.prisma.lastdatedownload.create({
-      data: {
+  setDate(name, lastloaddate) {
+    return this.prisma.lastload.upsert({
+      where: {
+        name
+      },
+      update: {
+        lastloaddate
+      },
+      create: {
         name,
-        lastloaddate: date
+        lastloaddate
       }
     });
   }

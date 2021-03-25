@@ -126,9 +126,9 @@ model cartransmission {
   carmodeltransmission carmodeltransmission[]
 }
 
-model lastdatedownload {
+model lastload {
   id                   Int                    @id @default(autoincrement())
   createdAt            DateTime               @default(now())
-  name                 String                 @db.VarChar(50)
+  name                 String                 @unique
   lastloaddate         DateTime               @default(now())
 }
