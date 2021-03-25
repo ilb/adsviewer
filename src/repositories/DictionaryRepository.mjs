@@ -9,12 +9,21 @@ export default class DictionaryRepository {
   async listCarsManufacturer() {
     return this.prisma.carmanufacturer.findMany();
   }
+  async listModelByManufacturer(params) {
+    const { name } = params
+    return this.prisma.carmanufacturer.findMany({
+      where: {
+        name
+      },
+      include: {
+        carmodel: true
+      }
+    });
+  } //test
 
   async listRegion() {
     return this.prisma.region.findMany();
   }
 
-  async listModelByManufacturer() {
-    return this.prisma.carmodel.findMany();
-  } //test
+
 }

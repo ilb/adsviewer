@@ -11,15 +11,15 @@ import { processUsecase } from '../libs/usecases/index';
 import AutoFormMap from '../utils/autoform-map';
 
 function AutoFormTest({ router, request, schema }) {
-  console.log({ request });
+  console.log({request});
 
   function onSubmit(query) {
-    router.push({ pathname: 'it_was_test', query });
+    router.push({ pathname: router.asPath, query });
   }
 
-  function keyInc() {
-    var inc = 0;
-    return inc++;
+  function onChange(query) {
+    console.log(query)
+    router.replace({ pathname: router.asPath, query }); //test /autoform?carmanufacturer=Mitsubishi
   }
 
 
@@ -28,7 +28,7 @@ function AutoFormTest({ router, request, schema }) {
       <AutoForm
         schema={createSchemaBridge(schema)}
         model={request}
-        onSubmit={onSubmit}
+        onChange={onChange}
         showInlineError={true}
       >
         <Segment>
@@ -41,7 +41,7 @@ function AutoFormTest({ router, request, schema }) {
                         {item.title}
                       </Grid.Column>
                       <Grid.Column>
-                        <AutoField name={item.schema}/>
+                        <AutoField name={item.schema} />
                       </Grid.Column>
                       <Grid.Column textAlign="left">
                         Test
@@ -51,6 +51,7 @@ function AutoFormTest({ router, request, schema }) {
                 }
               )
             }
+            <AutoField name="w" />
           </Grid>
         </Segment>
         <Button color='orange'>Получить оценку</Button>

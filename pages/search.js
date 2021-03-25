@@ -11,7 +11,7 @@ function AutoFormPage({ router, request, response, schema }) {
   console.log({ request });
 
   function onSubmit(query) {
-    router.push({ pathname: 'autoform', query });
+    router.push({ pathname: router.asPath, query });
   }
   function onChange(query) {
     router.push({ pathname: pageSwitcher(query)})

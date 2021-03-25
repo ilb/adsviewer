@@ -11,7 +11,7 @@ export default class Search {
    */
   async process(request) {
     const result = {};
-    if (request.q) {
+    if (request) {
       // result.rows = await this.dictionaryRepository.search(request.q);
     }
     return result;
