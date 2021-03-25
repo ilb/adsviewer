@@ -1,5 +1,5 @@
 /**
- * Tearch use case
+ * Search use case
  */
 export default class Search {
   constructor({ categoryRepository }) {
