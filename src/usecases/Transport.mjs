@@ -12,7 +12,6 @@ export default class Transport {
   async process(request) {
     const result = {};
     if (request) {
-      // result.rows = await this.dictionaryRepository.search(request.q);
     }
     return result;
   }
@@ -26,11 +25,19 @@ export default class Transport {
     const region = await this.dictRepo.listRegion()
     const itemRegion = region.map(({name}) => name)
 
-    const testdataname = {name: 'Mitsubishi'} // must be a props
-    const carmodel = await this.dictRepo.listModelByManufacturer(request)
-    const itemModel = carmodel.map(({carmodel}) => carmodel.map(({name}) => name))[0]
+    const carmodel = await this.dictRepo.listModelByManufacturer({ name: request.carmanufacturer })
+    const itemModel = await carmodel.map(({carmodel}) => carmodel.map(({name}) => name))[0]
 
-     //лучше в отдельный HOF с параметрами
+    const testdata = { name: 'Astra' } // testdata
+    const cardescription = await this.dictRepo.listDescriptionByModel(testdata)
+    const descriptModelBody = await cardescription.map(({ carmodelbody }) => carmodelbody.map(({carbodyid}) => carbodyid))[0]
+    const descriptModelTransmission = await cardescription.map(({ carmodeltransmission }) => carmodeltransmission.map(({cartransmissionid}) => cartransmissionid))[0]
+    const descriptModelHorse = await cardescription.map(({ enginepower }) => enginepower)
+    const descriptModelV = await cardescription.map(({ enginecapacity }) => enginecapacity.toString())
+
+    const testYears = ['2011','2012','2015']
+    const testPersons = ['1','2','3','4','5']
+
 
     const schema = {
       title: 'Получить оценку',
@@ -38,14 +45,13 @@ export default class Transport {
       properties: {
         carmanufacturer: { title: '', type: 'string', enum: itemCarsManufacturer },
         region: { title: '', type: 'string', enum: itemRegion },
-        carmodel: { title: '', type: 'string', enum: itemModel } //
-        // year: { title: '', type: 'string', enum: itemModel }, //testing
-        // body: { title: '', type: 'string', enum: itemModel }, //*
-        // transmission: { title: '', type: 'string', enum: itemModel }, //*
-        // persons: { title: '', type: 'string', enum: itemModel }, //*
-        // horse: { title: '', type: 'string', enum: itemModel }, //*
-        // v: { title: '', type: 'string', enum: itemModel } //*
-        , w: { title: 'Поиск по объявлениям', type: 'string', minLength: 1 }
+        carmodel: { title: '', type: 'string', enum: itemModel },
+        year: { title: '', type: 'string', enum: testYears }, //**testing**need*bd**
+        body: { title: '', type: 'string', enum: descriptModelBody },
+        transmission: { title: '', type: 'string', enum: descriptModelTransmission },
+        persons: { title: '', type: 'string', enum: testPersons }, //**testing**need*bd**
+        horse: { title: '', type: 'string', enum: descriptModelHorse },
+        volume: { title: '', type: 'string', enum: descriptModelV }
       },
       required: ['carmanufacturer']
     };

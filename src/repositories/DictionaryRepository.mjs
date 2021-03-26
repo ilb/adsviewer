@@ -19,7 +19,21 @@ export default class DictionaryRepository {
         carmodel: true
       }
     });
-  } //test
+  }
+
+  async listDescriptionByModel(params) {
+    const { name } = params
+    return this.prisma.carmodel.findMany({
+      where: {
+        name
+      },
+      include: {
+        carmodelbody: true,
+        carmodeltransmission: true
+      }
+    });
+  }
+
 
   async listRegion() {
     return this.prisma.region.findMany();
