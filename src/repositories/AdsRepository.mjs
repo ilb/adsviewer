@@ -19,10 +19,42 @@ export default class AdsRepository {
   }
 
   async save(data) {
-    return this.prisma.ads.create({
-      data: {
-        data
-      }
-    });
+    // eslint-disable-next-line no-undef
+    await Promise.all(
+      data.map(async (adsItem) => {
+        const { title, adsDate, description, phone, type, params, categoryId, region } = adsItem;
+        return await this.prisma.ads.create({
+          data: {
+            title: title,
+            adsDate: new Date(adsDate),
+            description,
+            phone: Number(phone),
+            type: {
+              connect: {
+                name: type
+              }
+            },
+            data: params,
+            category: {
+              connect: {
+                avitoId: categoryId
+              }
+            },
+            region: {
+              connect: {
+                name: region
+              }
+            }
+          }
+        });
+      })
+    );
+    await this.save()
+      .catch((e) => {
+        throw e;
+      })
+      .finally(async () => {
+        await this.prisma.$disconnect();
+      });
   }
 }
