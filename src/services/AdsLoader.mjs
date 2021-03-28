@@ -15,7 +15,7 @@ export default class AdsLoader {
 
   async setLastDate(data) {
     const dataLastElem = data.pop();
-    // const lastDate = dataLastElem Тут будет поле из которого будем вытаскивать дату либо id
+    const lastDate = dataLastElem
     const nameSource = this.nameSource;
     return this.lastDateRepository.setDate(nameSource, lastDate);
   }
@@ -26,7 +26,7 @@ export default class AdsLoader {
     if (!dateFrom) {
       setFromDate = lastDate;
     }
-    const data = await this.adsProvider.getAdsByDate({ setFromDate, dateTo });
+    const data = await this.adsProvider.getAdsByDate(setFromDate, dateTo);
 
     this.setLastDate(data);
     this.adsRepository.save(data);
