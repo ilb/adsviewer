@@ -13,14 +13,18 @@ import AutoFormMap from '../utils/autoform-map';
 function AutoFormTest({ router, request, response, schema }) {
 
   console.log("RESPONCE", {response});
+  console.log("REQUEST", {request});
+  console.log("router", {router});
 
-  function onSubmit(query) {
-    router.push({ pathname: router.asPath, query });
+  function onSubmit() {
+    router.push({ pathname: router.pathname, query: router.query });
+    console.log("onSubmit: ")
   }
 
-  function onChange(query, req) {
-    console.log(query, req)
-    router.replace({ pathname: router.asPath, query: { [query]: req } }); //test /autoform?carmanufacturer=Mitsubishi
+  const onChange = (query, req) => {
+    console.log("onChange ", query, req)
+    router.replace({ pathname: router.pathname, query: { ...router.query, [query]: req } });
+    //to test click this: http://localhost:3000/adsviewer/autoform?carmanufacturer=Aston+Martin&carmodel=DBS&body=8&horse=517&transmission=2&volume=5.9&region=%D0%91%D0%B0%D1%88%D0%BA%D0%BE%D1%80%D1%82%D0%BE%D1%81%D1%82%D0%B0%D0%BD&year=2015&persons=2
   }
 
 
@@ -37,7 +41,7 @@ function AutoFormTest({ router, request, response, schema }) {
             {
               AutoFormMap.map((item) => {
                   return (
-                    <Grid.Row>
+                    <Grid.Row key={item.id}>
                       <Grid.Column textAlign="right">
                         {item.title}
                       </Grid.Column>
@@ -54,7 +58,7 @@ function AutoFormTest({ router, request, response, schema }) {
             }
           </Grid>
         </Segment>
-        <Button color='orange'>Получить оценку</Button>
+        <Button onClick={onSubmit} color='orange'>Получить оценку</Button>
       </AutoForm>
     </Container>
   );
