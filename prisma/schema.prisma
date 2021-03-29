@@ -15,7 +15,7 @@ model ads {
   updatedAt   DateTime @updatedAt
   title       String   @db.VarChar(255)
   description String   @db.VarChar(255)
-  phone       Int?
+  phone       String?
   type        type     @relation(fields: [typeId], references: [id])
   typeId      Int
   data        Json
@@ -46,7 +46,7 @@ model category {
   parent     category?  @relation("categoryParent", fields: [parentId], references: [id])
   categories category[] @relation("categoryParent")
   parentId   Int?
-  ads        ads[]
+  ads        ads[]     
 
   @@unique([parentId, code, name], name: "UNQ_category_CODENAME")
 }
