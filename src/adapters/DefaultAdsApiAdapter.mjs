@@ -8,10 +8,11 @@ export default class DefaultAdsApiAdapter {
         title: ads.title,
         adsDate: ads.time,
         description: ads.description,
-        phone: ads.phone || '89xxxxxxxx',
-        type: ads.nedvigimost_type,
+        phone: ads.phone,
+        typeId: ads.nedvigimost_type_id,
         data: ads.params,
-        category: ads.cat1,
+        category: ads.cat2,
+        categoryId: ads.cat2_id,
         region: ads.region
       };
     });
