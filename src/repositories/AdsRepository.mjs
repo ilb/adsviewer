@@ -18,38 +18,52 @@ export default class AdsRepository {
     });
   }
 
+  async regionList() {
+    return this.prisma.region.findMany({
+      select: {
+        id: true,
+        name: true
+      }
+    });
+  }
   async save(data) {
+    const regions = await this.regionList();
+    // eslint-disable-next-line no-undef
+    const regionsMap = new Map();
+    regions.forEach((item) => {
+      regionsMap.set(item.name, item.id);
+    });
     // eslint-disable-next-line no-undef
     await Promise.all(
       data.map(async (adsItem) => {
-        const { title, adsDate, description, phone, type, params, categoryId, region } = adsItem;
+        const { title, adsDate, description, phone, typeId, data, categoryId, region } = adsItem;
+        const regionId = regionsMap.get(region);
         return await this.prisma.ads.create({
           data: {
             title: title,
             adsDate: new Date(adsDate),
             description,
-            phone: Number(phone),
+            phone: phone,
             type: {
               connect: {
-                name: type
+                id: typeId
               }
             },
-            data: params,
+            data: data,
             category: {
               connect: {
-                avitoId: categoryId
+                id: categoryId
               }
             },
             region: {
               connect: {
-                name: region
+                id: regionId
               }
             }
           }
         });
       })
-    );
-    await this.save()
+    )
       .catch((e) => {
         throw e;
       })
