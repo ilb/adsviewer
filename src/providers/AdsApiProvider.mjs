@@ -15,7 +15,6 @@ export default class AdsApiProvider extends AdsProvider {
   }
 
   async setUrlParams(dateFrom, dateTo) {
-    console.log(this.sourceAdsUrl);
     const url = new URL(this.sourceAdsUrl);
 
     if (dateFrom) {

@@ -4,51 +4,71 @@ import { UriAccessorFactory } from '../../libs/uriAccessor';
 
 const sourceAdsUrl = 'file://test/providers/ads.json';
 const adapterFactory = new AdsAdapterFactory();
-const adapter = adapterFactory.create();
+const adapter = adapterFactory.create('auto');
 
 const uriAccessorFactory = new UriAccessorFactory({
   uriAccessorFileEnabled: true
 });
 const expected = [
   {
-    title:
-      '2-комнатная квартира: Рязань, Октябрьский административный округ, район Дашково-Песочня, улица Зубковой, 18к6 (65 м²)',
-    adsDate: '2018-02-25 20:15:56',
-    description:
-      'Продам 2-комн квартиру в новостройке,в отличном состоянии, 65/33/11 кв м, дому 10 лет кирпичн., не угл., комнаты изолир.18 и 15 кв м, окна ПВХ во двор, лоджия застеклена и отделана, встроенная кухня, с/у раздельный в плитке, с/техника новая, просторный удобный холл 10 кв м, натяжные потолки, кладовка в этом доме, огромный техэтаж,  рядом остановка, магазины, рынок в 5 мин, поликлиника в 5 мин, спорт. комплекс в 3 мин. СРОЧНО !!',
-    phone: '891063XXXXX',
-    type: 'Продам',
+    adsDate: '2021-03-28 21:33:13',
+    category: 'Автомобили',
+    categoryId: 22,
     data: {
-      'Вид объекта': 'Вторичка',
-      'Жилая площадь': 33,
-      'Количество комнат': 2,
-      'Площадь кухни': 11,
-      'Тип объявления': 'Продам',
-      'Этажей в доме': 10
+      carBody: '',
+      carEngineType: 'Бензин',
+      carManufacturer: 'Acura',
+      carMileage: '280 000',
+      carModel: 'TL',
+      carTransmission: 'Автомат',
+      color: 'Серебряный',
+      condition: 'Не битый',
+      doorCount: '4',
+      driveAuto: 'Передний',
+      engineLiters: '3.2',
+      owners: '4+',
+      usedType: 'С пробегом',
+      wheelPosition: 'Левый',
+      yearOfProduction: '2005'
     },
-    category: 'Недвижимость',
-    region: 'Рязанская область'
+    description:
+      'Продам автомобиль бизнес класса который сочетает в себе комфорт, мощь и надежность, заинтересовавшимся расскажу все  по телефону, машина обслужина для своих лет в отличном состоянии , без ржавчины',
+    phone: '896749XXXXX',
+    region: 'Санкт-Петербург',
+    title: 'Acura TL 3.2 AT, 2005, 280 000 км',
+    typeId: '1'
   },
   {
-    title: '2-к кв. Краснодарский край, Краснодар Валерия Гассия 18 (68 м²)',
-    adsDate: '2018-02-25 20:15:54',
-    description:
-      'Отличная 2-х комнатная квартира на 2 стороны. В квартире сделан ремонт, по договоренности остается мебель. Шикарный вид из окна на р. Кубань и горы. Ипотека. мат. капитал.',
-    phone: '886120XXXXX',
-    type: 'Продам',
+    adsDate: '2021-03-28 21:33:13',
+    category: 'Автомобили',
+    categoryId: 22,
     data: {
-      'Вид объекта': 'Вторичка',
-      'Жилая площадь': 35,
-      'Количество комнат': 2,
-      'Площадь кухни': 15,
-      'Тип объявления': 'Продам',
-      'Этажей в доме': 12
+      carBody: '',
+      carEngineType: 'Бензин',
+      carManufacturer: 'Acura',
+      carMileage: '280 000',
+      carModel: 'TL',
+      carTransmission: 'Автомат',
+      color: 'Серебряный',
+      condition: 'Не битый',
+      doorCount: '4',
+      driveAuto: 'Передний',
+      engineLiters: '3.2',
+      owners: '4+',
+      usedType: 'С пробегом',
+      wheelPosition: 'Левый',
+      yearOfProduction: '2005'
     },
-    category: 'Недвижимость',
-    region: 'Краснодарский край'
+    description:
+      'Продам автомобиль бизнес класса который сочетает в себе комфорт, мощь и надежность, заинтересовавшимся расскажу все  по телефону, машина обслужина для своих лет в отличном состоянии , без ржавчины',
+    phone: '896749XXXXX',
+    region: 'Санкт-Петербург',
+    title: 'Acura TL 3.2 AT, 2005, 280 000 км',
+    typeId: '1'
   }
 ];
-it('should return format Data', async () => {
+
+it('should connect to server and return format data', async () => {
   const provider = new AdsApiProvider(sourceAdsUrl, adapter, uriAccessorFactory);
   const received = await provider.getAdsByDate();
 
