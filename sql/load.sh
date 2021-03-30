@@ -1,2 +1,1 @@
-cat comment.sql data.sql | sudo -u postgres psql adsviewer
-cat sql/ads.sql | sudo -u postgres psql adsviewer
+cat comment.sql data.sql auto.sql ads.sql| sudo -u postgres psql adsviewer
