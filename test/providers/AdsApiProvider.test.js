@@ -36,7 +36,7 @@ const expected = [
     phone: '896749XXXXX',
     region: 'Санкт-Петербург',
     title: 'Acura TL 3.2 AT, 2005, 280 000 км',
-    typeId: '1'
+    typeId: 1
   },
   {
     adsDate: '2021-03-28 21:33:13',
@@ -64,7 +64,7 @@ const expected = [
     phone: '896749XXXXX',
     region: 'Санкт-Петербург',
     title: 'Acura TL 3.2 AT, 2005, 280 000 км',
-    typeId: '1'
+    typeId: 1
   }
 ];
 
