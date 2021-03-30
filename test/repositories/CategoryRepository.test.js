@@ -1,7 +1,5 @@
 import CategoryRepository from '../../src/repositories/CategoryRepository';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from '../../libs/prisma/prisma';
 
 const repository = new CategoryRepository({ prisma });
 
