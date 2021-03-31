@@ -1,7 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../../libs/prisma/prisma';
 import LastDateRepository from '../../src/repositories/LastDateRepository';
 
-const prisma = new PrismaClient();
 const repository = new LastDateRepository({ prisma });
 
 it('TEST LastLoadRepository, setDate - create fields data and name, get date - return last sampling date by name', async () => {

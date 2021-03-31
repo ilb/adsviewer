@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:remotes" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:remotes" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:npm_and_yarn" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="db725e79-49ba-4c69-9c62-7226f3b28455" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/prisma/prisma.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/ads.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/auto.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/adapters/AdsAdapterFactory.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/adapters/AutoAdsApiAdapter.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/adapters/DefaultAdsApiAdapter.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/providers/AdsApiProvider.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/providers/AdsProvider.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/AdsLoader.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/adapters/AutoAdsApiAdapter.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/adapters/data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/providers/AdsApiProvider.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/providers/ads.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/repositories/data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/services/AdsLoader.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/services/ads.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/autoform.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/autoform.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/load.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sql/load.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/AdsRepository.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/AdsRepository.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecases/Transport.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecases/Transport.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/repositories/AdsRepository.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/repositories/AdsRepository.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/repositories/CategoryRepository.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/repositories/CategoryRepository.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/repositories/LastDateRepository.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/repositories/LastDateRepository.test.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1pqTgjwqO2diMzaKX3iux4aK6dx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\matco\react-apps\adsviewer-master\node_modules\prettier" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\matco\react-apps\adsviewer\utils" />
+      <recent name="C:\Users\matco\react-apps\adsviewer\components\category" />
+      <recent name="C:\Users\matco\react-apps\adsviewer-master\public" />
+      <recent name="C:\Users\matco\react-apps\adsviewer-master\public\static\images" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="db725e79-49ba-4c69-9c62-7226f3b28455" name="Default Changelist" comment="" />
+      <created>1615909741808</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615909741808</updated>
+      <workItem from="1615909802550" duration="1147000" />
+      <workItem from="1615911122865" duration="4936000" />
+      <workItem from="1615916659711" duration="2415000" />
+      <workItem from="1615994743571" duration="12166000" />
+      <workItem from="1616065856518" duration="2839000" />
+      <workItem from="1616068919348" duration="195000" />
+      <workItem from="1616069310239" duration="1043000" />
+      <workItem from="1616070512486" duration="17548000" />
+      <workItem from="1616166914287" duration="17488000" />
+      <workItem from="1616252956541" duration="12984000" />
+      <workItem from="1616339183980" duration="7645000" />
+      <workItem from="1616425257745" duration="14270000" />
+      <workItem from="1616513992245" duration="4371000" />
+      <workItem from="1616599944502" duration="10149000" />
+      <workItem from="1616677864532" duration="20009000" />
+      <workItem from="1616764891136" duration="13915000" />
+      <workItem from="1616923786785" duration="18529000" />
+      <workItem from="1617032950169" duration="1056000" />
+      <workItem from="1617116449249" duration="17363000" />
+      <workItem from="1617194959896" duration="22390000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="409" y="321" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1617124538307">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="409" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1617124538307" />
+    <state x="24" y="77" key="DBNavigator.ProjectSettingsDialog" timestamp="1615912082816">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="24" y="77" key="DBNavigator.ProjectSettingsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1615912082816" />
+    <state x="274" y="163" key="FileChooserDialogImpl" timestamp="1617117644649">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="274" y="163" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1617117644649" />
+    <state x="0" y="0" key="FileDocumentManager.FileCacheConflict" timestamp="1616264409390">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="0" key="FileDocumentManager.FileCacheConflict/0.0.1920.1040@0.0.1920.1040" timestamp="1616264409390" />
+    <state x="66" y="117" width="1740" height="839" key="MergeDialog" timestamp="1617117723293">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="66" y="117" width="1740" height="839" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617117723293" />
+    <state x="608" y="396" width="778" height="265" key="MultipleFileMergeDialog" timestamp="1617117723301">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="608" y="396" width="778" height="265" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617117723301" />
+    <state x="460" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1616435134535">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="460" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616435134535" />
+  </component>
+</project>
