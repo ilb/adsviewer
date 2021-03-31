@@ -1,0 +1,7 @@
+
+# установка файла: sudo crontab -u adsviewer /home/adsviewer/crontab
+
+HOME=/home/adsviewer
+
+# Загрузка объявлений
+*/5 * * * * node ${HOME}/bin/loadads.mjs
