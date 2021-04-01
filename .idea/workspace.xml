@@ -44,33 +44,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db725e79-49ba-4c69-9c62-7226f3b28455" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/prisma/prisma.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/ads.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/auto.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/adapters/AdsAdapterFactory.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/adapters/AutoAdsApiAdapter.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/adapters/DefaultAdsApiAdapter.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/providers/AdsApiProvider.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/providers/AdsProvider.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/AdsLoader.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/adapters/AutoAdsApiAdapter.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/adapters/data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/providers/AdsApiProvider.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/providers/ads.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/repositories/data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/services/AdsLoader.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/services/ads.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/autoform/[id].js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/types.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/usecases/Id.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/autoform.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/autoform.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/ads.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/ads.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sql/load.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sql/load.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositories/AdsRepository.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/AdsRepository.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecases/Transport.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecases/Transport.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/repositories/AdsRepository.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/repositories/AdsRepository.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/repositories/CategoryRepository.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/repositories/CategoryRepository.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/repositories/LastDateRepository.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/repositories/LastDateRepository.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/DictionaryRepository.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/DictionaryRepository.mjs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +123,8 @@
       <workItem from="1616923786785" duration="18529000" />
       <workItem from="1617032950169" duration="1056000" />
       <workItem from="1617116449249" duration="17363000" />
-      <workItem from="1617194959896" duration="22390000" />
+      <workItem from="1617194959896" duration="23000000" />
+      <workItem from="1617287292350" duration="18063000" />
     </task>
     <servers />
   </component>

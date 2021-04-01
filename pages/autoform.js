@@ -40,7 +40,6 @@ function MapForm({options, items} ) {
   // console.log('Region', items, options[items])
   return (items == 'region')
     ?
-    <Grid.Column textAlign="right" width={8}>
       <select name={`${items}`}>
         {options[items].map(({name, code}) => (
           <option key={name} value={code}>
@@ -48,9 +47,7 @@ function MapForm({options, items} ) {
           </option>
         ))}
       </select>
-    </Grid.Column>
     :
-    <Grid.Column textAlign="right" width={8}>
       <select name={`${items}`}>
         {options[items].map((item) => (
           <option key={item} value={item}>
@@ -58,7 +55,6 @@ function MapForm({options, items} ) {
           </option>
         ))}
       </select>
-    </Grid.Column>
 }
 
 
@@ -67,18 +63,22 @@ function FormAuto({ options }) {
   // console.log("FormAuto object keys", Object.keys(options) )
   return (
     <Form.Field>
-      <Grid columns={3}  columns='equal' verticalAlign='middle' divided>
+      <Grid columns={3}  columns='equal' verticalAlign='middle'>
+        <Grid.Row divided>
         {Object.keys(options).map((items) => (
-          <Grid.Row>
+          <>
             <Grid.Column textAlign="right" width={5}>
               <LabelReturn items={items}/>
             </Grid.Column>
-            <MapForm options={options} items={items}/>
+            <Grid.Column textAlign="right" width={8}>
+              <MapForm options={options} items={items}/>
+            </Grid.Column>
             <Grid.Column textAlign="left">
             </Grid.Column>
-          </Grid.Row>
+          </>
             )
         )}
+        </Grid.Row>
       </Grid>
     </Form.Field>
   )

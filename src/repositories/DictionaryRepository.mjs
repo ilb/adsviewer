@@ -34,10 +34,17 @@ export default class DictionaryRepository {
     });
   }
 
-
   async listRegion() {
     return this.prisma.region.findMany();
   }
 
+  async descriptionAds(param) {
+    const { id } = param
+    return this.prisma.ads.findMany({
+      where: {
+        id
+      }
+    })
+  }
 
 }
