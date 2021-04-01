@@ -10,6 +10,7 @@ datasource db {
 // Объявление
 model ads {
   id          BigInt   @id @default(autoincrement())
+  idSource    BigInt   @unique
   adsDate     DateTime 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
