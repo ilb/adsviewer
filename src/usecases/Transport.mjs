@@ -2,8 +2,9 @@
  * Transport use case
  */
 export default class Transport {
-  constructor({ dictionaryRepository }) {
+  constructor({ dictionaryRepository, adsRepository }) {
     this.dictRepo = dictionaryRepository;
+    this.adsRepo = adsRepository;
   }
   /**
    * process use case
@@ -18,21 +19,26 @@ export default class Transport {
     const region = await this.dictRepo.listRegion()
     const carmodel = await this.dictRepo.listModelByManufacturer( request.carmanufacturer ? { name: request.carmanufacturer } : ' ' )
     const cardescription = await this.dictRepo.listDescriptionByModel( (request.carmanufacturer && request.carmodel) ? { name: request.carmodel } : ' ' )
+    const ads = await this.adsRepo.all()
+    const adsitems = ads.map(({ id, adsDate, title, description, phone, data, category, region }) => ({ id, adsDate, title, description, phone, data, category, region}))
+    // console.log("ADS", adsitems )
     return {
       carmanufacturer: conCat(delDuplicat(carsManufacturer.map(({ name }) => name))),
-      region: region.map(({ name, code }) => ({ name, code })),
+      region: conCat(region.map(({ name, code }) => ({ name, code }))),
       carmodel: conCat(checkManuf(await delDuplicat(carmodel.map(({carmodel}) => carmodel.map(({name}) => name))[0]))),
       body: conCat(checkModel(await delDuplicat(cardescription.map(({ carmodelbody }) => carmodelbody.map(({carbodyid}) => carbodyid))[0]))),
       transmission: conCat(checkModel(await delDuplicat(cardescription.map(({ carmodeltransmission }) => carmodeltransmission.map(({cartransmissionid}) => cartransmissionid))[0]))),
       horse: conCat(checkModel(await delDuplicat(cardescription.map(({ enginepower }) => enginepower)))),
       volume: conCat(checkModel(await delDuplicat(cardescription.map(({ enginecapacity }) => enginecapacity.toString())))),
       year: conCat(checkManuf(delDuplicat(['2011','2011','2015','2012','2016']))),
-      persons: conCat(checkManuf([ '1', '2', '3', '4', '5']))
+      persons: conCat(checkManuf([ '1', '2', '3', '4', '5'])),
+      adsdata: JSON.stringify(adsitems, (_, v) => typeof v === 'bigint' ? `${v}n` : v)
+        .replace(/"(-?\d+)n"/g, (_, a) => a)
     };
   }
 
   async schema(request) {
-    console.log("schema: ", request)
+    // console.log("schema: ", request)
 
 
     const schema = {

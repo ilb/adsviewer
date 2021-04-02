@@ -5,6 +5,10 @@ export default class AdsRepository {
     this.prisma = prisma;
   }
 
+  async all(){
+    return this.prisma.ads.findMany()
+  }
+
   async search(params) {
     const { title, description, categoryId } = params;
     return this.prisma.ads.findMany({
