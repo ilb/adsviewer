@@ -11,23 +11,25 @@ export default class Search {
    */
   async process(request) {
     const result = {};
-    if (request.q) {
+    if (request) {
       // result.rows = await this.dictionaryRepository.search(request.q);
     }
     return result;
   }
 
   /*eslint no-unused-vars: ["error", { "args": "none" }]*/
-  async getSchema(request) {
-    const category = await this.categoryRepository.list();
-    const categoryName = category.map((item) => {
+  async schema(request) {
+    console.log("schema: ", request)
+    // const categoryNames = await this.categoryRepository.getCategoryNames();
+    const categoryNames = await this.categoryRepository.getCategoryNames();
+    const itemNames = categoryNames.map((item) => {
       return item.name;
     });
     const schema = {
       title: 'Поиск объявлений',
       type: 'object',
       properties: {
-        category: { title: 'Категория', type: 'string', enum: categoryName },
+        category: { title: 'Категория', type: 'string', enum: itemNames },
         q: { title: 'Поиск по объявлениям', type: 'string', minLength: 1 }
       },
       required: ['q']

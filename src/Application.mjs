@@ -56,3 +56,4 @@ export default class Application {
     return this.container.resolve(name);
   }
 }
+

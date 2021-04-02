@@ -1,3 +1,5 @@
+import mysql from 'serverless-mysql';
+
 export default class AdsRepository {
   constructor({ prisma }) {
     this.prisma = prisma;
