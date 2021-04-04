@@ -11,7 +11,11 @@ datasource db {
 model ads {
   id          BigInt   @id @default(autoincrement())
   idSource    BigInt   @unique
+<<<<<<< HEAD
   adsDate     DateTime 
+=======
+  adsDate     DateTime
+>>>>>>> master
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   title       String   @db.VarChar(255)
@@ -47,8 +51,7 @@ model category {
   parent     category?  @relation("categoryParent", fields: [parentId], references: [id])
   categories category[] @relation("categoryParent")
   parentId   Int?
-  ads        ads[]     
-
+  ads        ads[]
   @@unique([parentId, code, name], name: "UNQ_category_CODENAME")
 }
 
@@ -106,7 +109,6 @@ model carmodelbody {
   carbodyid  Int
   carbody    carbody  @relation(fields: [carbodyid], references: [id])
   carmodel   carmodel @relation(fields: [carmodelid], references: [id])
-
 }
 
 // Справочник КПП моделей
@@ -116,7 +118,6 @@ model carmodeltransmission {
   cartransmissionid Int
   carmodel          carmodel        @relation(fields: [carmodelid], references: [id])
   cartransmission   cartransmission @relation(fields: [cartransmissionid], references: [id])
-
 }
 
 // Справочник названий КПП

@@ -1,12 +1,22 @@
+import mysql from 'serverless-mysql';
+
 export default class AdsRepository {
   constructor({ prisma }) {
     this.prisma = prisma;
   }
+<<<<<<< HEAD
   /**
    *
    * @param params
    * @returns Array
    */
+=======
+
+  async all(){
+    return this.prisma.ads.findMany()
+  }
+
+>>>>>>> master
   async search(params) {
     const { title, description, categoryId } = params;
     return this.prisma.ads.findMany({
