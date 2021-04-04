@@ -11,8 +11,8 @@ export default class Transport {
    */
   async process(request) {
     const data = await this.dictRepo.descriptionAds({ id: BigInt(request.id) });
-    const test = data[0]
-    console.log("TEST descriptionAds", test.data)
+    const test = data[0];
+    console.log('TEST descriptionAds', test.data);
     return {
       id: request.id,
       title: test.title,
@@ -22,19 +22,18 @@ export default class Transport {
       data: test.data,
       categoryId: test.categoryId,
       regionId: test.regionId
-    }
+    };
   }
   async schema(request) {
     const data = await this.dictRepo.descriptionAds({ id: BigInt(request.id) });
-    const test = data[0]
-    console.log("schema: ", request)
+    const test = data[0];
+    console.log('schema: ', request);
 
     const schema = {
       title: 'Описание',
       type: 'object',
-      properties: {
-      }
-    }
+      properties: {}
+    };
     return schema;
   }
 }

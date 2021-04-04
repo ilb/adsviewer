@@ -11,11 +11,7 @@ datasource db {
 model ads {
   id          BigInt   @id @default(autoincrement())
   idSource    BigInt   @unique
-<<<<<<< HEAD
   adsDate     DateTime 
-=======
-  adsDate     DateTime
->>>>>>> master
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   title       String   @db.VarChar(255)
