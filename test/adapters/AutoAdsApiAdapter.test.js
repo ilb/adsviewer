@@ -4,6 +4,7 @@ const adapterFactory = new AdsAdapterFactory();
 
 const expected = [
   {
+    idSource: 537556112,
     adsDate: '2021-03-28 21:33:13',
     category: 'Автомобили',
     categoryId: 22,
@@ -32,6 +33,7 @@ const expected = [
     typeId: 1
   },
   {
+    idSource: 537556112,
     adsDate: '2021-03-28 21:33:13',
     category: 'Автомобили',
     categoryId: 22,
