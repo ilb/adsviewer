@@ -2,7 +2,11 @@ export default class AdsRepository {
   constructor({ prisma }) {
     this.prisma = prisma;
   }
-
+  /**
+   *
+   * @param params
+   * @returns Array
+   */
   async search(params) {
     const { title, description, categoryId } = params;
     return this.prisma.ads.findMany({
@@ -17,7 +21,10 @@ export default class AdsRepository {
       }
     });
   }
-
+  /**
+   *
+   * @returns array
+   */
   async regionList() {
     return this.prisma.region.findMany({
       select: {
@@ -26,6 +33,10 @@ export default class AdsRepository {
       }
     });
   }
+  /**
+   *
+   * @param data
+   */
   async save(data) {
     const regions = await this.regionList();
     // eslint-disable-next-line no-undef
@@ -36,14 +47,22 @@ export default class AdsRepository {
     // eslint-disable-next-line no-undef
     await Promise.all(
       data.map(async (adsItem) => {
-        const { title, adsDate, description, phone, typeId, data, categoryId, region } = adsItem;
+        // eslint-disable-next-line prettier/prettier
+        const { title, adsDate, description, phone, typeId, data, categoryId, region, idSource } = adsItem;
         const regionId = regionsMap.get(region);
-        return await this.prisma.ads.create({
-          data: {
-            title: title,
+        return await this.prisma.ads.upsert({
+          where: {
+            idSource
+          },
+          update: {
+            adsDate: new Date(adsDate)
+          },
+          create: {
+            idSource,
             adsDate: new Date(adsDate),
+            title,
             description,
-            phone: phone,
+            phone,
             type: {
               connect: {
                 id: typeId
