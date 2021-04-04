@@ -1,9 +1,9 @@
 export default function pageSwitcher(query) {
   switch (query) {
     case 'Автомобили':
-      return 'autoform'
+      return 'transport'
       break
     default:
-      return 'search'
+      return 'default'
   }
 }

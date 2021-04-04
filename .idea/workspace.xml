@@ -44,15 +44,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db725e79-49ba-4c69-9c62-7226f3b28455" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/autoform/[id].js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/types.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/usecases/Id.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/auto.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/default.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/usecases/Default.mjs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ads-item.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ads-item.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/autoform.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/autoform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/ads.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/ads.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/load.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sql/load.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositories/DictionaryRepository.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/DictionaryRepository.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/AdsRepository.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/AdsRepository.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecases/Search.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecases/Search.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecases/Transport.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecases/Transport.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/page-switcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/page-switcher.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +127,8 @@
       <workItem from="1617032950169" duration="1056000" />
       <workItem from="1617116449249" duration="17363000" />
       <workItem from="1617194959896" duration="23000000" />
-      <workItem from="1617287292350" duration="18063000" />
+      <workItem from="1617287292350" duration="18422000" />
+      <workItem from="1617375475079" duration="24196000" />
     </task>
     <servers />
   </component>
@@ -168,9 +172,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="608" y="396" width="778" height="265" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617117723301" />
-    <state x="460" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1616435134535">
+    <state x="460" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1617385512059">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="460" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616435134535" />
+    <state x="460" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1617385512059" />
   </component>
 </project>
