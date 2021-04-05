@@ -11,18 +11,6 @@ export default class Transport {
    * @param {*} request input params
    */
   async process(request) {
-    function delDuplicat(arr) {
-      return Array.from(new Set(arr)).sort();
-    } //delete duplicate data items and sort
-    function checkModel(func) {
-      return request.carmodel ? func : ['Выберите модель'];
-    }
-    function checkManuf(func) {
-      return request.carmanufacturer ? func : ['Выберите производителя'];
-    }
-    function conCat(arr) {
-      return ['...', ...arr];
-    }
     const carsManufacturer = await this.dictRepo.listCarsManufacturer();
     const region = await this.dictRepo.listRegion();
     const carmodel = await this.dictRepo.listModelByManufacturer(
@@ -31,6 +19,12 @@ export default class Transport {
     const cardescription = await this.dictRepo.listDescriptionByModel(
       request.carmanufacturer && request.carmodel ? { name: request.carmodel } : ' '
     );
+
+    const transmission = await this.dictRepo.carTransmission();
+    const carbody = await this.dictRepo.carBody();
+    const transmissionMap = arrayToMap(transmission);
+    const carbodyMap = arrayToMap(carbody);
+
     const ads = await this.adsRepo.all();
     const adsitems = ads.map(
       ({ id, adsDate, title, description, phone, data, category, region }) => ({
@@ -44,39 +38,63 @@ export default class Transport {
         region
       })
     );
+    /**
+     *
+     * @param array
+     * @returns new Map
+     */
+    function arrayToMap(array) {
+      const arrMap = new Map();
+      array.forEach((element) => {
+        arrMap.set(element.id, element.name);
+      });
+      return arrMap;
+    }
+    function delDuplicat(arr) {
+      // eslint-disable-next-line no-undef
+      return Array.from(new Set(arr)).sort();
+    } //delete duplicate data items and sort
+    function checkModel(func) {
+      return request.carmodel ? func : ['Выберите модель'];
+    }
+    function checkManuf(func) {
+      return request.carmanufacturer ? func : ['Выберите производителя'];
+    }
+    function conCat(arr) {
+      return ['...', ...arr];
+    }
+
     // console.log("ADS", adsitems )
     return {
       carmanufacturer: conCat(delDuplicat(carsManufacturer.map(({ name }) => name))),
       region: conCat(region.map(({ name, code }) => ({ name, code }))),
       carmodel: conCat(
-        checkManuf(
-          await delDuplicat(carmodel.map(({ carmodel }) => carmodel.map(({ name }) => name))[0])
-        )
+        checkManuf(delDuplicat(carmodel.map(({ carmodel }) => carmodel.map(({ name }) => name))[0]))
       ),
       body: conCat(
         checkModel(
-          await delDuplicat(
+          delDuplicat(
             cardescription.map(({ carmodelbody }) =>
-              carmodelbody.map(({ carbodyid }) => carbodyid)
+              carmodelbody.map(({ carbodyid }) => carbodyMap.get(carbodyid))
             )[0]
           )
         )
       ),
       transmission: conCat(
         checkModel(
-          await delDuplicat(
+          delDuplicat(
             cardescription.map(({ carmodeltransmission }) =>
-              carmodeltransmission.map(({ cartransmissionid }) => cartransmissionid)
+              carmodeltransmission.map(({ cartransmissionid }) =>
+                transmissionMap.get(cartransmissionid)
+              )
             )[0]
           )
         )
       ),
-      horse: conCat(
-        checkModel(await delDuplicat(cardescription.map(({ enginepower }) => enginepower)))
-      ),
+      horse: conCat(checkModel(delDuplicat(cardescription.map(({ enginepower }) => enginepower)))),
       volume: conCat(
         checkModel(
-          await delDuplicat(cardescription.map(({ enginecapacity }) => enginecapacity.toString()))
+          delDuplicat(cardescription.map(({ enginecapacity }) => enginecapacity.toString()))
         )
       ),
       year: conCat(checkManuf(delDuplicat(['2011', '2011', '2015', '2012', '2016']))),
