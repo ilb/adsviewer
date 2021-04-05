@@ -1,28 +1,24 @@
-import mysql from 'serverless-mysql';
-
 export default class AdsRepository {
   constructor({ prisma }) {
     this.prisma = prisma;
   }
 
-  async all(arg){
-    console.log("arg", arg)
+  async all(arg) {
     return this.prisma.ads.findMany({
       where: {
-          title: {
-            contains: arg,
-            mode: 'insensitive'
-          }
+        title: {
+          contains: arg,
+          mode: 'insensitive'
+        }
       },
       include: {
         region: true
       }
-    })
+    });
   }
 
   async adsFromTransportFilter(args) {
-    console.log("args", args)
-    let findArgs = {}
+    let findArgs = {};
     if (args.case) {
       findArgs = {
         where: {
@@ -33,9 +29,10 @@ export default class AdsRepository {
         include: {
           region: true
         }
-      }
+      };
     }
-    if (args.carmanufacturer) { //необходим составной индекс
+    if (args.carmanufacturer) {
+      //необходим составной индекс
       // findArgs = {
       //   ...findArgs,
       //   where: {
@@ -48,40 +45,32 @@ export default class AdsRepository {
       // }
     }
     if (args.carmodel) {
-
     }
     if (args.body) {
-
     }
     if (args.horse) {
-
     }
     if (args.persons) {
-
     }
     if (args.transmission) {
-
     }
     if (args.volume) {
-
     }
     if (args.year) {
-
     }
     if (args.region) {
       findArgs = {
         ...findArgs,
         where: {
           ...findArgs.where,
-          region:
-            {
-              code: args.region
-            }
+          region: {
+            code: args.region
+          }
         }
-      }
+      };
     }
 
-    return this.prisma.ads.findMany(findArgs)
+    return this.prisma.ads.findMany(findArgs);
   }
 
   async search(params) {
