@@ -11,8 +11,8 @@ export default class Search {
    * @param {*} request input params
    */
   async process(request) {
-    const ads = await this.adsRepo.all()
-    const adsitems = ads.map(({ id, adsDate, title, description, phone, data, category, region }) => ({ id, adsDate, title, description, phone, data, category, region}))
+    const ads = await this.adsRepo.all(request.search) //test
+    const adsitems = ads.map(({ id, adsDate, title, phone, data, category, region }) => ({ id, adsDate, title, phone, data, category, region}))
     return {
       data: 'test resolve search page',
       adsdata: JSON.stringify(adsitems, (_, v) => typeof v === 'bigint' ? `${v}n` : v)
@@ -31,7 +31,7 @@ export default class Search {
       type: 'object',
       properties: {
         category: { title: 'Категория', type: 'string', enum: itemNames },
-        search: { title: 'Поиск по объявлениям', type: 'string', minLength: 1 }
+        search: { title: 'Поиск по объявлениям', type: 'string' }
       },
       required: ['search']
     };

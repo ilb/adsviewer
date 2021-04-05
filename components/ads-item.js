@@ -1,21 +1,23 @@
 import React from 'react';
-import { Segment, Grid, Image, Divider, Menu } from 'semantic-ui-react';
+import { Segment, Grid, Image, Divider, Menu, Message } from 'semantic-ui-react';
 
 
 const AdsItem = ({ response: { adsdata }, router } ) => {
 
   const handleClick = (id) => {
-    console.log("event", id)
+    // console.log("event", id)
     router.push(`/autoform/${id}`)
   }
 
   // console.log("AdsItem", JSON.parse(adsdata))
 
-  const adsItems = JSON.parse(adsdata)
-
+  const adsItems = adsdata ? JSON.parse(adsdata) : null
   return (
-    adsItems.map(({id, picture, adsDate, title, description, phone, data, category, region}) => {
-      return (
+    adsItems ?
+    adsItems.map(({id, picture, adsDate, title, phone, data, category, region}) => {
+      const dataslice = Object.fromEntries(Object.entries(data).slice(4, 8))
+      // console.log('data for ads list', dataslice);
+        return (
           <React.Fragment>
             <Segment key={id} onClick={() => handleClick(id)}>
               <Grid columns={1} stackable>
@@ -26,7 +28,7 @@ const AdsItem = ({ response: { adsdata }, router } ) => {
                       <Grid.Row>{adsDate}</Grid.Row>
                       <Divider></Divider>
                       <Image
-                        src={picture ? picture : "https://lojasavanna.com.br/Handlers/Imagens/img.aspx?id=83&img=0_FT_1.jpg&tp=jpg&x=750&y=750"}
+                        src={picture ? picture : 'https://lojasavanna.com.br/Handlers/Imagens/img.aspx?id=83&img=0_FT_1.jpg&tp=jpg&x=750&y=750'}
                         size="medium"
                         wrapped
                       />
@@ -37,10 +39,9 @@ const AdsItem = ({ response: { adsdata }, router } ) => {
                       <Divider></Divider>
                       <Menu fluid vertical>
                         <Menu.Item>{title}</Menu.Item>
-                        <Menu.Item>{description}</Menu.Item>
-                        {data ? Object.keys(data).map((items) => (
-                          <Menu.Item key={items}>{data[items]}</Menu.Item>
-                        )) : "Нет данных"}
+                        {dataslice ? Object.keys(dataslice).map((items) => (
+                          <Menu.Item key={items}>{dataslice[items]}</Menu.Item>
+                        )) : 'Нет данных'}
                       </Menu>
                     </Grid.Column>
                     <Grid.Column textAlign="center">
@@ -51,7 +52,7 @@ const AdsItem = ({ response: { adsdata }, router } ) => {
                         <Menu.Item>Телефон</Menu.Item>
                         <Menu.Item>{phone}</Menu.Item>
                         <Menu.Item>Регион</Menu.Item>
-                        <Menu.Item>{region && region.name}</Menu.Item>
+                        <Menu.Item>{region.name}</Menu.Item>
                       </Menu>
                     </Grid.Column>
                   </Grid>
@@ -59,10 +60,9 @@ const AdsItem = ({ response: { adsdata }, router } ) => {
               </Grid>
             </Segment>
           </React.Fragment>
-        )
-
-    }
-    )
+        );
+    }) :
+      <Message visible>Страница в разработке</Message>
   )
 }
 

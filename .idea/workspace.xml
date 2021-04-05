@@ -44,18 +44,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db725e79-49ba-4c69-9c62-7226f3b28455" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/auto.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/default.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/search.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/usecases/Default.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/hoc/adsFactory.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ads-item.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ads-item.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/auto.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/auto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/default.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/default.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/autoform.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/autoform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/autoform/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/autoform/[id].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/repositories/AdsRepository.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/AdsRepository.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/DictionaryRepository.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/DictionaryRepository.mjs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/usecases/Search.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecases/Search.mjs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/usecases/Transport.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecases/Transport.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/page-switcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/page-switcher.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,10 +87,12 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\matco\react-apps\adsviewer-master\node_modules\prettier" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\matco\react-apps\adsviewer\components" />
       <recent name="C:\Users\matco\react-apps\adsviewer\utils" />
       <recent name="C:\Users\matco\react-apps\adsviewer\components\category" />
       <recent name="C:\Users\matco\react-apps\adsviewer-master\public" />
@@ -128,7 +130,9 @@
       <workItem from="1617116449249" duration="17363000" />
       <workItem from="1617194959896" duration="23000000" />
       <workItem from="1617287292350" duration="18422000" />
-      <workItem from="1617375475079" duration="24196000" />
+      <workItem from="1617375475079" duration="24817000" />
+      <workItem from="1617531430979" duration="11029000" />
+      <workItem from="1617611557466" duration="27653000" />
     </task>
     <servers />
   </component>
@@ -172,6 +176,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="608" y="396" width="778" height="265" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617117723301" />
+    <state x="461" y="164" key="SettingsEditor" timestamp="1617543441196">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1617543441196" />
     <state x="460" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1617385512059">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
