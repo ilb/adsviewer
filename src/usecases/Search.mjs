@@ -34,7 +34,7 @@ export default class Search {
   }
 
   async schema(request) {
-    console.log('schema: ', request);
+    // console.log('schema: ', request);
     const categoryNames = await this.categoryRepository.getCategoryNames();
     const itemNames = categoryNames.map((item) => {
       return item.name;
@@ -43,10 +43,8 @@ export default class Search {
       title: 'Поиск объявлений',
       type: 'object',
       properties: {
-        category: { title: 'Категория', type: 'string', enum: itemNames },
-        search: { title: 'Поиск по объявлениям', type: 'string', minLength: 1 }
-      },
-      required: ['search']
+        category: { title: 'Категория', type: 'string', enum: itemNames }
+      }
     };
     return schema;
   }

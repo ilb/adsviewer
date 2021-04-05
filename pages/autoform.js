@@ -8,9 +8,9 @@ import DefaultForm from '../components/default';
 import Search from '../components/search';
 
 function AutoFormTest({ router, request, response, schema }) {
-  console.log('RESPONCE', { response });
-  console.log('REQUEST', { request });
-  console.log('router', { router });
+  // console.log('RESPONCE', { response });
+  // console.log('REQUEST', { request });
+  // console.log('router', { router });
 
   function onSubmit() {
     router.push({ pathname: router.pathname, query: router.query });
@@ -40,7 +40,7 @@ function AutoFormTest({ router, request, response, schema }) {
       ) : (
         ' '
       )}
-      {request.case == 'default' ? '' : <AdsItem {...props} />}
+      {/* {request.case == 'default' ? '' : <AdsItem {...props} />} */}
     </Container>
   );
 }
@@ -48,6 +48,6 @@ function AutoFormTest({ router, request, response, schema }) {
 export default withRouter(AutoFormTest);
 
 export async function getServerSideProps(context) {
-  console.log('Context', context.query.case);
+  // console.log('Context', context.query.case);
   return processUsecase(context, context.query.case ? context.query.case : 'search');
 }
