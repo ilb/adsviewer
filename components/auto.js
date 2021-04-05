@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, Grid, Icon } from 'semantic-ui-react';
+import { Button, Container, Form, Grid, Icon } from 'semantic-ui-react';
 
 function FormAuto({ options }) {
   // console.log("FormAuto", options )
@@ -83,17 +83,17 @@ const Auto = ({ response, handleChange, onSubmit }) => {
 
 
   return (
-    <Form onSubmit={onSubmit} onChange={handleChange} size="large" textAlign='center'>
-      <FormAuto options={transports}/>
-      <Button animated type="submit">
-        <Button.Content visible>
-          Поиск
-        </Button.Content>
-        <Button.Content hidden>
-          <Icon name='arrow right'/>
-        </Button.Content>
-      </Button>
-    </Form>
+      <Form onSubmit={onSubmit} onChange={handleChange} size="large" textAlign='center'>
+        <FormAuto options={transports}/>
+        <Button animated type="submit">
+          <Button.Content visible>
+            Поиск
+          </Button.Content>
+          <Button.Content hidden>
+            <Icon name='arrow right'/>
+          </Button.Content>
+        </Button>
+      </Form>
   )
 }
 
