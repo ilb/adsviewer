@@ -3,8 +3,74 @@ export default class AdsRepository {
     this.prisma = prisma;
   }
 
-  async all() {
-    return this.prisma.ads.findMany();
+  async all(arg) {
+    return this.prisma.ads.findMany({
+      where: {
+        title: {
+          contains: arg,
+          mode: 'insensitive'
+        }
+      },
+      include: {
+        region: true
+      }
+    });
+  }
+
+  async adsFromTransportFilter(args) {
+    let findArgs = {};
+    if (args.case) {
+      findArgs = {
+        where: {
+          category: {
+            name: args.case
+          }
+        },
+        include: {
+          region: true
+        }
+      };
+    }
+    if (args.carmanufacturer) {
+      //необходим составной индекс
+      // findArgs = {
+      //   ...findArgs,
+      //   where: {
+      //     ...findArgs.where,
+      //     data:
+      //       {
+      //         carManufacturer: args.carmanufacturer
+      //       }
+      //   }
+      // }
+    }
+    if (args.carmodel) {
+    }
+    if (args.body) {
+    }
+    if (args.horse) {
+    }
+    if (args.persons) {
+    }
+    if (args.transmission) {
+    }
+    if (args.volume) {
+    }
+    if (args.year) {
+    }
+    if (args.region) {
+      findArgs = {
+        ...findArgs,
+        where: {
+          ...findArgs.where,
+          region: {
+            code: args.region
+          }
+        }
+      };
+    }
+
+    return this.prisma.ads.findMany(findArgs);
   }
 
   async search(params) {

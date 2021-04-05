@@ -11,6 +11,7 @@ export default class Transport {
    * @param {*} request input params
    */
   async process(request) {
+    console.log('request from process', request);
     const carsManufacturer = await this.dictRepo.listCarsManufacturer();
     const region = await this.dictRepo.listRegion();
     const carmodel = await this.dictRepo.listModelByManufacturer(
@@ -19,30 +20,25 @@ export default class Transport {
     const cardescription = await this.dictRepo.listDescriptionByModel(
       request.carmanufacturer && request.carmodel ? { name: request.carmodel } : ' '
     );
-
     const transmission = await this.dictRepo.carTransmission();
     const carbody = await this.dictRepo.carBody();
     const transmissionMap = arrayToMap(transmission);
     const carbodyMap = arrayToMap(carbody);
+    const ads = await this.adsRepo.adsFromTransportFilter({
+      case: 'Автомобили',
+      carmanufacturer: request.carmanufacturer,
+      region: request.region
+    }); //нет составных индексов
+    const adsitems = ads.map(({ id, adsDate, title, phone, data, category, region }) => ({
+      id,
+      adsDate,
+      title,
+      phone,
+      data,
+      category,
+      region
+    }));
 
-    const ads = await this.adsRepo.all();
-    const adsitems = ads.map(
-      ({ id, adsDate, title, description, phone, data, category, region }) => ({
-        id,
-        adsDate,
-        title,
-        description,
-        phone,
-        data,
-        category,
-        region
-      })
-    );
-    /**
-     *
-     * @param array
-     * @returns new Map
-     */
     function arrayToMap(array) {
       const arrMap = new Map();
       array.forEach((element) => {
@@ -50,21 +46,23 @@ export default class Transport {
       });
       return arrMap;
     }
+
     function delDuplicat(arr) {
-      // eslint-disable-next-line no-undef
       return Array.from(new Set(arr)).sort();
-    } //delete duplicate data items and sort
+    }
+
     function checkModel(func) {
       return request.carmodel ? func : ['Выберите модель'];
     }
+
     function checkManuf(func) {
       return request.carmanufacturer ? func : ['Выберите производителя'];
     }
+
     function conCat(arr) {
       return ['...', ...arr];
     }
 
-    // console.log("ADS", adsitems )
     return {
       carmanufacturer: conCat(delDuplicat(carsManufacturer.map(({ name }) => name))),
       region: conCat(region.map(({ name, code }) => ({ name, code }))),

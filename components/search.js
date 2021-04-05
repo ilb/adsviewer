@@ -9,7 +9,7 @@ const Search = ({ router, request, schema }) => {
     router.push({ pathname: router.pathname, query });
   }
   function onChange(query) {
-    router.push({ pathname: '/autoform', query: { case: pageSwitcher(query) } });
+    router.push({ pathname: 'autoform', query: { case: pageSwitcher(query) } });
   }
 
   return (

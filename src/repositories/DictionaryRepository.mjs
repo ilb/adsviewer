@@ -40,6 +40,13 @@ export default class DictionaryRepository {
     return this.prisma.carbody.findMany();
   }
 
+  async carTransmission() {
+    return this.prisma.cartransmission.findMany();
+  }
+  async carBody() {
+    return this.prisma.carbody.findMany();
+  }
+
   async listRegion() {
     return this.prisma.region.findMany();
   }
