@@ -48,8 +48,6 @@ export function MapForm({ options, items }) {
 }
 
 function FormAuto({ options }) {
-  // console.log('FormAuto', options);
-  // console.log('FormAuto object keys', Object.keys(options));
   return (
     <Form.Field>
       <Grid columns={3} columns="equal" verticalAlign="middle">
