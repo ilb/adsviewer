@@ -2,8 +2,7 @@ import React from 'react';
 import { Button, Form, Icon } from 'semantic-ui-react';
 import FormAuto from './form-auto';
 
-function Auto({ response, handleChange, onSubmit }) {
-  console.log();
+function Auto({ response, request, schema, router, onSubmit, handleChange }) {
   const {
     carmanufacturer,
     carmodel,
@@ -28,10 +27,12 @@ function Auto({ response, handleChange, onSubmit }) {
     region
   };
 
-  // console.log("Transports", transports)
-
   return (
-    <Form onSubmit={onSubmit} onChange={handleChange} size="large" textAlign="center">
+    <Form
+      onSubmit={() => console.log(request)}
+      onChange={handleChange}
+      size="large"
+      textAlign="center">
       <FormAuto options={transports} />
       <Button animated type="submit">
         <Button.Content visible>Поиск</Button.Content>

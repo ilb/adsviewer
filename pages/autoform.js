@@ -18,7 +18,7 @@ function AutoFormTest({ router, request, response, schema }) {
   }
 
   const handleChange = (event) => {
-    console.log('onChange ', event.target.name, event.target.value);
+    // console.log('onChange ', event.target.name, event.target.value);
     router.replace({
       pathname: router.pathname,
       query: { ...router.query, [event.target.name]: event.target.value }

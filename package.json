@@ -18,7 +18,7 @@
     "prisma:preview": "npx prisma db push --preview-feature"
   },
   "dependencies": {
-    "@ilb/uriaccessorjs": "^1.0.3",
+    "@ilb/uriaccessorjs": "^1.0.4",
     "@prisma/client": "^2.19.0",
     "ajv": "^6.12.6",
     "ajv-i18n": "^3.6.0",
