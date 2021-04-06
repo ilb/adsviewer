@@ -18,32 +18,25 @@ export default class AdsRepository {
   }
 
   async adsFromTransportFilter(args) {
-    // let findArgs = {};
-    // if (args.case) {
-    //   findArgs = {
-    //     where: {
-    //       category: {
-    //         name: args.case
-    //       }
-    //     },
-    //     include: {
-    //       region: true
-    //     }
-    //   };
-    // }
-    // if (args.region) {
-    //   findArgs = {
-    //     ...findArgs,
-    //     where: {
-    //       ...findArgs.where,
-    //       region: {
-    //         code: args.region
-    //       }
-    //     }
-    //   };
-    // }
-    return this.prisma
-      .$queryRaw`SELECT * FROM ads WHERE ((ads.id) IN (SELECT t0.id FROM ads AS t0 INNER JOIN category AS j0 ON (j0.id) = (t0.categoryId) WHERE (j0.name = ${args.case} AND t0.id IS NOT NULL)) AND (ads.id) IN (SELECT t0.id FROM ads AS t0 INNER JOIN region AS j0 ON (j0.id) = (t0.regionId) WHERE (j0.code = ${args.region} AND t0.id IS NOT NULL)))`;
+    const queryCase = args.case;
+    const queryRegion = args.region;
+    const queryData = {
+      carManufacturer: args.carmanufacturer,
+      yearOfProduction: args.year,
+      carModel: args.carmodel,
+      carBody: args.body,
+      carTransmission: args.transmission,
+      owners: args.persons,
+      engineLiters: args.volume
+    };
+    console.log(args);
+    console.log(queryData);
+    return this.prisma.$queryRaw(
+      'SELECT * FROM "public"."ads" WHERE (("public"."ads"."id") IN (SELECT "t0"."id" FROM "public"."ads" AS "t0" INNER JOIN "public"."category" AS "j0" ON ("j0"."id") = ("t0"."categoryId") WHERE ("j0"."name" = $1 AND "t0"."id" IS NOT NULL)) AND ("public"."ads"."id") IN (SELECT "t0"."id" FROM "public"."ads" AS "t0" INNER JOIN "public"."region" AS "j0" ON ("j0"."id") = ("t0"."regionId") WHERE ("j0"."code" = $2 AND "t0"."id" IS NOT NULL)) AND ("public"."ads"."data") @> $3)',
+      queryCase,
+      queryRegion,
+      queryData
+    );
   }
 
   async search(params) {
