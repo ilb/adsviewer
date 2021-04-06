@@ -14,7 +14,7 @@ export default class Application {
    */
   async createContainer() {
     this.container = awilix.createContainer();
-    const prisma = new PrismaClient();
+    const prisma = new PrismaClient({ log: ['query'] });
     // register currentUser, datasource
     this.container.register({
       currentUser: asValue(process.env.USER),

@@ -1,3 +1,32 @@
+import AdsRepository from '../../src/repositories/AdsRepository.mjs';
+import prisma from '../../libs/prisma/prisma';
+import data from './data';
+
+const testData = {
+  year: '2012',
+  carmodel: 
+  body,
+  transmission,
+  persons,
+  volume
+};
+const expected = [];
+it('should save data in database and return data by the passed parameters', async () => {
+  const repository = new AdsRepository({ prisma });
+
+  await repository.save(data);
+  const res = await repository.search(testData);
+  const received = res.map((row) => {
+    return {
+      title: row.title,
+      description: row.description,
+      categoryId: row.categoryId
+    };
+  });
+
+  // console.log({ res });
+  expect(received).toStrictEqual(expected);
+});
 export default class AdsRepository {
   constructor({ prisma }) {
     this.prisma = prisma;
@@ -18,34 +47,41 @@ export default class AdsRepository {
   }
 
   async adsFromTransportFilter(args) {
-    // let findArgs = {};
-    // if (args.case) {
-    //   findArgs = {
-    //     where: {
-    //       category: {
-    //         name: args.case
-    //       }
-    //     },
-    //     include: {
-    //       region: true
-    //     }
-    //   };
-    // }
-    // if (args.region) {
-    //   findArgs = {
-    //     ...findArgs,
-    //     where: {
-    //       ...findArgs.where,
-    //       region: {
-    //         code: args.region
-    //       }
-    //     }
-    //   };
-    // }
-    return this.prisma
-      .$queryRaw`SELECT * FROM ads WHERE ((ads.id) IN (SELECT t0.id FROM ads AS t0 INNER JOIN category AS j0 ON (j0.id) = (t0.categoryId) WHERE (j0.name = ${args.case} AND t0.id IS NOT NULL)) AND (ads.id) IN (SELECT t0.id FROM ads AS t0 INNER JOIN region AS j0 ON (j0.id) = (t0.regionId) WHERE (j0.code = ${args.region} AND t0.id IS NOT NULL)))`;
-  }
+    const jsonData = {
+      yearOfProduction: args.year,
+      carModel: args.carmodel,
+      carBody: args.body,
+      carTransmission: args.transmission,
+      owners: args.persons,
+      engineLiters: args.volume
+    };
+    let findArgs = {};
+    if (args.case) {
+      findArgs = {
+        where: {
+          category: {
+            name: args.case
+          }
+        },
+        include: {
+          region: true
+        }
+      };
+    }
+    if (args.region) {
+      findArgs = {
+        ...findArgs,
+        where: {
+          ...findArgs.where,
+          region: {
+            code: args.region
+          }
+        }
+      };
 
+      return this.prisma.ads.findMany(findArgs);
+    }
+  }
   async search(params) {
     const { title, description, categoryId } = params;
     return this.prisma.ads.findMany({
