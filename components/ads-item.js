@@ -2,6 +2,7 @@ import React from 'react';
 import { Segment, Grid, Image, Divider, Menu, Message } from 'semantic-ui-react';
 
 const AdsItem = ({ response: { adsdata }, router }) => {
+  console.log(adsdata);
   const handleClick = (id) => {
     // console.log("event", id)
     router.push(`/autoform/${id}`);
@@ -54,7 +55,7 @@ const AdsItem = ({ response: { adsdata }, router }) => {
                     <Menu.Item>Телефон</Menu.Item>
                     <Menu.Item>{phone}</Menu.Item>
                     <Menu.Item>Регион</Menu.Item>
-                    <Menu.Item>{region.name}</Menu.Item>
+                    <Menu.Item></Menu.Item>
                   </Menu>
                 </Grid.Column>
               </Grid>

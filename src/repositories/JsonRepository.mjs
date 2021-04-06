@@ -11,6 +11,6 @@ export default class JsonRepository {
    * @returns array
    */
   async getJsonData(jsonData) {
-    return await this.prisma.$queryRaw`SELECT * FROM ads WHERE data @> ${jsonData}`;
+    return this.prisma.$queryRaw`SELECT * FROM ads WHERE data @> ${jsonData}`;
   }
 }
