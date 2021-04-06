@@ -13,6 +13,6 @@ it('should save data in database and return data by the passed parameters', asyn
   const repository = new AdsRepository({ prisma });
 
   const res = await repository.adsFromTransportFilter(query);
-  console.log({ res });
+  console.log(res);
   expect(res).toStrictEqual(expected);
 });
