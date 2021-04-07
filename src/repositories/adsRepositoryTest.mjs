@@ -1,4 +1,4 @@
-export default class AdsRepository {
+export default class AdsRepositoryTest {
   constructor({ prisma }) {
     this.prisma = prisma;
   }
@@ -18,8 +18,6 @@ export default class AdsRepository {
   }
 
   async adsFromTransportFilter(args) {
-    const queryCase = args.case;
-    const queryRegion = args.region;
     const queryData = {
       carManufacturer: args.carmanufacturer,
       yearOfProduction: args.year,
@@ -29,23 +27,35 @@ export default class AdsRepository {
       owners: args.persons,
       engineLiters: args.volume
     };
-    const [data, caseRegion] = await this.prisma.$transaction([
-      this.prisma.ads.findMany({
+    let findArgs = {};
+    if (args.case) {
+      findArgs = {
         where: {
           category: {
-            name: queryCase
-          },
-          region: {
-            code: queryRegion
+            name: args.case
           }
         },
         include: {
           region: true
         }
-      }),
+      };
+    }
+    if (args.region) {
+      findArgs = {
+        ...findArgs,
+        where: {
+          ...findArgs.where,
+          region: {
+            code: args.region
+          }
+        }
+      };
+    }
+    const [data, caseRegion] = await this.prisma.$transaction([
+      this.prisma.ads.findMany(findArgs),
       this.prisma.$queryRaw`SELECT * FROM ads WHERE data @> ${queryData}`
     ]);
-    return { caseRegion, data };
+    return [caseRegion, data];
   }
 
   async search(params) {

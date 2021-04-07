@@ -80,8 +80,35 @@ export default class AdsRepository {
     // eslint-disable-next-line no-undef
     await Promise.all(
       data.map(async (adsItem) => {
-        // eslint-disable-next-line prettier/prettier
-        const { title, adsDate, description, phone, typeId, data, categoryId, region, idSource } = adsItem;
+        const {
+          title,
+          adsDate,
+          description,
+          phone,
+          typeId,
+          data,
+          categoryId,
+          region,
+          idSource
+        } = adsItem;
+
+        const {
+          doorCount,
+          usedType,
+          carModel,
+          carBody,
+          condition,
+          carTransmission,
+          yearOfProduction,
+          carManufacturer,
+          wheelPosition,
+          driveAuto,
+          carEngineType,
+          carMileage,
+          owners,
+          engineLiters,
+          color
+        } = data;
         const regionId = regionsMap.get(region);
         return await this.prisma.ads.upsert({
           where: {
@@ -102,6 +129,26 @@ export default class AdsRepository {
               }
             },
             data: data,
+            autoData: {
+              create: {
+                idSource,
+                doorCount,
+                usedType,
+                carModel,
+                carBody,
+                condition,
+                carTransmission,
+                yearOfProduction,
+                carManufacturer,
+                wheelPosition,
+                driveAuto,
+                carEngineType,
+                carMileage,
+                owners,
+                engineLiters,
+                color
+              }
+            },
             category: {
               connect: {
                 id: categoryId

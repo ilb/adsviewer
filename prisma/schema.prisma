@@ -9,21 +9,45 @@ datasource db {
 
 // Объявление
 model ads {
-  id          BigInt   @id @default(autoincrement())
-  idSource    BigInt   @unique
-  adsDate     DateTime 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  title       String   @db.VarChar(255)
-  description String   @db.VarChar(255)
+  id          BigInt     @id @default(autoincrement())
+  idSource    BigInt     @unique
+  adsDate     DateTime
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  title       String     @db.VarChar(255)
+  description String     @db.VarChar(255)
   phone       String?
-  type        type     @relation(fields: [typeId], references: [id])
+  type        type       @relation(fields: [typeId], references: [id])
   typeId      Int
   data        Json?
-  category    category @relation(fields: [categoryId], references: [id])
+  autoData    autodata[]
+  category    category   @relation(fields: [categoryId], references: [id])
   categoryId  Int
-  region      region   @relation(fields: [regionId], references: [id])
+  region      region     @relation(fields: [regionId], references: [id])
   regionId    Int
+}
+
+// Данные авто
+model autodata {
+  id               BigInt  @id @default(autoincrement())
+  idSource         BigInt  @unique
+  doorCount        String? @db.VarChar(20)
+  usedType         String? @db.VarChar(20)
+  carModel         String? @db.VarChar(250)
+  carBody          String? @db.VarChar(20)
+  condition        String? @db.VarChar(20)
+  carTransmission  String? @db.VarChar(20)
+  yearOfProduction String? @db.VarChar(20)
+  carManufacturer  String? @db.VarChar(250)
+  wheelPosition    String? @db.VarChar(20)
+  driveAuto        String? @db.VarChar(20)
+  carEngineType    String? @db.VarChar(50)
+  carMileage       String? @db.VarChar(20)
+  owners           String? @db.VarChar(20)
+  engineLiters     String? @db.VarChar(20)
+  color            String? @db.VarChar(50)
+  ads              ads?    @relation(fields: [adsId], references: [idSource])
+  adsId            BigInt?
 }
 
 /// Тип объявления: куплю, продам, аренда...
@@ -48,6 +72,7 @@ model category {
   categories category[] @relation("categoryParent")
   parentId   Int?
   ads        ads[]
+
   @@unique([parentId, code, name], name: "UNQ_category_CODENAME")
 }
 
@@ -60,7 +85,6 @@ model region {
   kladrcode Int?     @db.SmallInt
   ads       ads[]
 }
-
 
 // ------------ Автомобили ------------
 
@@ -126,8 +150,8 @@ model cartransmission {
 }
 
 model lastload {
-  id                   Int                    @id @default(autoincrement())
-  createdAt            DateTime               @default(now())
-  name                 String                 @unique
-  lastloaddate         DateTime               @default(now())
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  name         String   @unique
+  lastloaddate DateTime @default(now())
 }
