@@ -12,12 +12,11 @@ export default class Default {
     };
   }
   async schema(request) {
-    console.log("schema: ", request)
+    console.log('schema: ', request);
     const schema = {
       title: 'Default',
       type: 'object',
-      properties: {
-      }
+      properties: {}
     };
     return schema;
   }

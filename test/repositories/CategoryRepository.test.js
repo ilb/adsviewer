@@ -4,7 +4,7 @@ import prisma from '../../libs/prisma/prisma';
 const repository = new CategoryRepository({ prisma });
 
 it('should list category', async () => {
-  const res = await repository.list();
+  const res = await repository.getCategoryNames();
   const categoryNames = res.map((row) => row.name);
   const expected = [
     'Недвижимость',

@@ -7,19 +7,16 @@ import AdsItem from '../ads-item';
 const AdsWrapper = (props) => {
   switch (props.request.case) {
     case 'transport':
-      return <Auto {...props} />
-      break
+      return <Auto {...props} />;
     case 'default':
-      return <DefaultForm {...props} />
-      break
+      return <DefaultForm {...props} />;
     default:
-      return <Search {...props}/>
+      return <Search {...props} />;
   }
-}
+};
 
 const AdsFactory = (props) => {
-  return <AdsWrapper {...props}/>
-}
+  return <AdsWrapper {...props} />;
+};
 
-
-export default AdsFactory
+export default AdsFactory;

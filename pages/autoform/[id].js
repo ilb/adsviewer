@@ -1,25 +1,27 @@
 import { processUsecase } from '../../libs/usecases/index';
+// eslint-disable-next-line prettier/prettier
 import { Container, Divider, Grid, Message, Placeholder, Breadcrumb, Segment, Header } from 'semantic-ui-react';
 import React from 'react';
 import { withRouter } from 'next/router';
 import { AutoField, AutoFields, AutoForm } from 'uniforms-semantic';
 import { createSchemaBridge } from '../../libs/uniforms';
 
-
 function Description({ router, request, response, schema }) {
-  const { title, description, createdAt, phone, data, categoryId, regionId } = response
+  const { title, description, createdAt, phone, data, categoryId, regionId } = response;
   const onClick = () => {
     router.replace('/autoform');
   };
   return (
     <Container>
-      <Message textAlign='center'>
+      <Message textAlign="center">
         <Message.Header>Объявление.Подробнее</Message.Header>
         <div>Страница находится на стадии разработки.</div>
       </Message>
       <Divider />
       <Breadcrumb>
-        <Breadcrumb.Section link onClick={onClick}>Поиск</Breadcrumb.Section>
+        <Breadcrumb.Section link onClick={onClick}>
+          Поиск
+        </Breadcrumb.Section>
         <Breadcrumb.Divider />
         <Breadcrumb.Section link>Объявление</Breadcrumb.Section>
         <Breadcrumb.Divider />
@@ -35,19 +37,19 @@ function Description({ router, request, response, schema }) {
             </Grid.Column>
             <Grid.Column>
               <Grid columns={2} width={7}>
-                <Grid.Column textAlign="right" >
+                <Grid.Column textAlign="right">
                   <Grid.Row>Дата размещения</Grid.Row>
                 </Grid.Column>
                 <Grid.Column textAlign="left">
                   <Grid.Row>{createdAt}</Grid.Row>
                 </Grid.Column>
-                <Grid.Column textAlign="right" >
+                <Grid.Column textAlign="right">
                   <Grid.Row>Номер</Grid.Row>
                 </Grid.Column>
                 <Grid.Column textAlign="left">
                   <Grid.Row>{phone}</Grid.Row>
                 </Grid.Column>
-                <Grid.Column textAlign="right" >
+                <Grid.Column textAlign="right">
                   <Grid.Row>Характеристики</Grid.Row>
                 </Grid.Column>
                 <Grid.Column textAlign="left">
@@ -58,7 +60,7 @@ function Description({ router, request, response, schema }) {
               </Grid>
             </Grid.Column>
             <Segment raised>
-              <Header as='h3'>Описание</Header>
+              <Header as="h3">Описание</Header>
               {description}
             </Segment>
             <Divider />
@@ -68,10 +70,10 @@ function Description({ router, request, response, schema }) {
       {/*<div>{categoryId}</div>*/}
       {/*<div>{regionId}</div>*/}
     </Container>
-  )
+  );
 }
 
-export default withRouter(Description)
+export default withRouter(Description);
 
 export async function getServerSideProps(context) {
   return processUsecase(context, 'id');
