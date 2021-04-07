@@ -24,7 +24,3 @@ ALTER TABLE ONLY public.type
 --
 -- PostgreSQL database dump complete
 --
-<<<<<<< HEAD
-
-=======
->>>>>>> master
