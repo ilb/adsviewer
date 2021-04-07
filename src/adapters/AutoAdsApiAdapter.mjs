@@ -1,4 +1,9 @@
 export default class AutoAdsApiAdapter {
+  /**
+   *
+   * @param data
+   * @returns Object with convert data
+   */
   async convert(data) {
     if (!data) {
       throw new Error('Adapter: no data from provider');
@@ -22,6 +27,7 @@ export default class AutoAdsApiAdapter {
         color: ads.params['Цвет']
       };
       return {
+        idSource: ads.id,
         title: ads.title,
         adsDate: ads.time,
         description: ads.description,

@@ -1,4 +1,9 @@
 export default class DefaultAdsApiAdapter {
+  /**
+   *
+   * @param data
+   * @returns Object with convert data
+   */
   async convert(data) {
     if (!data) {
       throw new Error('Adapter: no data from provider');

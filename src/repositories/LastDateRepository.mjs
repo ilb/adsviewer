@@ -13,7 +13,7 @@ export default class LastDateRepository {
       }
     });
   }
-  setDate(name, lastloaddate) {
+  async setDate(name, lastloaddate) {
     return this.prisma.lastload.upsert({
       where: {
         name

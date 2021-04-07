@@ -10,7 +10,7 @@ export default class DictionaryRepository {
     return this.prisma.carmanufacturer.findMany();
   }
   async listModelByManufacturer(params) {
-    const { name } = params
+    const { name } = params;
     return this.prisma.carmanufacturer.findMany({
       where: {
         name
@@ -22,7 +22,7 @@ export default class DictionaryRepository {
   }
 
   async listDescriptionByModel(params) {
-    const { name } = params
+    const { name } = params;
     return this.prisma.carmodel.findMany({
       where: {
         name
@@ -33,7 +33,6 @@ export default class DictionaryRepository {
       }
     });
   }
-
   async carTransmission() {
     return this.prisma.cartransmission.findMany();
   }
@@ -46,11 +45,11 @@ export default class DictionaryRepository {
   }
 
   async descriptionAds(param) {
-    const { id } = param
+    const { id } = param;
     return this.prisma.ads.findMany({
       where: {
         id
       }
-    })
+    });
   }
 }

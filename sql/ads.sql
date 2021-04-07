@@ -52,7 +52,14 @@ COPY public.ads (id, "idSource", "adsDate", "createdAt", "updatedAt", title, des
 --
 -- Name: ads_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adsviewer
 --
+<<<<<<< HEAD
+
 SELECT pg_catalog.setval('public.ads_id_seq', 72, true);
+
+
+=======
+SELECT pg_catalog.setval('public.ads_id_seq', 72, true);
+>>>>>>> master
 --
 -- Name: ads ads_pkey; Type: CONSTRAINT; Schema: public; Owner: adsviewer
 --
@@ -62,6 +69,13 @@ ALTER TABLE ONLY public.ads
 -- Name: ads.idSource_unique; Type: INDEX; Schema: public; Owner: adsviewer
 --
 CREATE UNIQUE INDEX "ads.idSource_unique" ON public.ads USING btree ("idSource");
+--
+-- Name: ads.idSource_unique; Type: INDEX; Schema: public; Owner: adsviewer
+--
+
+CREATE UNIQUE INDEX "ads.idSource_unique" ON public.ads USING btree ("idSource");
+
+
 --
 -- Name: ads ads_categoryId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: adsviewer
 --
