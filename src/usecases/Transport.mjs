@@ -27,7 +27,12 @@ export default class Transport {
     const ads = await this.adsRepo.adsFromTransportFilter({
       case: 'Автомобили',
       region: request.region,
-      carmanufacturer: request.carmanufacturer
+      carmanufacturer: request.carmanufacturer,
+      year: request.year,
+      carmodel: request.carmodel,
+      body: request.body,
+      transmission: request.transmission,
+      persons: request.persons
     }); //нет составных индексов
     console.log(ads);
     const adsitems = ads.map(({ id, adsDate, title, phone, data, category, region }) => ({

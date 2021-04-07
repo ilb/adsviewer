@@ -20,34 +20,10 @@ model ads {
   type        type       @relation(fields: [typeId], references: [id])
   typeId      Int
   data        Json?
-  autoData    autodata   @relation(fields: [dataId], references: [id])
-  dataId      Int
   category    category   @relation(fields: [categoryId], references: [id])
   categoryId  Int
   region      region     @relation(fields: [regionId], references: [id])
   regionId    Int
-}
-
-// Данные авто
-model autodata {
-  id               Int     @id @default(autoincrement())
-  idSource         BigInt  @unique
-  doorCount        String? @db.VarChar(20)
-  usedType         String? @db.VarChar(20)
-  carModel         String? @db.VarChar(250)
-  carBody          String? @db.VarChar(20)
-  condition        String? @db.VarChar(20)
-  carTransmission  String? @db.VarChar(20)
-  yearOfProduction String? @db.VarChar(20)
-  carManufacturer  String? @db.VarChar(250)
-  wheelPosition    String? @db.VarChar(20)
-  driveAuto        String? @db.VarChar(20)
-  carEngineType    String? @db.VarChar(50)
-  carMileage       String? @db.VarChar(20)
-  owners           String? @db.VarChar(20)
-  engineLiters     String? @db.VarChar(20)
-  color            String? @db.VarChar(50)
-  ads              ads[]
 }
 
 /// Тип объявления: куплю, продам, аренда...
