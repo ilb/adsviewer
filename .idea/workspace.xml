@@ -44,18 +44,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db725e79-49ba-4c69-9c62-7226f3b28455" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/hoc/adsFactory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/repositories/DictionaryRepository.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ads-item.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ads-item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/auto.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/auto.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/default.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/default.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/autoform.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/autoform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/autoform/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/autoform/[id].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositories/AdsRepository.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/AdsRepository.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositories/DictionaryRepository.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/DictionaryRepository.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecases/Search.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecases/Search.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecases/Transport.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecases/Transport.mjs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +61,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectId" id="1pqTgjwqO2diMzaKX3iux4aK6dx" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -142,11 +135,41 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
           </value>
         </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="1" value="TOOL_WINDOW" />
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
@@ -168,6 +191,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" key="FileDocumentManager.FileCacheConflict/0.0.1920.1040@0.0.1920.1040" timestamp="1616264409390" />
+    <state width="1748" height="279" key="GridCell.Tab.0.bottom" timestamp="1617785711664">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1748" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1617785711664" />
+    <state width="1748" height="279" key="GridCell.Tab.0.center" timestamp="1617785711664">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1748" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1617785711664" />
+    <state width="1748" height="279" key="GridCell.Tab.0.left" timestamp="1617785711664">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1748" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1617785711664" />
+    <state width="1748" height="279" key="GridCell.Tab.0.right" timestamp="1617785711664">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1748" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1617785711664" />
     <state x="66" y="117" width="1740" height="839" key="MergeDialog" timestamp="1617117723293">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
