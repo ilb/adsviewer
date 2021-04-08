@@ -14,9 +14,9 @@ model ads {
   adsDate     DateTime
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
-  title       String     @db.VarChar(255)
-  description String     @db.VarChar(255)
-  phone       String?
+  title       String     @db.VarChar(1000)
+  description String     @db.VarChar(10000)
+  phone       String?    @db.VarChar(20)
   type        type       @relation(fields: [typeId], references: [id])
   typeId      Int
   data        Json?

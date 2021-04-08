@@ -49,48 +49,7 @@ COPY public.ads (id, "idSource", "adsDate", "createdAt", "updatedAt", title, des
 57	537949097	2021-04-01 01:33:31	2021-04-01 03:15:53.632	2021-04-01 03:16:09.515	Ford Fiesta 1.6 AMT, 2019, битый, 17 000 км	ПТС ОРИГИНАЛ ОДИН ХОЗЯИН, ВСЯ В ЗАВОДСКОМ ОКРАСЕ, ХОРОШАЯ КОМПЛЕКТАЦИЯ, ПОЛНОСТЬЮ НАХОДУ УЕДЕТ ХОТЬ НА ЛУНУ ,ВИДЕО ПО ЗАПРОСУ, ВОПРОСЫ ПО ТЕЛЕФОНУ, ОБМЕН НЕ ИНТЕРЕСЕН ВООБЩЕ ТОЛЬКО ДЕНЬГИ РАЗУМНЫЙ ТОРГ.	896592XXXXX	1	{"color": "Белый", "owners": "1", "carBody": "", "carModel": "Fiesta", "usedType": "С пробегом", "condition": "Битый", "doorCount": "5", "driveAuto": "Передний", "carMileage": "17 000", "engineLiters": "1.6", "carEngineType": "Бензин", "wheelPosition": "Левый", "carManufacturer": "Ford", "carTransmission": "Робот", "yearOfProduction": "2019"}	22	10
 62	537949092	2021-04-01 01:33:29	2021-04-01 03:15:53.644	2021-04-01 03:16:09.533	ВАЗ 2113 Samara 1.6 МТ, 2008, 198 000 км	Технически в отличном состояни.\nМенял вакуум тормозной \nСтартер и втяГивающие \nНасос \nРезина зима и лето \nСалон на 4 \nДефекты по кузову\nМашина на учете в севастополе \nЯ собственик	891831XXXXX	1	{"color": "Чёрный", "owners": "3", "carBody": "", "carModel": "2113 Samara", "usedType": "С пробегом", "condition": "Не битый", "doorCount": "3", "driveAuto": "Передний", "carMileage": "198 000", "engineLiters": "1.6", "carEngineType": "Бензин", "wheelPosition": "Левый", "carManufacturer": "ВАЗ", "carTransmission": "Механика", "yearOfProduction": "2008"}	22	68
 \.
---
--- Name: ads_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adsviewer
---
-<<<<<<< HEAD
+
 
 SELECT pg_catalog.setval('public.ads_id_seq', 72, true);
 
-
-=======
-SELECT pg_catalog.setval('public.ads_id_seq', 72, true);
->>>>>>> master
---
--- Name: ads ads_pkey; Type: CONSTRAINT; Schema: public; Owner: adsviewer
---
-ALTER TABLE ONLY public.ads
-    ADD CONSTRAINT ads_pkey PRIMARY KEY (id);
---
--- Name: ads.idSource_unique; Type: INDEX; Schema: public; Owner: adsviewer
---
-CREATE UNIQUE INDEX "ads.idSource_unique" ON public.ads USING btree ("idSource");
---
--- Name: ads.idSource_unique; Type: INDEX; Schema: public; Owner: adsviewer
---
-
-CREATE UNIQUE INDEX "ads.idSource_unique" ON public.ads USING btree ("idSource");
-
-
---
--- Name: ads ads_categoryId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: adsviewer
---
-ALTER TABLE ONLY public.ads
-    ADD CONSTRAINT "ads_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES public.category(id) ON UPDATE CASCADE ON DELETE CASCADE;
---
--- Name: ads ads_regionId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: adsviewer
---
-ALTER TABLE ONLY public.ads
-    ADD CONSTRAINT "ads_regionId_fkey" FOREIGN KEY ("regionId") REFERENCES public.region(id) ON UPDATE CASCADE ON DELETE CASCADE;
---
--- Name: ads ads_typeId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: adsviewer
---
-ALTER TABLE ONLY public.ads
-    ADD CONSTRAINT "ads_typeId_fkey" FOREIGN KEY ("typeId") REFERENCES public.type(id) ON UPDATE CASCADE ON DELETE CASCADE;
---
--- PostgreSQL database dump complete
---
