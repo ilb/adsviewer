@@ -25,14 +25,14 @@ export default class Transport {
     const transmissionMap = arrayToMap(transmission);
     const carbodyMap = arrayToMap(carbody);
     const ads = await this.adsRepo.adsFromTransportFilter({
-      case: 'Автомобили',
-      region: request.region,
-      carmanufacturer: request.carmanufacturer,
-      year: request.year,
-      carmodel: request.carmodel,
-      body: request.body,
-      transmission: request.transmission,
-      persons: request.persons
+      category: 'Автомобили',
+      regionCode: request.region,
+      carManufacturer: request.carmanufacturer,
+      yearOfProduction: request.year,
+      carModel: request.carmodel,
+      carBody: request.body || '',
+      carTransmission: request.transmission,
+      owners: request.persons
     }); //нет составных индексов
     console.log(ads);
     const adsitems = ads.map(({ id, adsDate, title, phone, data, category, region }) => ({

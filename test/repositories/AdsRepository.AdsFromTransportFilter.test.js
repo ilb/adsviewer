@@ -3,10 +3,8 @@ import prisma from '../../libs/prisma/prisma';
 import data from './data';
 
 const query = {
-  case: 'Автомобили',
-  region: 'samarskaya_oblast',
-  carmanufacturer: 'ВАЗ',
-  carmodel: '2110'
+  category: 'Автомобили',
+  owners: '2'
 };
 const expected = ['asdf'];
 it('should save data in database and return data by the passed parameters', async () => {

@@ -3,8 +3,7 @@ import prisma from '../../libs/prisma/prisma';
 
 const testData = {
   color: 'Белый',
-  owners: '1',
-  carMileage: '99 000'
+  owners: '1'
 };
 
 const expected = '';
