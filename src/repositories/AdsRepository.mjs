@@ -18,23 +18,73 @@ export default class AdsRepository {
   }
 
   async adsFromTransportFilter(args) {
-    const queryCase = args.case;
-    const queryRegion = args.region;
-    const queryData = {
-      carManufacturer: args.carmanufacturer,
-      yearOfProduction: args.year,
-      carModel: args.carmodel,
-      carBody: args.body,
-      carTransmission: args.transmission,
-      owners: args.persons,
-      engineLiters: args.volume
-    };
-    return this.prisma.$queryRaw(
-      'SELECT * FROM "public"."ads" WHERE (("public"."ads"."id") IN (SELECT "t0"."id" FROM "public"."ads" AS "t0" INNER JOIN "public"."category" AS "j0" ON ("j0"."id") = ("t0"."categoryId") WHERE ("j0"."name" = $1 AND "t0"."id" IS NOT NULL)) AND ("public"."ads"."id") IN (SELECT "t0"."id" FROM "public"."ads" AS "t0" INNER JOIN "public"."region" AS "j0" ON ("j0"."id") = ("t0"."regionId") WHERE ("j0"."code" = $2 AND "t0"."id" IS NOT NULL)) AND ("public"."ads"."data") @> $3)',
-      queryCase,
-      queryRegion,
-      queryData
-    );
+    const { category, regionCode, ...data } = args;
+    if (data.carManufacturer === 'ВАЗ (LADA)') data.carManufacturer = 'ВАЗ';
+    if (
+      regionCode &&
+      (data.carManufacturer ||
+        data.yearOfProduction ||
+        data.carModel ||
+        data.carBody ||
+        data.transmission ||
+        data.owners)
+    ) {
+      return this.prisma.$queryRaw`
+        select a.id, "data" , "title" , "adsDate", "description" , "phone" , r."name" region, c."name" category
+        from public.ads a
+        join public.category c 
+        on c."name" = ${category}
+        join public.region r 
+        on r."code" = ${regionCode}
+        where a."data" @> ${data}
+      `;
+    } else if (
+      regionCode &&
+      !(
+        data.carManufacturer &&
+        data.yearOfProduction &&
+        data.carModel &&
+        data.carBody &&
+        data.transmission &&
+        data.owners
+      )
+    ) {
+      return this.prisma.$queryRaw`
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , r."name" region , c."name" category 
+        from public.ads a
+        join public.category c 
+        on c."name" = ${category}
+        join public.region r 
+        on r."code" = ${regionCode}
+      `;
+    } else if (
+      !regionCode &&
+      (data.carManufacturer ||
+        data.yearOfProduction ||
+        data.carModel ||
+        data.carBody ||
+        data.transmission ||
+        data.owners)
+    ) {
+      return this.prisma.$queryRaw`
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , r."name" region , c."name" category 
+        from public.ads a
+        join public.category c 
+        on c."name" = ${category}
+        join public.region r
+        on r.id = a."regionId" 
+        where a."data" @> ${data}
+      `;
+    } else {
+      return this.prisma.$queryRaw`
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , r."name" region , c."name" category 
+        from public.ads a
+        join public.category c 
+        on c."name" = ${category}
+        join public.region r
+        on r.id = a."regionId"
+      `;
+    }
   }
 
   async search(params) {

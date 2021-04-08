@@ -55,7 +55,7 @@ const AdsItem = ({ response: { adsdata }, router }) => {
                     <Menu.Item>Телефон</Menu.Item>
                     <Menu.Item>{phone}</Menu.Item>
                     <Menu.Item>Регион</Menu.Item>
-                    <Menu.Item></Menu.Item>
+                    <Menu.Item>{}</Menu.Item>
                   </Menu>
                 </Grid.Column>
               </Grid>
