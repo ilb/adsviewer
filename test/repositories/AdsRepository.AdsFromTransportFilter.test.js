@@ -4,7 +4,8 @@ import data from './data';
 
 const query = {
   category: 'Автомобили',
-  owners: '2'
+  owners: '2',
+  yearOfProduction: ''
 };
 const expected = ['asdf'];
 it('should save data in database and return data by the passed parameters', async () => {
