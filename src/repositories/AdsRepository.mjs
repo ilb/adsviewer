@@ -18,8 +18,20 @@ export default class AdsRepository {
   }
 
   async adsFromTransportFilter(args) {
-    const { category, regionCode, ...data } = args;
-    if (data.carManufacturer === 'ВАЗ (LADA)') data.carManufacturer = 'ВАЗ';
+    const { category, regionCode, ...dataArgs } = args;
+    function chekData(data) {
+      const arrData = {};
+      Object.entries(data).forEach(([key, value]) => {
+        if (value === 'ВАЗ (LADA)') {
+          value = 'ВАЗ';
+        }
+        if (value !== '') {
+          arrData[key] = value;
+        }
+      });
+      return arrData;
+    }
+    const data = chekData(dataArgs);
     if (
       regionCode &&
       (data.carManufacturer ||
@@ -32,11 +44,11 @@ export default class AdsRepository {
       return this.prisma.$queryRaw`
         select a.id, "data" , "title" , "adsDate", "description" , "phone" , r."name" region, c."name" category
         from public.ads a
-        join public.category c 
+        join public.category c
         on c."name" = ${category}
-        join public.region r 
-        on r."code" = ${regionCode}
-        where a."data" @> ${data}
+        join public.region r
+        on r.id = a."regionId"
+        where a."data" @> ${data} and r.code = ${regionCode}
       `;
     } else if (
       regionCode &&
@@ -50,12 +62,13 @@ export default class AdsRepository {
       )
     ) {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , r."name" region , c."name" category 
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , r."name" region , c."name" category
         from public.ads a
-        join public.category c 
+        join public.category c
         on c."name" = ${category}
-        join public.region r 
-        on r."code" = ${regionCode}
+        join public.region r
+        on r.id = a."regionId"
+        where r.code = ${regionCode}
       `;
     } else if (
       !regionCode &&
@@ -67,19 +80,19 @@ export default class AdsRepository {
         data.owners)
     ) {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , r."name" region , c."name" category 
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , r."name" region , c."name" category
         from public.ads a
-        join public.category c 
+        join public.category c
         on c."name" = ${category}
         join public.region r
-        on r.id = a."regionId" 
+        on r.id = a."regionId"
         where a."data" @> ${data}
       `;
     } else {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , r."name" region , c."name" category 
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , r."name" region , c."name" category
         from public.ads a
-        join public.category c 
+        join public.category c
         on c."name" = ${category}
         join public.region r
         on r.id = a."regionId"
@@ -172,12 +185,8 @@ export default class AdsRepository {
           }
         });
       })
-    )
-      .catch((e) => {
-        throw e;
-      })
-      .finally(async () => {
-        await this.prisma.$disconnect();
-      });
+    ).catch((e) => {
+      throw e;
+    });
   }
 }

@@ -11,7 +11,6 @@ export default class Transport {
    * @param {*} request input params
    */
   async process(request) {
-    console.log('request from process', request);
     const carsManufacturer = await this.dictRepo.listCarsManufacturer();
     const region = await this.dictRepo.listRegion();
     const carmodel = await this.dictRepo.listModelByManufacturer(
@@ -30,7 +29,7 @@ export default class Transport {
       carManufacturer: request.carmanufacturer,
       yearOfProduction: request.year,
       carModel: request.carmodel,
-      carBody: request.body || '',
+      carBody: request.body,
       carTransmission: request.transmission,
       owners: request.persons
     }); //нет составных индексов
@@ -66,7 +65,7 @@ export default class Transport {
     }
 
     function conCat(arr) {
-      return ['...', ...arr];
+      return ['', ...arr];
     }
 
     return {
