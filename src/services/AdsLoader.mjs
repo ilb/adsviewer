@@ -31,18 +31,19 @@ export default class AdsLoader {
   }
   /**
    *
-   * @param dateFrom
-   * @param dateTo
+   * @param dateFrom date string
+   * @param dateTo date string
    * upload data to database
    */
   async loadData(dateFrom, dateTo) {
     let setFromDate = dateFrom;
+    let setDateTo = new Date(dateTo).toISOString();
     const lastDate = await this.getLastDate();
 
     if (!dateFrom && lastDate) {
-      setFromDate = new Date(lastDate.lastloaddate).toISOString() || '';
+      setFromDate = new Date(lastDate.lastloaddate).toISOString();
     }
-    const data = await this.adsProvider.getAdsByDate(setFromDate, dateTo);
+    const data = await this.adsProvider.getAdsByDate(setFromDate, setDateTo);
     await this.setLastDate(data);
     await this.adsRepository.save(data);
   }
