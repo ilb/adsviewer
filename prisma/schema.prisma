@@ -20,6 +20,7 @@ model ads {
   type        type       @relation(fields: [typeId], references: [id])
   typeId      Int
   data        Json?
+  images      Json
   category    category   @relation(fields: [categoryId], references: [id])
   categoryId  Int
   region      region     @relation(fields: [regionId], references: [id])

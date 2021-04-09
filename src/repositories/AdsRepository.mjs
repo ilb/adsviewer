@@ -42,7 +42,7 @@ export default class AdsRepository {
         data.owners)
     ) {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate", "description" , "phone" , r."name" region, c."name" category
+        select a.id, "data" , "title" , "adsDate", "description" , "phone" , "images" , r."name" region, c."name" category
         from public.ads a
         join public.category c
         on c."name" = ${category}
@@ -62,7 +62,7 @@ export default class AdsRepository {
       )
     ) {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , r."name" region , c."name" category
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "images" , r."name" region , c."name" category
         from public.ads a
         join public.category c
         on c."name" = ${category}
@@ -80,7 +80,7 @@ export default class AdsRepository {
         data.owners)
     ) {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , r."name" region , c."name" category
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "images" , r."name" region , c."name" category
         from public.ads a
         join public.category c
         on c."name" = ${category}
@@ -90,7 +90,7 @@ export default class AdsRepository {
       `;
     } else {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , r."name" region , c."name" category
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "images" , r."name" region , c."name" category
         from public.ads a
         join public.category c
         on c."name" = ${category}
@@ -149,7 +149,8 @@ export default class AdsRepository {
           data,
           categoryId,
           region,
-          idSource
+          idSource,
+          images
         } = adsItem;
 
         const regionId = regionsMap.get(region);
@@ -172,6 +173,7 @@ export default class AdsRepository {
               }
             },
             data: data,
+            images,
             category: {
               connect: {
                 id: categoryId
