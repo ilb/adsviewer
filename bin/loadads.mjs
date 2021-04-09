@@ -8,6 +8,7 @@ import pkg from '@prisma/client';
 const { PrismaClient } = pkg;
 const prisma = new PrismaClient({ log: ['query', 'info'] });
 
+
 const lastDateRepository = new LastDateRepository({ prisma });
 const adsAdapterFactory = new AdsAdapterFactory();
 const uriAccessorFactory = new UriAccessorFactory({
