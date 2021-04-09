@@ -9,6 +9,10 @@ export default class AutoAdsApiAdapter {
       throw new Error('Adapter: no data from provider');
     }
     return data.map((ads) => {
+      const images = ads.images.map((item) => ({
+        href: item.imgurl,
+        rel: 'image'
+      }));
       const params = {
         doorCount: ads.params['Количество дверей'],
         usedType: ads.params['Тип автомобиля'],
@@ -34,7 +38,7 @@ export default class AutoAdsApiAdapter {
         phone: ads.phone,
         typeId: Number(ads.nedvigimost_type_id),
         data: params,
-        images: ads.images,
+        images: images,
         category: ads.cat2,
         categoryId: ads.cat2_id,
         region: ads.region

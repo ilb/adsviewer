@@ -149,7 +149,8 @@ export default class AdsRepository {
           data,
           categoryId,
           region,
-          idSource
+          idSource,
+          images
         } = adsItem;
 
         const regionId = regionsMap.get(region);
@@ -172,6 +173,7 @@ export default class AdsRepository {
               }
             },
             data: data,
+            images,
             category: {
               connect: {
                 id: categoryId
