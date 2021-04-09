@@ -26,8 +26,9 @@ export default class AdsLoader {
     });
 
     const dataLastElem = sortData.pop();
-    const lastDate = new Date(dataLastElem.adsDate).toISOString();
+    const lastDate = new Date(dataLastElem.adsDate);
     await this.lastDateRepository.setDate(this.nameSource, lastDate);
+    console.log(`add last date to repo, date: ${lastDate}`);
   }
   /**
    *
@@ -36,20 +37,34 @@ export default class AdsLoader {
    * upload data to database
    */
   async loadData(dateFrom, dateTo) {
-    let setFromDate = dateFrom;
-    let setDateTo = new Date(dateTo).toISOString();
     const lastDate = await this.getLastDate();
-
     if (!dateFrom && lastDate) {
-      setFromDate = new Date(lastDate.lastloaddate).toISOString();
+      dateFrom = await this.dateFormat(lastDate);
     }
-    const data = await this.adsProvider.getAdsByDate(setFromDate, setDateTo);
-    await this.setLastDate(data);
+    const data = await this.adsProvider.getAdsByDate(dateFrom, dateTo);
+
     await this.adsRepository.save(data);
+    await this.setLastDate(data);
+
+    console.log(`save data to repo`);
   }
 
   async testLoadData() {
     const data = await this.adsProvider.getAdsByDate();
     await this.adsRepository.save(data);
+  }
+
+  async dateFormat(date) {
+    let days = date.getDate();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    days = days < 10 ? '0' + days : days;
+    month = month < 10 ? '0' + month : month;
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    let strTime = days + '-' + month + '-' + year + ' ' + hours + ':' + minutes + ':' + '00';
+    return strTime;
   }
 }
