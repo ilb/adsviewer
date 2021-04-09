@@ -37,14 +37,9 @@ export default class AdsLoader {
    * upload data to database
    */
   async loadData(dateFrom, dateTo) {
-    const lastDate = await this.getLastDate();
-    if (!dateFrom && lastDate) {
-      dateFrom = await this.dateFormat(lastDate);
-    }
     const data = await this.adsProvider.getAdsByDate(dateFrom, dateTo);
-
-    await this.adsRepository.save(data);
     await this.setLastDate(data);
+    await this.adsRepository.save(data);
 
     console.log(`save data to repo`);
   }
@@ -52,19 +47,5 @@ export default class AdsLoader {
   async testLoadData() {
     const data = await this.adsProvider.getAdsByDate();
     await this.adsRepository.save(data);
-  }
-
-  async dateFormat(date) {
-    let days = date.getDate();
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    days = days < 10 ? '0' + days : days;
-    month = month < 10 ? '0' + month : month;
-    hours = hours < 10 ? '0' + hours : hours;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    let strTime = days + '-' + month + '-' + year + ' ' + hours + ':' + minutes + ':' + '00';
-    return strTime;
   }
 }
