@@ -12,10 +12,14 @@ export default class AdsApiProvider extends AdsProvider {
    */
   async getAdsByDate(dateFrom, dateTo) {
     const url = await this.setUrlParams(dateFrom, dateTo);
+    console.log('Send query to server');
     const uriAccessor = this.uriAccessorFactory.getUriAccessor(url);
     const result = await uriAccessor.getContent();
+    console.log('Get server ansver');
     const parse = JSON.parse(result);
-
+    if (parse.data === [] && parse.code === 200) {
+      throw new Error('Нед данных за указанный период времени либо еще не добавлены');
+    }
     return await this.adsAdapter.convert(parse.data);
   }
   /**
@@ -33,6 +37,10 @@ export default class AdsApiProvider extends AdsProvider {
     if (dateTo) {
       url.searchParams.append('date2', dateTo);
     }
+
+    console.log(`dateFrom: ${dateFrom}`);
+    console.log(`dateFrom: ${dateTo}`);
+    console.log(url.toString());
     return url.toString();
   }
 }
