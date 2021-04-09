@@ -33,7 +33,7 @@ export default class Transport {
       carTransmission: upString(request.transmission),
       owners: request.persons
     });
-    console.log(ads);
+    // console.log(ads);
     const adsitems = ads.map(({ id, adsDate, title, phone, data, category, region }) => ({
       id,
       adsDate,
@@ -57,7 +57,7 @@ export default class Transport {
     }
 
     function checkModel(func) {
-      return request.carmodel ? func : ['Выберите модель'];
+      return (request.carmanufacturer && request.carmodel) ? func : ['Выберите модель'];
     }
 
     function checkManuf(func) {
@@ -139,7 +139,7 @@ export default class Transport {
         // horse: { title: '', type: 'string', enum: descriptModelHorse },
         // volume: { title: '', type: 'string', enum: descriptModelV }
       },
-      required: ['carmanufacturer']
+      required: ['carmanufacturer', 'carmodel']
     };
     return schema;
   }
