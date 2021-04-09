@@ -42,16 +42,15 @@ function DateFormat(date) {
 const adsProvider = new AdsApiProvider(sourceAdsUrl, adsAdapter, uriAccessorFactory);
 const adsLoader = new AdsLoader(adsProvider, lastDateRepository, adsRepository, 'adsapi', prisma);
 const date1 = new Date();
-const delay = 60000;
+const delay = 6000;
 const dateFrom = DateFormat(AddMinutesToDate(date1, 46));
 const dateTo = DateFormat(AddMinutesToDate(date1, 31));
-
 const uploaded = async () => {
   await adsLoader.loadData(dateFrom, dateTo);
 };
 
 let upload = setTimeout(function tick() {
-  console.log('tick');
+  console.log('Loaded...');
   uploaded().catch((e) => {
     e.meta;
   });
