@@ -8,7 +8,8 @@
     "next": "next",
     "build": "next build",
     "start": "next start",
-    "ilb-build": "next build",
+    "prisma:push": "npx prisma db push --preview-feature",
+    "ilb-build": "npm run prisma:push && next build",
     "now-build": "next build",
     "clean": "rimraf --no-glob ./.next ./out",
     "check:es:build": "es-check es5 './.next/static/**/*.js' -v",
@@ -16,7 +17,6 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "jest",
-    "prisma:preview": "npx prisma db push --preview-feature"
   },
   "dependencies": {
     "@ilb/uriaccessorjs": "^1.0.4",
