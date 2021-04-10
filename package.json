@@ -16,7 +16,8 @@
     "escheck": "npm run clean && npm run build && npm run check:es:build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "jest"
+    "test": "jest",
+    "loadads": "node -r dotenv/config bin/loadads.mjs"
   },
   "dependencies": {
     "@ilb/uriaccessorjs": "^1.0.4",
