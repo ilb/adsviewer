@@ -26,10 +26,10 @@ export function LabelReturn({ items }) {
   }
 }
 
-export function MapForm({ options, items }) {
+export function MapForm({ options, items, req }) {
   // console.log('Region', items, options[items]);
   return items == 'region' ? (
-    <select name={`${items}`}>
+    <select name={`${items}`} defaultValue={req.[items] || ''}>
       {options[items].map(({ name, code }) => (
         <option key={name} value={code}>
           {name}
@@ -37,7 +37,7 @@ export function MapForm({ options, items }) {
       ))}
     </select>
   ) : (
-    <select name={`${items}`}>
+    <select name={`${items}`} defaultValue={req.[items] || ''}>
       {options[items].map((item) => (
         <option key={item} value={item}>
           {item}
@@ -47,7 +47,7 @@ export function MapForm({ options, items }) {
   );
 }
 
-function FormAuto({ options }) {
+function FormAuto({ options, req }) {
   return (
     <Form.Field>
       <Grid columns={3} columns="equal" verticalAlign="middle">
@@ -58,7 +58,7 @@ function FormAuto({ options }) {
                 <LabelReturn items={items} />
               </Grid.Column>
               <Grid.Column textAlign="right" width={8}>
-                <MapForm options={options} items={items} />
+                <MapForm options={options} items={items} req={req}/>
               </Grid.Column>
               <Grid.Column textAlign="left"></Grid.Column>
             </React.Fragment>

@@ -7,7 +7,7 @@ it('TEST LastLoadRepository, setDate - create fields data and name, get date - r
   await repository.setDate('adsapi', new Date(`2018-03-07 20:15:56`));
   await repository.setDate('default', new Date(`2018-03-07 20:15:56`));
 
-  const getDate = await repository.getDate('default');
+  const getDate = await repository.getDate();
   const received = getDate.lastloaddate;
   const expected = new Date('2018-03-07 20:15:56');
   console.log({ getDate });

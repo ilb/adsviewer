@@ -29,8 +29,8 @@ function Auto({ response, request, schema, router, onSubmit, handleChange }) {
 
   return (
     <Form onSubmit={onSubmit} onChange={handleChange} size="large" textAlign="center">
-      <FormAuto options={transports} />
-      <Button animated type="submit">
+      <FormAuto options={transports} req={request} />
+      <Button animated type="submit" fluid>
         <Button.Content visible>Поиск</Button.Content>
         <Button.Content hidden>
           <Icon name="arrow right" />

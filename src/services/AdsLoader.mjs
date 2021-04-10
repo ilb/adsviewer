@@ -26,8 +26,9 @@ export default class AdsLoader {
     });
 
     const dataLastElem = sortData.pop();
-    const lastDate = new Date(dataLastElem.adsDate).toISOString();
+    const lastDate = new Date(dataLastElem.adsDate);
     await this.lastDateRepository.setDate(this.nameSource, lastDate);
+    console.log(`add last date to repo, date: ${lastDate}`);
   }
   /**
    *
@@ -36,16 +37,11 @@ export default class AdsLoader {
    * upload data to database
    */
   async loadData(dateFrom, dateTo) {
-    let setFromDate = dateFrom;
-    let setDateTo = new Date(dateTo).toISOString();
-    const lastDate = await this.getLastDate();
-
-    if (!dateFrom && lastDate) {
-      setFromDate = new Date(lastDate.lastloaddate).toISOString();
-    }
-    const data = await this.adsProvider.getAdsByDate(setFromDate, setDateTo);
+    const data = await this.adsProvider.getAdsByDate(dateFrom, dateTo);
     await this.setLastDate(data);
     await this.adsRepository.save(data);
+
+    console.log(`save data to repo`);
   }
 
   async testLoadData() {
