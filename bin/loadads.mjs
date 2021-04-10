@@ -42,7 +42,7 @@ function DateFormat(date) {
 const adsProvider = new AdsApiProvider(sourceAdsUrl, adsAdapter, uriAccessorFactory);
 const adsLoader = new AdsLoader(adsProvider, lastDateRepository, adsRepository, 'adsapi', prisma);
 const date1 = new Date();
-const delay = 60000; /* 1 минута */
+const delay = 6000;
 const dateFrom = DateFormat(AddMinutesToDate(date1, 46));
 const dateTo = DateFormat(AddMinutesToDate(date1, 31));
 const uploaded = async () => {

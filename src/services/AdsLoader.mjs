@@ -38,9 +38,8 @@ export default class AdsLoader {
    */
   async loadData(dateFrom, dateTo) {
     const data = await this.adsProvider.getAdsByDate(dateFrom, dateTo);
-    await this.setLastDate(data);
     await this.adsRepository.save(data);
-
+    await this.setLastDate(data);
     console.log(`save data to repo`);
   }
 

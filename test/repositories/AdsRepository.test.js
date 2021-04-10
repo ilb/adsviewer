@@ -6,7 +6,7 @@ const testData = {
   title: 'acura'
 };
 
-const expected = [];
+const expected = '';
 it('should save data in database and return data by the passed parameters', async () => {
   const repository = new AdsRepository({ prisma });
 

@@ -34,6 +34,8 @@ export default class AutoAdsApiAdapter {
         idSource: ads.id,
         title: ads.title,
         adsDate: ads.time,
+        price: ads.price,
+        person: ads.person,
         description: ads.description,
         phone: ads.phone,
         typeId: Number(ads.nedvigimost_type_id),

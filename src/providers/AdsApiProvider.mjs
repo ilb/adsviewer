@@ -18,8 +18,8 @@ export default class AdsApiProvider extends AdsProvider {
     const parse = JSON.parse(result);
     console.log(`(Provider)Get server ansver ${parse.code}`);
 
-    if (parse.data === [] && parse.code === 200) {
-      throw new Error('Нед данных за указанный период времени либо еще не добавлены');
+    if (parse.code !== 200) {
+      throw new Error(`${parse.code} : ${parse.error}`);
     }
     return await this.adsAdapter.convert(parse.data);
   }
