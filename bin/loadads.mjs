@@ -46,7 +46,7 @@ const delay = 6000;
 const dateFrom = DateFormat(AddMinutesToDate(date1, 46));
 const dateTo = DateFormat(AddMinutesToDate(date1, 31));
 const uploaded = async () => {
-  await adsLoader.loadData(dateFrom, dateTo);
+  await adsLoader.loadData();
 };
 
 let upload = setTimeout(function tick() {

@@ -19,13 +19,7 @@ export default class AdsLoader {
    * @param data Array
    */
   async setLastDate(data) {
-    const sortData = data.sort(function (a, b) {
-      const dateA = new Date(a.adsDate);
-      const dateB = new Date(b.adsDate);
-      return dateA - dateB;
-    });
-
-    const dataLastElem = sortData.pop();
+    const dataLastElem = data.pop();
     const lastDate = new Date(dataLastElem.adsDate);
     await this.lastDateRepository.setDate(this.nameSource, lastDate);
     console.log(`add last date to repo, date: ${lastDate}`);
@@ -38,6 +32,7 @@ export default class AdsLoader {
    */
   async loadData(dateFrom, dateTo) {
     const data = await this.adsProvider.getAdsByDate(dateFrom, dateTo);
+    console.log(data.length());
     await this.adsRepository.save(data);
     await this.setLastDate(data);
     console.log(`save data to repo`);
