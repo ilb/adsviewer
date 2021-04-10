@@ -12,12 +12,13 @@ export default class Search {
    */
   async process(request) {
     const ads = await this.adsRepo.all(request.search); //test
-    const adsitems = ads.map(({ id, adsDate, title, phone, data, category, region }) => ({
+    const adsitems = ads.map(({ id, adsDate, title, phone, data, images, category, region }) => ({
       id,
       adsDate,
       title,
       phone,
       data,
+      images,
       category,
       region
     }));

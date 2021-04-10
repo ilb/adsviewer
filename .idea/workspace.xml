@@ -44,8 +44,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db725e79-49ba-4c69-9c62-7226f3b28455" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test/repositories/DictionaryRepository.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ads-item.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ads-item.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/autoform/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/autoform/[id].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecases/Id.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecases/Id.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecases/Search.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecases/Search.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/usecases/Transport.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecases/Transport.mjs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +130,8 @@
       <workItem from="1617375475079" duration="24817000" />
       <workItem from="1617531430979" duration="11029000" />
       <workItem from="1617611557466" duration="27653000" />
+      <workItem from="1617964307572" duration="24132000" />
+      <workItem from="1618047590903" duration="7120000" />
     </task>
     <servers />
   </component>
