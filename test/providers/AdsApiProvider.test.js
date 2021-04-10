@@ -13,6 +13,7 @@ const expected = [
   {
     idSource: 537556112,
     adsDate: '2021-03-28 21:33:13',
+    price: 'price',
     category: 'Автомобили',
     categoryId: 22,
     data: {
@@ -42,6 +43,7 @@ const expected = [
   {
     idSource: 537556112,
     adsDate: '2021-03-28 21:33:13',
+    price: 'price',
     category: 'Автомобили',
     categoryId: 22,
     data: {

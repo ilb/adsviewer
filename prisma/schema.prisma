@@ -12,6 +12,8 @@ model ads {
   id          BigInt     @id @default(autoincrement())
   idSource    BigInt     @unique
   adsDate     DateTime
+  price       Int?
+  person      String?    @db.VarChar(250)
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   title       String     @db.VarChar(1000)
@@ -20,7 +22,7 @@ model ads {
   type        type       @relation(fields: [typeId], references: [id])
   typeId      Int
   data        Json?
-  images      Json
+  images      Json?
   category    category   @relation(fields: [categoryId], references: [id])
   categoryId  Int
   region      region     @relation(fields: [regionId], references: [id])

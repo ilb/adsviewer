@@ -42,7 +42,7 @@ export default class AdsRepository {
         data.owners)
     ) {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate", "description" , "phone" , "images" , r."name" region, c."name" category
+        select a.id, "data" , "title" , "adsDate", "description" , "phone" , "images" , "price" , "person" , r."name" region, c."name" category
         from public.ads a
         join public.category c
         on c."name" = ${category}
@@ -62,7 +62,7 @@ export default class AdsRepository {
       )
     ) {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "images" , r."name" region , c."name" category
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "images" , "price" , "person" , r."name" region , c."name" category
         from public.ads a
         join public.category c
         on c."name" = ${category}
@@ -80,7 +80,7 @@ export default class AdsRepository {
         data.owners)
     ) {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "images" , r."name" region , c."name" category
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "images" , "price" , "person" , r."name" region , c."name" category
         from public.ads a
         join public.category c
         on c."name" = ${category}
@@ -90,7 +90,7 @@ export default class AdsRepository {
       `;
     } else {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "images" , r."name" region , c."name" category
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "images" , "price" , "person" , r."name" region , c."name" category
         from public.ads a
         join public.category c
         on c."name" = ${category}
@@ -143,6 +143,7 @@ export default class AdsRepository {
         const {
           title,
           adsDate,
+          price,
           description,
           phone,
           typeId,
@@ -150,7 +151,8 @@ export default class AdsRepository {
           categoryId,
           region,
           idSource,
-          images
+          images,
+          person
         } = adsItem;
 
         const regionId = regionsMap.get(region);
@@ -164,6 +166,8 @@ export default class AdsRepository {
           create: {
             idSource,
             adsDate: new Date(adsDate),
+            price,
+            person,
             title,
             description,
             phone,
