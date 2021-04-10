@@ -33,13 +33,14 @@ export default class Transport {
       carTransmission: upString(request.transmission),
       owners: request.persons
     });
-    // console.log(ads);
-    const adsitems = ads.map(({ id, adsDate, title, phone, data, category, region }) => ({
+    console.log("ADS",ads);
+    const adsitems = ads.map(({ id, adsDate, title, phone, data, images, category, region }) => ({
       id,
       adsDate,
       title,
       phone,
       data,
+      images,
       category,
       region
     }));
