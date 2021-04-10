@@ -35,6 +35,6 @@ function AutoFormTest({ router, request, response, schema }) {
 export default withRouter(AutoFormTest);
 
 export async function getServerSideProps(context) {
-  console.log('Context', context.query.case);
+  // console.log('Context', context.query.case);
   return processUsecase(context, context.query.case ? context.query.case : 'search');
 }

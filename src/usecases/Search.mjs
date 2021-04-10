@@ -12,7 +12,7 @@ export default class Search {
    */
   async process(request) {
     const ads = await this.adsRepo.all(request.search); //test
-    const adsitems = ads.map(({ id, adsDate, title, phone, data, images, category, region }) => ({
+    const adsitems = ads.map(({ id, adsDate, title, phone, data, images, category, region, price, person }) => ({
       id,
       adsDate,
       title,
@@ -20,7 +20,9 @@ export default class Search {
       data,
       images,
       category,
-      region
+      region,
+      price,
+      person
     }));
     return {
       data: 'test resolve search page',
