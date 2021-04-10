@@ -2,7 +2,7 @@ import React from 'react';
 import { Segment, Grid, Image, Divider, Menu, Message } from 'semantic-ui-react';
 
 const AdsItem = ({ response: { adsdata }, router }) => {
-  console.log(adsdata);
+  // console.log("ADSDATA", adsdata);
   const handleClick = (id) => {
     // console.log("event", id)
     router.push(`/autoform/${id}`);
@@ -12,9 +12,10 @@ const AdsItem = ({ response: { adsdata }, router }) => {
 
   const adsItems = adsdata ? JSON.parse(adsdata) : null;
   return adsItems ? (
-    adsItems.map(({ id, picture, adsDate, title, phone, data, category, region }) => {
+    adsItems.map(({ id, picture, adsDate, title, phone, data, images, category, region }) => {
       const dataslice = Object.fromEntries(Object.entries(data).slice(4, 8));
       // console.log('data for ads list', dataslice);
+      // console.log('images', images);
       return (
         <Segment key={id} onClick={() => handleClick(id)}>
           <Grid columns={1} stackable>
@@ -26,8 +27,8 @@ const AdsItem = ({ response: { adsdata }, router }) => {
                   <Divider></Divider>
                   <Image
                     src={
-                      picture
-                        ? picture
+                      images[0]
+                        ? images[0].href
                         : 'https://lojasavanna.com.br/Handlers/Imagens/img.aspx?id=83&img=0_FT_1.jpg&tp=jpg&x=750&y=750'
                     }
                     size="medium"

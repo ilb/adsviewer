@@ -20,6 +20,7 @@ export default class Transport {
       createdAt: JSON.stringify(test.createdAt),
       phone: test.phone,
       data: test.data,
+      images: test.images,
       categoryId: test.categoryId,
       regionId: test.regionId
     };
