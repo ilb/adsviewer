@@ -15,8 +15,9 @@ export default class AdsApiProvider extends AdsProvider {
     console.log('Send query to server');
     const uriAccessor = this.uriAccessorFactory.getUriAccessor(url);
     const result = await uriAccessor.getContent();
-    console.log('Get server ansver');
     const parse = JSON.parse(result);
+    console.log(`(Provider)Get server ansver ${parse.code}`);
+
     if (parse.data === [] && parse.code === 200) {
       throw new Error('Нед данных за указанный период времени либо еще не добавлены');
     }
