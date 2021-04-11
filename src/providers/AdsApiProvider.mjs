@@ -41,7 +41,7 @@ export default class AdsApiProvider extends AdsProvider {
 
     console.log(`dateFrom: ${dateFrom}`);
     console.log(`dateFrom: ${dateTo}`);
-    console.log(url.toString());
-    return url.toString();
+    console.log(decodeURIComponent(url));
+    return decodeURIComponent(url);
   }
 }

@@ -5,6 +5,7 @@ export default class AdsLoader {
     this.nameSource = nameSource;
     this.adsRepository = adsRepository;
     this.prisma = prisma;
+    this.count = process.env.COUNT || 1000;
   }
   /**
    *
@@ -31,15 +32,50 @@ export default class AdsLoader {
    * upload data to database
    */
   async loadData(dateFrom, dateTo) {
-    const data = await this.adsProvider.getAdsByDate(dateFrom, dateTo);
-    console.log(`Count ${data.length()}`);
+    console.log(this.count);
+
+    const formatDateFrom =
+      typeof dateFrom === 'string' ? dateFrom : await this.dateFormat(dateFrom);
+    const formatDateTo = typeof dateTo === 'string' ? dateTo : await this.dateFormat(dateTo);
+    const data = await this.adsProvider.getAdsByDate(formatDateFrom, formatDateTo);
+    const dataCount = data.length;
     await this.adsRepository.save(data);
-    await this.setLastDate(data);
     console.log(`save data to repo`);
+
+    if (dataCount < 1) {
+      console.log(`${dataCount} < 1`);
+      return { message: 'Новых обьявлений пока нет' };
+    }
+    if (dataCount < this.count) {
+      console.log(`${dataCount} < ${this.count}`);
+      const setDateFrom = await this.getLastDate();
+      const formatDateFrom = await this.dateFormat(new Date(setDateFrom.lastloaddate));
+      const setDateTo = Date.parse(dateTo) + (Date.parse(dateTo) - Date.parse(dateFrom));
+      const formatDateTo = await this.dateFormat(new Date(setDateTo));
+      await this.loadData(formatDateFrom, formatDateTo);
+    }
+    if (dataCount >= this.count) {
+      console.log(`${dataCount} >= ${this.count}`);
+      await this.setLastDate(data);
+      const lastDate = await this.getLastDate();
+      const newDateTo = await this.dateFormat(new Date(lastDate.lastloaddate));
+      await this.loadData(formatDateFrom, newDateTo);
+    }
   }
 
-  async testLoadData() {
-    const data = await this.adsProvider.getAdsByDate();
-    await this.adsRepository.save(data);
+  async dateFormat(date) {
+    console.log(date);
+    let days = date.getDate();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    days = days < 10 ? '0' + days : days;
+    month = month < 10 ? '0' + month : month;
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    const urlTimeString =
+      year + '-' + month + '-' + days + '+' + hours + ':' + minutes + ':' + '00';
+    return urlTimeString;
   }
 }
