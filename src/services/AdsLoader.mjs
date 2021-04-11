@@ -48,8 +48,8 @@ export default class AdsLoader {
     }
     if (dataCount < this.count) {
       console.log(`${dataCount} < ${this.count}`);
-      const setDateFrom = await this.getLastDate();
-      const formatDateFrom = await this.dateFormat(new Date(setDateFrom.lastloaddate));
+      const lastDate = await this.getLastDate();
+      const formatDateFrom = await this.dateFormat(new Date(lastDate.lastloaddate));
       const setDateTo = Date.parse(dateTo) + (Date.parse(dateTo) - Date.parse(dateFrom));
       const formatDateTo = await this.dateFormat(new Date(setDateTo));
       await this.loadData(formatDateFrom, formatDateTo);
