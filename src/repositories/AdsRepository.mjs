@@ -151,7 +151,7 @@ export default class AdsRepository {
           categoryId,
           region,
           idSource,
-          images,
+          links,
           person
         } = adsItem;
 
@@ -177,7 +177,7 @@ export default class AdsRepository {
               }
             },
             data: data,
-            images,
+            links,
             category: {
               connect: {
                 id: categoryId
