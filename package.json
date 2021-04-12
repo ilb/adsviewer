@@ -20,7 +20,7 @@
     "loadads": "node -r dotenv/config bin/loadads.mjs"
   },
   "dependencies": {
-    "@ilb/uriaccessorjs": "^1.0.4",
+    "@ilb/uriaccessorjs": "^1.0.5",
     "@prisma/client": "^2.20.1",
     "ajv": "^6.12.6",
     "ajv-i18n": "^3.6.0",
