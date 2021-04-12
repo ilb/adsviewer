@@ -33,14 +33,14 @@ export default class Transport {
       carTransmission: upString(request.transmission),
       owners: request.persons
     });
-    console.log("ADS",ads);
-    const adsitems = ads.map(({ id, adsDate, title, phone, data, images, category, region }) => ({
+    console.log('ADS', ads);
+    const adsitems = ads.map(({ id, adsDate, title, phone, data, links, category, region }) => ({
       id,
       adsDate,
       title,
       phone,
       data,
-      images,
+      links,
       category,
       region
     }));
@@ -58,7 +58,7 @@ export default class Transport {
     }
 
     function checkModel(func) {
-      return (request.carmanufacturer && request.carmodel) ? func : ['Выберите модель'];
+      return request.carmanufacturer && request.carmodel ? func : ['Выберите модель'];
     }
 
     function checkManuf(func) {
@@ -80,7 +80,7 @@ export default class Transport {
     }
 
     function upString(string) {
-      return string ? string[0].toUpperCase() + string.substring(1) : string
+      return string ? string[0].toUpperCase() + string.substring(1) : string;
     }
     return {
       carmanufacturer: conCat(delDuplicat(carsManufacturer.map(({ name }) => name))),
@@ -114,7 +114,30 @@ export default class Transport {
           delDuplicat(cardescription.map(({ enginecapacity }) => enginecapacity.toString()))
         )
       ),
-      year: conCat(checkManuf(delDuplicat(['2011', '2011', '2015', '2012', '2016', '2010', '2009', '2008', '2007', '2012', '2013', '2014', '2015', '2017','2018','2019','2020','2021']))),
+      year: conCat(
+        checkManuf(
+          delDuplicat([
+            '2011',
+            '2011',
+            '2015',
+            '2012',
+            '2016',
+            '2010',
+            '2009',
+            '2008',
+            '2007',
+            '2012',
+            '2013',
+            '2014',
+            '2015',
+            '2017',
+            '2018',
+            '2019',
+            '2020',
+            '2021'
+          ])
+        )
+      ),
       persons: conCat(checkManuf(['1', '2', '3', '4', '5'])),
       adsdata: JSON.stringify(adsitems, (_, v) => (typeof v === 'bigint' ? `${v}n` : v)).replace(
         /"(-?\d+)n"/g,

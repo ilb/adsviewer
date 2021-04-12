@@ -7,20 +7,20 @@ import { AutoField, AutoFields, AutoForm } from 'uniforms-semantic';
 import { createSchemaBridge } from '../../libs/uniforms';
 
 function Description({ router, request, response, schema }) {
-  const { title, description, createdAt, phone, data, images, categoryId, regionId } = response;
+  const { title, description, createdAt, phone, data, links, categoryId, regionId } = response;
   // console.log("IMAGES", images)
   const onClick = () => {
     router.replace('/autoform');
   };
 
-  const initialState = { href: images[0].href }
+  const initialState = { href: links[0].href };
 
-  const [ img, setImg ]  = useState(initialState)
+  const [img, setImg] = useState(initialState);
 
   const setHref = (str) => {
     // console.log("STR", img)
     setImg({ href: str.target.currentSrc });
-  }
+  };
 
   return (
     <Container>
@@ -43,7 +43,14 @@ function Description({ router, request, response, schema }) {
           <Grid columns={2} width={7}>
             <Grid.Column textAlign="center">
               <Placeholder>
-                <Image square src={img.href ? img.href : 'https://lojasavanna.com.br/Handlers/Imagens/img.aspx?id=83&img=0_FT_1.jpg&tp=jpg&x=750&y=750'} />
+                <Image
+                  square
+                  src={
+                    img.href
+                      ? img.href
+                      : 'https://lojasavanna.com.br/Handlers/Imagens/img.aspx?id=83&img=0_FT_1.jpg&tp=jpg&x=750&y=750'
+                  }
+                />
               </Placeholder>
             </Grid.Column>
             <Grid.Column>
@@ -70,8 +77,10 @@ function Description({ router, request, response, schema }) {
                 </Grid.Column>
               </Grid>
             </Grid.Column>
-            <Image.Group size='tiny'>
-              {images.map(({href}) => <Image src={href} onClick={setHref}/>)}
+            <Image.Group size="tiny">
+              {links.map(({ href }) => (
+                <Image src={href} onClick={setHref} />
+              ))}
             </Image.Group>
             <Segment raised>
               <Header as="h3">Описание</Header>

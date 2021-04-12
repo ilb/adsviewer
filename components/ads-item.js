@@ -12,10 +12,11 @@ const AdsItem = ({ response: { adsdata }, router }) => {
 
   const adsItems = adsdata ? JSON.parse(adsdata) : null;
   return adsItems ? (
-    adsItems.map(({ id, picture, adsDate, title, phone, data, images, category, region }) => {
+    adsItems.map(({ id, picture, adsDate, title, phone, data, links, category, region }) => {
       const dataslice = Object.fromEntries(Object.entries(data).slice(4, 8));
       // console.log('data for ads list', dataslice);
-      // console.log('images', images);
+      // console.log('links', links);
+      console.log(data);
       return (
         <Segment key={id} onClick={() => handleClick(id)}>
           <Grid columns={1} stackable>
@@ -27,8 +28,8 @@ const AdsItem = ({ response: { adsdata }, router }) => {
                   <Divider></Divider>
                   <Image
                     src={
-                      images[0]
-                        ? images[0].href
+                      links[0]
+                        ? links[0].href
                         : 'https://lojasavanna.com.br/Handlers/Imagens/img.aspx?id=83&img=0_FT_1.jpg&tp=jpg&x=750&y=750'
                     }
                     size="medium"
@@ -41,6 +42,7 @@ const AdsItem = ({ response: { adsdata }, router }) => {
                   <Divider></Divider>
                   <Menu fluid vertical>
                     <Menu.Item>{title}</Menu.Item>
+                    <Menu.Item>{}</Menu.Item>
                     {dataslice
                       ? Object.keys(dataslice).map((items) => (
                           <Menu.Item key={items}>{dataslice[items]}</Menu.Item>
