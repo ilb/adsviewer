@@ -46,8 +46,8 @@
     <list default="true" id="db725e79-49ba-4c69-9c62-7226f3b28455" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ads-item.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ads-item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/autoform/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/autoform/[id].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usecases/Id.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecases/Id.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/auto.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/auto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/autoform.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/autoform.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/usecases/Search.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecases/Search.mjs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/usecases/Transport.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/usecases/Transport.mjs" afterDir="false" />
     </list>

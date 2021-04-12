@@ -12,11 +12,10 @@ const AdsItem = ({ response: { adsdata }, router }) => {
 
   const adsItems = adsdata ? JSON.parse(adsdata) : null;
   return adsItems ? (
-    adsItems.map(({ id, picture, adsDate, title, phone, data, links, category, region }) => {
+    adsItems.map(({ id, price, person, adsDate, title, phone, data, links, category, region }) => {
       const dataslice = Object.fromEntries(Object.entries(data).slice(4, 8));
       // console.log('data for ads list', dataslice);
-      // console.log('links', links);
-      console.log(data);
+      // console.log('person', person);
       return (
         <Segment key={id} onClick={() => handleClick(id)}>
           <Grid columns={1} stackable>
@@ -38,7 +37,7 @@ const AdsItem = ({ response: { adsdata }, router }) => {
                 </Grid.Column>
                 <Grid.Column textAlign="center">
                   <Grid.Row>Стоимость</Grid.Row>
-                  <Grid.Row>200 000 рублей</Grid.Row>
+                  <Grid.Row>{price ? `${price} Рублей` : 'Цена скрыта'}</Grid.Row>
                   <Divider></Divider>
                   <Menu fluid vertical>
                     <Menu.Item>{title}</Menu.Item>
@@ -52,13 +51,19 @@ const AdsItem = ({ response: { adsdata }, router }) => {
                 </Grid.Column>
                 <Grid.Column textAlign="center">
                   <Grid.Row>Продавец</Grid.Row>
-                  <Grid.Row>Тест Тестович</Grid.Row>
+                  <Grid.Row>{person && person !== 'недоступно' ? person : 'Частное лицо'}</Grid.Row>
                   <Divider></Divider>
                   <Menu fluid vertical>
                     <Menu.Item>Телефон</Menu.Item>
                     <Menu.Item>{phone}</Menu.Item>
                     <Menu.Item>Регион</Menu.Item>
-                    <Menu.Item>{}</Menu.Item>
+                    <Menu.Item>
+                      {typeof region === 'object'
+                        ? region.name
+                        : typeof region === 'string'
+                        ? region
+                        : 'Не указан'}
+                    </Menu.Item>
                   </Menu>
                 </Grid.Column>
               </Grid>
