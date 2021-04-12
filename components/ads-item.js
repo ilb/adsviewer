@@ -8,6 +8,14 @@ const AdsItem = ({ response: { adsdata }, router }) => {
   const adsItems = adsdata ? JSON.parse(adsdata) : null;
   return adsItems ? (
     adsItems.map(({ id, price, person, adsDate, title, phone, data, links, category, region }) => {
+      const dateTime = new Date(adsDate);
+      const adsDateFormat = dateTime.toLocaleDateString('ru', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric'
+      });
       const arrData = [];
       for (const item in data) {
         arrData.push(data[item]);
@@ -20,7 +28,7 @@ const AdsItem = ({ response: { adsdata }, router }) => {
               <Grid columns={3}>
                 <Grid.Column textAlign="center">
                   <Grid.Row>Дата размещения</Grid.Row>
-                  <Grid.Row>{adsDate}</Grid.Row>
+                  <Grid.Row>{adsDateFormat}</Grid.Row>
                   <Divider></Divider>
                   <Image
                     src={
@@ -70,5 +78,4 @@ const AdsItem = ({ response: { adsdata }, router }) => {
     <Message visible>Страница в разработке</Message>
   );
 };
-
 export default AdsItem;
