@@ -6,6 +6,7 @@ export default class AdsLoader {
     this.adsRepository = adsRepository;
     this.prisma = prisma;
     this.count = process.env.COUNT || 1000;
+    this.timeInterval = process.env.TIME_INTERVAL;
   }
   /**
    *
@@ -19,11 +20,9 @@ export default class AdsLoader {
    *
    * @param data Array
    */
-  async setLastDate(data) {
-    const dataLastElem = data.pop();
-    const lastDate = new Date(dataLastElem.adsDate);
-    await this.lastDateRepository.setDate(this.nameSource, lastDate);
-    console.log(`add last date to repo, date: ${lastDate}`);
+  async setLastDate(date) {
+    await this.lastDateRepository.setDate(this.nameSource, date);
+    console.log(`add last date to repo, date: ${date}`);
   }
   /**
    *
@@ -32,9 +31,19 @@ export default class AdsLoader {
    * upload data to database
    */
   async loadData(dateFrom, dateTo) {
+    if (!dateFrom) {
+      let date = await this.getLastDate();
+      dateFrom = date.lastloaddate;
+    }
+    if (!dateTo) {
+      dateTo = new Date(Date.parse(dateFrom) + this.timeInterval * 60000);
+      await this.setLastDate(dateTo);
+    }
+
     const formatDateFrom =
       typeof dateFrom === 'string' ? dateFrom : await this.dateFormat(dateFrom);
     const formatDateTo = typeof dateTo === 'string' ? dateTo : await this.dateFormat(dateTo);
+
     const data = await this.adsProvider.getAdsByDate(formatDateFrom, formatDateTo);
     const dataCount = data.length;
     await this.adsRepository.save(data);
@@ -50,7 +59,6 @@ export default class AdsLoader {
       console.log(`${dataCount} < ${this.count}`);
       const lastDateItem = data.pop();
       const newDateTo = await this.dateFormat(new Date(lastDateItem.adsDate));
-      await this.setLastDate(data);
 
       setTimeout(() => {
         console.log(`tick: ${newDateTo}`);
@@ -68,7 +76,11 @@ export default class AdsLoader {
       }, 5000);
     }
   }
-
+  /**
+   *
+   * @param date
+   * @returns string
+   */
   async dateFormat(date) {
     let days = date.getDate();
     let year = date.getFullYear();
