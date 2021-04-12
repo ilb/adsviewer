@@ -12,18 +12,20 @@ export default class Search {
    */
   async process(request) {
     const ads = await this.adsRepo.all(request.search); //test
-    const adsitems = ads.map(({ id, adsDate, title, phone, data, images, category, region, price, person }) => ({
-      id,
-      adsDate,
-      title,
-      phone,
-      data,
-      images,
-      category,
-      region,
-      price,
-      person
-    }));
+    const adsitems = ads.map(
+      ({ id, adsDate, title, phone, data, links, category, region, price, person }) => ({
+        id,
+        adsDate,
+        title,
+        phone,
+        data,
+        links,
+        category,
+        region,
+        price,
+        person
+      })
+    );
     return {
       data: 'test resolve search page',
       adsdata: JSON.stringify(adsitems, (_, v) => (typeof v === 'bigint' ? `${v}n` : v)).replace(
