@@ -116,7 +116,7 @@ COPY public.region (id, code, name, active, kladrcode) FROM stdin;
 50	kareliya	Карелия	1	10
 51	krasnoyarskiy_kray	Красноярский край	1	24
 52	tomskaya_oblast	Томская область	1	70
-53	moskva	Москва Г	1	77
+53	moskva	Москва	1	77
 54	moskovskaya_oblast	Московская область	1	50
 56	amurskaya_oblast	Амурская область	1	28
 57	belgorodskaya_oblast	Белгородская область	1	31
