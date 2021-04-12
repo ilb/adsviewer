@@ -30,7 +30,7 @@ function Auto({ response, request, schema, router, onSubmit, handleChange }) {
   };
 
   function onChange(query) {
-    console.log("onChangeModel", query)
+    console.log('onChangeModel', query);
     router.push({ pathname: router.pathname, query: { case: router.query.case, ...query } });
   }
 
@@ -45,11 +45,7 @@ function Auto({ response, request, schema, router, onSubmit, handleChange }) {
       {/*    </Button.Content>*/}
       {/*  </Button>*/}
       {/*</Form>*/}
-      <AutoForm
-        schema={createSchemaBridge(schema)}
-        onSubmit={onSubmit}
-        onChangeModel={onChange}
-      />
+      <AutoForm schema={createSchemaBridge(schema)} onSubmit={onSubmit} onChangeModel={onChange} />
     </React.Fragment>
   );
 }

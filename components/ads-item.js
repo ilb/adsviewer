@@ -2,20 +2,17 @@ import React from 'react';
 import { Segment, Grid, Image, Divider, Menu, Message } from 'semantic-ui-react';
 
 const AdsItem = ({ response: { adsdata }, router }) => {
-  // console.log("ADSDATA", adsdata);
   const handleClick = (id) => {
-    // console.log("event", id)
     router.push(`/autoform/${id}`);
   };
-
-  // console.log("AdsItem", JSON.parse(adsdata))
-
   const adsItems = adsdata ? JSON.parse(adsdata) : null;
   return adsItems ? (
     adsItems.map(({ id, price, person, adsDate, title, phone, data, links, category, region }) => {
-      const dataslice = Object.fromEntries(Object.entries(data).slice(4, 8));
-      // console.log('data for ads list', dataslice);
-      // console.log('person', person);
+      const arrData = [];
+      for (const item in data) {
+        arrData.push(data[item]);
+      }
+      const dataslice = arrData.slice(4, 8);
       return (
         <Segment key={id} onClick={() => handleClick(id)}>
           <Grid columns={1} stackable>
@@ -41,11 +38,8 @@ const AdsItem = ({ response: { adsdata }, router }) => {
                   <Divider></Divider>
                   <Menu fluid vertical>
                     <Menu.Item>{title}</Menu.Item>
-                    <Menu.Item>{}</Menu.Item>
                     {dataslice
-                      ? Object.keys(dataslice).map((items) => (
-                          <Menu.Item key={items}>{dataslice[items]}</Menu.Item>
-                        ))
+                      ? dataslice.map((items) => <Menu.Item key={items}>{items}</Menu.Item>)
                       : 'Нет данных'}
                   </Menu>
                 </Grid.Column>
