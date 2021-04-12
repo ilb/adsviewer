@@ -27,7 +27,7 @@ const dateFrom = new Date('2021-04-07 20:25:49');
 const dateTo = new Date('2021-04-07 20:35:23');
 
 const uploaded = async () => {
-  await adsLoader.loadData(dateFrom, dateTo);
+  await adsLoader.loadData();
 };
 
 uploaded();
