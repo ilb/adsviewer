@@ -40,13 +40,13 @@ export default class AdsLoader {
     await this.adsRepository.save(data);
     console.log(`save data to repo`);
 
-    if (dataCount < 0) {
+    if (dataCount < 1) {
       console.log(
-        `${dataCount} < 1, За данный период времени: ${formatDateFrom} - ${formatDateTo} обьявлений не найдено`
+        `${dataCount} < 1, За данный период времени: ${formatDateFrom} - ${formatDateTo} обьявлений не найдено, задайте другой интервал времени`
       );
       return;
     }
-    if (dataCount < this.count) {
+    if (dataCount > 1 && dataCount < this.count) {
       console.log(`${dataCount} < ${this.count}`);
       const lastDateItem = data.pop();
       const newDateTo = await this.dateFormat(new Date(lastDateItem.adsDate));
