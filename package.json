@@ -23,6 +23,7 @@
     "@ilb/uriaccessorjs": "^1.0.4",
     "@prisma/client": "^2.19.0",
     "ajv": "^6.12.6",
+    "ajv-formats": "^1.5.1",
     "ajv-i18n": "^3.6.0",
     "awilix": "^4.3.3",
     "dotenv": "^8.2.0",
