@@ -38,6 +38,9 @@ export default class AdsApiProvider extends AdsProvider {
     if (dateTo) {
       url.searchParams.append('date2', dateTo);
     }
-    return url.toString();
+
+    console.log(`dateFrom: ${dateFrom}`);
+    console.log(`dateTo: ${dateTo}`);
+    return decodeURIComponent(url);
   }
 }
