@@ -32,8 +32,6 @@ export default class AdsLoader {
    * upload data to database
    */
   async loadData(dateFrom, dateTo) {
-    console.log(this.count);
-
     const formatDateFrom =
       typeof dateFrom === 'string' ? dateFrom : await this.dateFormat(dateFrom);
     const formatDateTo = typeof dateTo === 'string' ? dateTo : await this.dateFormat(dateTo);
@@ -42,29 +40,36 @@ export default class AdsLoader {
     await this.adsRepository.save(data);
     console.log(`save data to repo`);
 
-    if (dataCount < 1) {
-      console.log(`${dataCount} < 1`);
-      return { message: 'Новых обьявлений пока нет' };
+    if (dataCount < 0) {
+      console.log(
+        `${dataCount} < 1, За данный период времени: ${formatDateFrom} - ${formatDateTo} обьявлений не найдено`
+      );
+      return;
     }
     if (dataCount < this.count) {
       console.log(`${dataCount} < ${this.count}`);
-      const lastDate = await this.getLastDate();
-      const formatDateFrom = await this.dateFormat(new Date(lastDate.lastloaddate));
-      const setDateTo = Date.parse(dateTo) + (Date.parse(dateTo) - Date.parse(dateFrom));
-      const formatDateTo = await this.dateFormat(new Date(setDateTo));
-      await this.loadData(formatDateFrom, formatDateTo);
+      const lastDateItem = data.pop();
+      const newDateTo = await this.dateFormat(new Date(lastDateItem.adsDate));
+      await this.setLastDate(data);
+
+      setTimeout(() => {
+        console.log(`tick: ${newDateTo}`);
+        this.loadData(formatDateFrom, newDateTo);
+      }, 5000);
     }
     if (dataCount >= this.count) {
       console.log(`${dataCount} >= ${this.count}`);
-      await this.setLastDate(data);
-      const lastDate = await this.getLastDate();
-      const newDateTo = await this.dateFormat(new Date(lastDate.lastloaddate));
-      await this.loadData(formatDateFrom, newDateTo);
+      const lastDateItem = data.pop();
+      const newDateTo = await this.dateFormat(new Date(lastDateItem.adsDate));
+
+      setTimeout(() => {
+        console.log(`tick: ${newDateTo}`);
+        this.loadData(formatDateFrom, newDateTo);
+      }, 5000);
     }
   }
 
   async dateFormat(date) {
-    console.log(date);
     let days = date.getDate();
     let year = date.getFullYear();
     let month = date.getMonth() + 1;

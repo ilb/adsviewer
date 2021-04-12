@@ -23,19 +23,11 @@ const sourceAdsUrl = process.env.ADSAPI_URL;
 
 const adsProvider = new AdsApiProvider(sourceAdsUrl, adsAdapter, uriAccessorFactory);
 const adsLoader = new AdsLoader(adsProvider, lastDateRepository, adsRepository, 'adsapi', prisma);
-const dateFrom = new Date('2021-04-06 18:04:49');
-const dateTo = new Date('2021-04-06 18:10:23');
-const delay = 6000;
+const dateFrom = new Date('2021-04-07 20:25:49');
+const dateTo = new Date('2021-04-07 20:35:23');
 
 const uploaded = async () => {
   await adsLoader.loadData(dateFrom, dateTo);
 };
 
-let upload = setTimeout(function tick() {
-  console.log('Loaded...');
-  uploaded().catch((e) => {
-    e.meta;
-  });
-  // eslint-disable-next-line no-unused-vars
-  upload = setTimeout(tick, delay);
-}, delay);
+uploaded();
