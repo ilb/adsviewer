@@ -156,15 +156,15 @@ export default class Transport {
     }
 
     function checkModel(func) {
-      return request.carmanufacturer && request.carmodel ? func : ['Выберите модель'];
+      return (request.carmanufacturer && request.carmodel) ? func : [optionsValue('Выберите модель')];
     }
 
     function checkManuf(func) {
-      return request.carmanufacturer ? func : ['Выберите производителя'];
+      return request.carmanufacturer ? func : [optionsValue('Выберите производителя')];
     }
 
     function conCat(arr) {
-      return [...arr];
+      return ['', ...arr];
     }
 
     function sortName(a, b) {
@@ -177,6 +177,10 @@ export default class Transport {
       return 0;
     }
 
+    function optionsValue(name) {
+      return { value: name, label: name }
+    }
+
     const schema = {
       title: 'Получить оценку',
       type: 'object',
@@ -184,98 +188,93 @@ export default class Transport {
         carmanufacturer: {
           title: 'Производитель',
           type: 'string',
-          enum: conCat(delDuplicat(carsManufacturer.map(({ name }) => name)))
-        },
+          options: conCat(delDuplicat(carsManufacturer.map(({ name }) => optionsValue(name) )).sort(sortName)),
+          uniforms: {
+            search: true
+          }},
         region: {
           title: 'Регион',
           type: 'string',
-          options: conCat(
-            region.map(({ name, code }) => ({ value: code, label: name })).sort(sortName)
-          )
-        }, //Проблемсы)0))
+          options: conCat(region.map(({ name, code }) => ({ value: code, label: name })).sort(sortName)),
+          uniforms: {
+            search: true
+          }},
         carmodel: {
           title: 'Модель',
           type: 'string',
-          enum: conCat(
-            checkManuf(
-              delDuplicat(carmodel.map(({ carmodel }) => carmodel.map(({ name }) => name))[0])
-            )
-          )
-        },
+          options: conCat(
+            checkManuf(delDuplicat(carmodel.map(({ carmodel }) => carmodel.map(({ name }) => optionsValue(name)).sort(sortName))[0]))
+          ),
+          uniforms: {
+            search: true
+          }},
         year: {
           title: 'Год',
           type: 'string',
-          enum: conCat(
+          options: conCat(
             checkManuf(
-              delDuplicat([
-                '2011',
-                '2011',
-                '2015',
-                '2012',
-                '2016',
-                '2010',
-                '2009',
-                '2008',
-                '2007',
-                '2012',
-                '2013',
-                '2014',
-                '2015',
-                '2017',
-                '2018',
-                '2019',
-                '2020',
-                '2021'
-              ])
-            )
-          )
-        }, //**testing**need*bd**
-        body: {
-          title: 'Кузов',
-          type: 'string',
-          enum: conCat(
+              delDuplicat(['2011', '2011', '2015', '2012', '2016', '2010', '2009', '2008', '2007', '2012', '2013', '2014', '2015', '2017','2018','2019','2020','2021'])
+                .map((name) => optionsValue(name)))),
+          uniforms: {
+            search: true
+          }},
+        body: { title: 'Кузов', type: 'string', options: conCat(
             checkModel(
               delDuplicat(
                 cardescription.map(({ carmodelbody }) =>
-                  carmodelbody.map(({ carbodyid }) => carbodyMap.get(carbodyid))
+                  carmodelbody.map(({ carbodyid }) => optionsValue(carbodyMap.get(carbodyid)))
                 )[0]
               )
             )
-          )
-        },
+          ),
+          uniforms: {
+            search: true
+          }},
         transmission: {
           title: 'Трансмиссия',
           type: 'string',
-          enum: conCat(
+          options: conCat(
             checkModel(
               delDuplicat(
                 cardescription.map(({ carmodeltransmission }) =>
                   carmodeltransmission.map(({ cartransmissionid }) =>
-                    transmissionMap.get(cartransmissionid)
+                    optionsValue(transmissionMap.get(cartransmissionid))
                   )
                 )[0]
               )
             )
-          )
+          ),
+          uniforms: {
+            search: true
+          }
         },
         persons: {
           title: 'Количество владельцев по ПТС',
           type: 'string',
-          enum: conCat(checkManuf(['1', '2', '3', '4', '5']))
-        }, //**testing**need*bd**
+          options: conCat(
+            checkManuf(['1', '2', '3', '4', '5']
+              .map((name) => optionsValue(name)))),
+          uniforms: {
+            search: true
+          }
+        },
         horse: {
           title: 'Мощность двигателя',
           type: 'string',
-          enum: conCat(
-            checkModel(delDuplicat(cardescription.map(({ enginepower }) => enginepower)))
-          )
-        },
+          options: conCat(
+            checkModel(
+              delDuplicat(cardescription
+                .map(({ enginepower }) => optionsValue(enginepower))))),
+          uniforms: {
+            search: true
+          }},
         volume: {
           title: 'Объем двигателя',
           type: 'string',
-          enum: conCat(
+          options: conCat(
             checkModel(
-              delDuplicat(cardescription.map(({ enginecapacity }) => enginecapacity.toString()))
+              delDuplicat(cardescription
+                .map(({ enginecapacity }) => optionsValue(enginecapacity.toString())))
             )
           )
         }

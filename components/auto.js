@@ -3,6 +3,7 @@ import { Button, Form, Icon } from 'semantic-ui-react';
 import FormAuto from './form-auto';
 import { AutoForm } from 'uniforms-semantic';
 import { createSchemaBridge } from '../libs/uniforms';
+import CustomAutoField from './CustomAutoField';
 
 function Auto({ response, request, schema, router, onSubmit, handleChange }) {
   const {
@@ -45,7 +46,12 @@ function Auto({ response, request, schema, router, onSubmit, handleChange }) {
       {/*    </Button.Content>*/}
       {/*  </Button>*/}
       {/*</Form>*/}
-      <AutoForm schema={createSchemaBridge(schema)} onSubmit={onSubmit} onChangeModel={onChange} />
+      <AutoForm
+        schema={createSchemaBridge(schema)}
+        onSubmit={onSubmit}
+        onChangeModel={onChange}
+        autoField={CustomAutoField}
+      />
     </React.Fragment>
   );
 }
