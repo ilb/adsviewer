@@ -23,7 +23,7 @@ function AutoFormTest({ router, request, response, schema }) {
   };
 
   const props = { response, request, schema, router, onSubmit, handleChange };
-
+  console.log(request);
   return (
     <Container>
       <AdsFactory {...props} />
