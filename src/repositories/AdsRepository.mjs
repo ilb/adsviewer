@@ -42,7 +42,7 @@ export default class AdsRepository {
         data.owners)
     ) {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate", "description" , "phone" , "images" , "price" , "person" , r."name" region, c."name" category
+        select a.id, "data" , "title" , "adsDate", "description" , "phone" , "links" , "price" , "person" , r."name" region, c."name" category
         from public.ads a
         join public.category c
         on c."name" = ${category}
@@ -62,7 +62,7 @@ export default class AdsRepository {
       )
     ) {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "images" , "price" , "person" , r."name" region , c."name" category
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "links" , "price" , "person" , r."name" region , c."name" category
         from public.ads a
         join public.category c
         on c."name" = ${category}
@@ -80,7 +80,7 @@ export default class AdsRepository {
         data.owners)
     ) {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "images" , "price" , "person" , r."name" region , c."name" category
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "links" , "price" , "person" , r."name" region , c."name" category
         from public.ads a
         join public.category c
         on c."name" = ${category}
@@ -90,7 +90,7 @@ export default class AdsRepository {
       `;
     } else {
       return this.prisma.$queryRaw`
-        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "images" , "price" , "person" , r."name" region , c."name" category
+        select a.id, "data" , "title" , "adsDate" , "description" , "phone" , "links" , "price" , "person" , r."name" region , c."name" category
         from public.ads a
         join public.category c
         on c."name" = ${category}
@@ -151,7 +151,7 @@ export default class AdsRepository {
           categoryId,
           region,
           idSource,
-          images,
+          links,
           person
         } = adsItem;
 
@@ -177,7 +177,7 @@ export default class AdsRepository {
               }
             },
             data: data,
-            images,
+            links,
             category: {
               connect: {
                 id: categoryId
@@ -191,8 +191,12 @@ export default class AdsRepository {
           }
         });
       })
-    ).catch((e) => {
-      throw e;
-    });
+    )
+      .catch((e) => {
+        throw e;
+      })
+      .finally(async () => {
+        await this.prisma.$disconnect();
+      });
   }
 }

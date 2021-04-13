@@ -116,7 +116,7 @@ COPY public.region (id, code, name, active, kladrcode) FROM stdin;
 50	kareliya	Карелия	1	10
 51	krasnoyarskiy_kray	Красноярский край	1	24
 52	tomskaya_oblast	Томская область	1	70
-53	moskva	Москва Г	1	77
+53	moskva	Москва	1	77
 54	moskovskaya_oblast	Московская область	1	50
 56	amurskaya_oblast	Амурская область	1	28
 57	belgorodskaya_oblast	Белгородская область	1	31
@@ -137,10 +137,10 @@ COPY public.region (id, code, name, active, kladrcode) FROM stdin;
 72	mordoviya	Мордовия	1	13
 73	nenetskiy_ao	Ненецкий АО	1	83
 74	primorskiy_kray	Приморский край	1	25
-75	sankt-peterburg	Санкт-Петербург Г	1	78
+75	sankt-peterburg	Санкт-Петербург	1	78
 76	saha_yakutiya	Саха (Якутия)	1	14
 77	sahalinskaya_oblast	Сахалинская область	1	65
-78	sevastopol	Севастополь Г	1	92
+78	sevastopol	Севастополь	1	92
 79	severnaya_osetiya	Северная Осетия	1	15
 80	stavropolskiy_kray	Ставропольский край	1	26
 81	tyva	Тыва	1	17

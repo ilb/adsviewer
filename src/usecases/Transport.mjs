@@ -34,18 +34,20 @@ export default class Transport {
       owners: request.persons
     });
     // console.log("ADS",ads);
-    const adsitems = ads.map(({ id, adsDate, title, phone, data, images, category, region, price, person }) => ({
-      id,
-      adsDate,
-      title,
-      phone,
-      data,
-      images,
-      category,
-      region,
-      price,
-      person
-    }));
+    const adsitems = ads.map(
+      ({ id, adsDate, title, phone, data, links, category, region, price, person }) => ({
+        id,
+        adsDate,
+        title,
+        phone,
+        data,
+        links,
+        category,
+        region,
+        price,
+        person
+      })
+    );
 
     // function arrayToMap(array) {
     //   const arrMap = new Map();
@@ -82,7 +84,7 @@ export default class Transport {
     // }
 
     function upString(string) {
-      return string ? string[0].toUpperCase() + string.substring(1) : string
+      return string ? string[0].toUpperCase() + string.substring(1) : string;
     }
     return {
       // carmanufacturer: conCat(delDuplicat(carsManufacturer.map(({ name }) => name))),
@@ -274,7 +276,8 @@ export default class Transport {
               delDuplicat(cardescription
                 .map(({ enginecapacity }) => optionsValue(enginecapacity.toString())))
             )
-          ) }
+          )
+        }
       },
       required: ['carmanufacturer', 'carmodel']
     };

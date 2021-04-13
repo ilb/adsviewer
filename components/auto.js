@@ -31,7 +31,7 @@ function Auto({ response, request, schema, router, onSubmit, handleChange }) {
   };
 
   function onChange(query) {
-    console.log("onChangeModel", query)
+    console.log('onChangeModel', query);
     router.push({ pathname: router.pathname, query: { case: router.query.case, ...query } });
   }
 
