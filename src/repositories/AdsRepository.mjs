@@ -191,8 +191,12 @@ export default class AdsRepository {
           }
         });
       })
-    ).catch((e) => {
-      throw e;
-    });
+    )
+      .catch((e) => {
+        throw e;
+      })
+      .finally(async () => {
+        await this.prisma.$disconnect();
+      });
   }
 }
