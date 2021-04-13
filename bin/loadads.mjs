@@ -23,11 +23,13 @@ const sourceAdsUrl = process.env.ADSAPI_URL;
 
 const adsProvider = new AdsApiProvider(sourceAdsUrl, adsAdapter, uriAccessorFactory);
 const adsLoader = new AdsLoader(adsProvider, lastDateRepository, adsRepository, 'adsapi', prisma);
-const dateFrom = new Date('2021-04-07 20:25:49');
-const dateTo = new Date('2021-04-07 20:35:23');
 
-const uploaded = async () => {
-  await adsLoader.loadData();
-};
+async function uploaded() {
+  try {
+    await adsLoader.loadData();
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 uploaded();
