@@ -55,8 +55,8 @@ export default class AdsLoader {
     }
 
     const formatDateFrom =
-      typeof dateFrom === 'string' ? dateFrom : await this.dateFormatOffset(dateFrom);
-    const formatDateTo = typeof dateTo === 'string' ? dateTo : await this.dateFormatOffset(dateTo);
+      typeof dateFrom === 'string' ? dateFrom : this.dateFormatOffset(dateFrom);
+    const formatDateTo = typeof dateTo === 'string' ? dateTo : this.dateFormatOffset(dateTo);
     const data = await this.adsProvider.getAdsByDate(formatDateFrom, formatDateTo);
     const dataCount = data.length;
 
@@ -72,7 +72,7 @@ export default class AdsLoader {
     if (dataCount > 1 && dataCount < this.count) {
       console.log(`${dataCount} < ${this.count}`);
       const lastDateItem = data.pop();
-      const newDateTo = await this.dateFormat(new Date(lastDateItem.adsDate));
+      const newDateTo = this.dateFormat(new Date(lastDateItem.adsDate));
 
       setTimeout(() => {
         console.log(`tick: ${newDateTo}`);
@@ -82,7 +82,7 @@ export default class AdsLoader {
     if (dataCount >= this.count) {
       console.log(`${dataCount} >= ${this.count}`);
       const lastDateItem = data.pop();
-      const newDateTo = await this.dateFormat(new Date(lastDateItem.adsDate));
+      const newDateTo = this.dateFormat(new Date(lastDateItem.adsDate));
 
       setTimeout(() => {
         console.log(`tick: ${newDateTo}`);
@@ -95,7 +95,7 @@ export default class AdsLoader {
    * @param date
    * @returns string
    */
-  async dateFormatOffset(date) {
+  dateFormatOffset(date) {
     let days = date.getDate();
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
@@ -111,7 +111,7 @@ export default class AdsLoader {
     return urlTimeString;
   }
 
-  async dateFormat(date) {
+  dateFormat(date) {
     let days = date.getDate();
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
