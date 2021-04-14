@@ -5,13 +5,17 @@ import { processUsecase } from '../libs/usecases/index';
 import AdsItem from '../components/ads-item';
 import AdsFactory from '../components/hoc/adsFactory';
 
+
+
 function AutoFormTest({ router, request, response, schema }) {
 
   function onSubmit() {
+    query.page = 1;
     router.push({ pathname: router.pathname, query: router.query });
   }
 
   const handleChange = (event) => {
+    query.page = 1;
     router.replace({
       pathname: router.pathname,
       query: (event.target.name === schema.required[0]) ?
@@ -21,13 +25,34 @@ function AutoFormTest({ router, request, response, schema }) {
           { ...router.query, [event.target.name]: event.target.value }
     });
   };
+  
+  const adsData = JSON.parse(response.adsdata)
+  const adsCountSize = adsData.length;
+  const adsPerPage = 10;
+  const pagesCount = Math.ceil((adsCountSize || 0) / adsPerPage);
+  const currentPage = parseInt(router.query.page || 1);
 
-  const props = { response, request, schema, router, onSubmit, handleChange };
-  console.log(request);
+  const indexOfLastAds = currentPage * adsPerPage;
+  const indexOfFirstAds = indexOfLastAds - adsPerPage;
+  const currentAds = adsData.slice(indexOfFirstAds, indexOfLastAds);
+
+
+  function onPaginationItemClick(page) {
+    if (page !== currentPage) {
+      router.replace({
+        pathname: router.pathname,
+        query: { ...router.query, page }
+      });
+    }
+  }
+  const props = { response, currentAds, request, schema, router, pagesCount, currentPage, onSubmit, handleChange, onPaginationItemClick };
+
   return (
     <Container>
       <AdsFactory {...props} />
-      <AdsItem {...props} />
+      {adsData && (
+        <AdsItem {...props} />
+      )}
     </Container>
   );
 }
