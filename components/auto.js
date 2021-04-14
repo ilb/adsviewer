@@ -1,9 +1,6 @@
 import React from 'react';
-import { Button, Form, Icon } from 'semantic-ui-react';
-import FormAuto from './form-auto';
+import { createSchemaBridge, CustomAutoField } from '@ilb/uniformscomponents';
 import { AutoForm } from 'uniforms-semantic';
-import { createSchemaBridge } from '../libs/uniforms';
-import CustomAutoField from './CustomAutoField';
 
 function Auto({ response, request, schema, router, onSubmit, handleChange }) {
   const {

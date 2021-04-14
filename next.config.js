@@ -5,6 +5,7 @@ const withTM = require('next-transpile-modules')([
   'uniforms-bridge-json-schema',
   'uniforms',
   'uniforms-semantic',
+  '@ilb/uniformscomponents',
   'ajv'
 ]);
 const basePath = '/adsviewer';
