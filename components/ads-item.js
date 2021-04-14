@@ -1,13 +1,14 @@
 import React from 'react';
-import { Segment, Grid, Image, Divider, Menu, Message } from 'semantic-ui-react';
+import { Segment, Grid, Image, Divider, Menu, Message, Pagination } from 'semantic-ui-react';
 
-const AdsItem = ({ response: { adsdata }, router }) => {
+const AdsItem = ({ currentAds, router, pagesCount, currentPage, onPaginationItemClick }) => {
   const handleClick = (id) => {
     router.push(`/autoform/${id}`);
   };
-  const adsItems = adsdata ? JSON.parse(adsdata) : null;
-  return adsItems ? (
-    adsItems.map(({ id, price, person, adsDate, title, phone, data, links, category, region }) => {
+  const adsItems = currentAds ? currentAds : null;
+  console.log(pagesCount, currentPage);
+  const AdsElement = adsItems.map(
+    ({ id, price, person, adsDate, title, phone, data, links, category, region }) => {
       const dateTime = new Date(adsDate);
       const adsDateFormat = dateTime.toLocaleDateString('ru', {
         year: 'numeric',
@@ -73,9 +74,30 @@ const AdsItem = ({ response: { adsdata }, router }) => {
           </Grid>
         </Segment>
       );
-    })
-  ) : (
-    <Message visible>Страница в разработке</Message>
+    }
+  );
+
+  const pageChange = (data) => {
+    onPaginationItemClick(data.activePage);
+  };
+
+  return (
+    <>
+      {(adsItems.length && <>{AdsElement}</>) || (
+        <Message visible>По вашему запросу ничего не найдено</Message>
+      )}
+      {(pagesCount && (
+        <Pagination
+          onPageChange={(event, data) => pageChange(data)}
+          defaultActivePage={1}
+          firstItem={null}
+          lastItem={null}
+          pointing
+          secondary
+          totalPages={pagesCount}
+        />
+      )) || <></>}
+    </>
   );
 };
 export default AdsItem;
