@@ -13,7 +13,7 @@ function AutoFormTest({ router, request, response, schema }) {
     query.page = 1;
     router.push({ pathname: router.pathname, query: router.query });
   }
-
+  
   const handleChange = (event) => {
     query.page = 1;
     router.replace({
@@ -35,7 +35,6 @@ function AutoFormTest({ router, request, response, schema }) {
   const indexOfLastAds = currentPage * adsPerPage;
   const indexOfFirstAds = indexOfLastAds - adsPerPage;
   const currentAds = adsData.slice(indexOfFirstAds, indexOfLastAds);
-
 
   function onPaginationItemClick(page) {
     if (page !== currentPage) {

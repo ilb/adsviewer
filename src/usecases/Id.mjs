@@ -12,12 +12,12 @@ export default class Transport {
   async process(request) {
     const data = await this.dictRepo.descriptionAds({ id: BigInt(request.id) });
     const test = data[0];
-    console.log('TEST descriptionAds', test.data);
+
     return {
       id: request.id,
       title: test.title,
       description: test.description,
-      createdAt: JSON.stringify(test.createdAt),
+      adsDate: JSON.stringify(test.adsDate),
       phone: test.phone,
       data: test.data,
       links: test.links,

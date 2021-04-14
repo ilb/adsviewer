@@ -6,12 +6,23 @@ import { withRouter } from 'next/router';
 import { AutoField, AutoFields, AutoForm } from 'uniforms-semantic';
 import { createSchemaBridge } from '../../libs/uniforms';
 
-function Description({ router, request, response, schema }) {
-  const { title, description, createdAt, phone, data, links, categoryId, regionId } = response;
-  // console.log("IMAGES", images)
+function Description({ router, response }) {
+  console.log(response);
+  console.log(router);
+  const { title, description, adsDate, phone, data, links } = response;
+
   const onClick = () => {
     router.replace('/autoform');
   };
+  const date = new Date(JSON.parse(adsDate));
+
+  const adsDateFormat = date.toLocaleDateString('ru', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric'
+  });
 
   const initialState = { href: links[0].href };
 
@@ -59,7 +70,7 @@ function Description({ router, request, response, schema }) {
                   <Grid.Row>Дата размещения</Grid.Row>
                 </Grid.Column>
                 <Grid.Column textAlign="left">
-                  <Grid.Row>{createdAt}</Grid.Row>
+                  <Grid.Row>{adsDateFormat}</Grid.Row>
                 </Grid.Column>
                 <Grid.Column textAlign="right">
                   <Grid.Row>Номер</Grid.Row>
@@ -78,8 +89,8 @@ function Description({ router, request, response, schema }) {
               </Grid>
             </Grid.Column>
             <Image.Group size="tiny">
-              {links.map(({ href }) => (
-                <Image src={href} onClick={setHref} />
+              {links.map(({ href }, index) => (
+                <Image key={index} src={href} onClick={setHref} />
               ))}
             </Image.Group>
             <Segment raised>
@@ -90,8 +101,6 @@ function Description({ router, request, response, schema }) {
           </Grid>
         </Grid.Row>
       </Grid>
-      {/*<div>{categoryId}</div>*/}
-      {/*<div>{regionId}</div>*/}
     </Container>
   );
 }
