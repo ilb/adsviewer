@@ -1,12 +1,10 @@
 import Ajv from 'ajv';
 import JSONSchemaBridge from 'uniforms-bridge-json-schema';
 import localize from 'ajv-i18n';
-export { default as CustomAutoField } from '../../components/CustomAutoField';
 
 const ajv = new Ajv({ allErrors: true, useDefaults: true, coerceTypes: true });
 ajv.addKeyword('uniforms');
 ajv.addKeyword('options');
-
 
 export function createValidator(schema) {
   const validator = ajv.compile(schema);
