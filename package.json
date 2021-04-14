@@ -20,11 +20,10 @@
     "loadads": "node -r dotenv/config bin/loadads.mjs"
   },
   "dependencies": {
-    "@ilb/uniformscomponents": "^1.0.2",
+    "@ilb/uniformscomponents": "^1.0.3",
     "@ilb/uriaccessorjs": "^1.0.5",
     "@prisma/client": "^2.21.0",
     "ajv": "^6.12.6",
-    "ajv-formats": "^1.5.1",
     "ajv-i18n": "^3.6.0",
     "awilix": "^4.3.3",
     "dotenv": "^8.2.0",
