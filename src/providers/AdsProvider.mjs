@@ -1,6 +1,6 @@
 export default class AdsProvider {
-  constructor(sourceAdsUrl, adsAdapter, uriAccessorFactory) {
-    this.adsAdapter = adsAdapter;
+  constructor(sourceAdsUrl, adsAdapterFactory, uriAccessorFactory) {
+    this.adsAdapterFactory = adsAdapterFactory;
     this.sourceAdsUrl = sourceAdsUrl;
     this.uriAccessorFactory = uriAccessorFactory;
   }

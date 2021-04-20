@@ -27,13 +27,12 @@ const uriAccessorFactory = new UriAccessorFactory({
   uriAccessorFileEnabled: true
 });
 const adsRepository = new AdsRepository({ prisma, regionService, categoryService });
-const adsAdapter = adsAdapterFactory.create('auto');
 // eslint-disable-next-line prettier/prettier
 const sourceAdsUrl = process.env.ADSAPI_URL;
 // пример строки
 // https://ads-api.ru/main/api?user=dima2prog@gmail.com&token=7898911c474142c34cae4d840cb149e9&category_id=22
 
-const adsProvider = new AdsApiProvider(sourceAdsUrl, adsAdapter, uriAccessorFactory);
+const adsProvider = new AdsApiProvider(sourceAdsUrl, adsAdapterFactory, uriAccessorFactory);
 const adsLoader = new AdsLoader({
   adsProvider,
   lastDateRepository,

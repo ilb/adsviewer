@@ -1,8 +1,8 @@
 import AdsProvider from './AdsProvider.mjs';
 
 export default class AdsApiProvider extends AdsProvider {
-  constructor(sourceAdsUrl, adsAdapter, uriAccessorFactory) {
-    super(sourceAdsUrl, adsAdapter, uriAccessorFactory);
+  constructor(sourceAdsUrl, adsAdapterFactory, uriAccessorFactory) {
+    super(sourceAdsUrl, adsAdapterFactory, uriAccessorFactory);
   }
   /**
    *
@@ -21,7 +21,11 @@ export default class AdsApiProvider extends AdsProvider {
     if (parse.code !== 200) {
       throw new Error(`${parse.code} : ${parse.error}`);
     }
-    return await this.adsAdapter.convert(parse.data);
+    const adsAdapter = this.adsAdapterFactory.get(parse.data.cat2_id);
+
+    const data = parse.data.map((item) => adsAdapter.convert(item));
+
+    return data;
   }
   /**
    *
