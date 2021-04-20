@@ -152,35 +152,33 @@ export default class AdsRepository {
       categoryName,
       categoryIdSource
     );
-
+    const row = {
+      idSource,
+      adsDate: new Date(adsDate),
+      price,
+      person,
+      title,
+      description,
+      phone,
+      type: {
+        connect: {
+          id: typeId
+        }
+      },
+      data: data,
+      links,
+      category: {
+        connect: {
+          id: categoryId
+        }
+      }
+    };
     const params = {
       where: {
         idSource
       },
-      update: {
-        adsDate: new Date(adsDate)
-      },
-      create: {
-        idSource,
-        adsDate: new Date(adsDate),
-        price,
-        person,
-        title,
-        description,
-        phone,
-        type: {
-          connect: {
-            id: typeId
-          }
-        },
-        data: data,
-        links,
-        category: {
-          connect: {
-            id: categoryId
-          }
-        }
-      }
+      update: row,
+      create: row
     };
     const regionId = await this.regionService.getRegionIdByName(regionName);
 
