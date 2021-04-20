@@ -11,6 +11,7 @@ export default class AdsLoader {
     this.timeInterval = process.env.TIME_INTERVAL;
     this.timeFreshAds = process.env.TIME_FRESH_ADS;
     this.adsServerDelay = process.env.ADS_SERVER_DELAY;
+    this.adsApiApiDelay = Number(process.env.ADSAPI_API_DELAY);
   }
   /**
    *
@@ -56,6 +57,7 @@ export default class AdsLoader {
 
     const data = await this.adsProvider.getAdsByDate(dateFrom, dateTo);
     const dataCount = data.length;
+    const lastLoad = new Date();
 
     if (dataCount > 0) {
       console.log(`start save data to repo`, new Date());
@@ -72,7 +74,13 @@ export default class AdsLoader {
       const lastDateItem = data.pop();
       const newDateTo = new Date(lastDateItem.adsDate);
 
-      await Timeout.set(5000);
+      const currentDate = new Date();
+      const diff = currentDate.getTime() - lastLoad.getTime();
+      if (diff < this.adsApiApiDelay) {
+        const toWait = this.adsApiApiDelay - diff;
+        console.log('waiting ', toWait);
+        await Timeout.set(toWait);
+      }
       await this.loadData(dateFrom, newDateTo);
     }
     await this.setLastDate(dateTo);

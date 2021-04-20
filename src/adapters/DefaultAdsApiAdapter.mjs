@@ -14,7 +14,7 @@ export default class DefaultAdsApiAdapter {
     }));
     const result = {
       idSource: data.id,
-      idSource2: Number(data.avitoid),
+      idSource2: data.avitoid.toString(),
       url: data.url,
       phoneProtected: !!data.phone_protected,
       personTypeId: data.person_type_id,
