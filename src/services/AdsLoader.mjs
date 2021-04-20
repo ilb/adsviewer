@@ -66,16 +66,16 @@ export default class AdsLoader {
     await this.adsRepository.saveAll(data);
     console.log(`save data to repo`);
 
-    if (dataCount > 1 && dataCount < this.count) {
-      console.log(`${dataCount} < ${this.count}`);
-      const lastDateItem = data.pop();
-      const newDateTo = new Date(lastDateItem.adsDate);
+    // if (dataCount > 1 && dataCount < this.count) {
+    //   console.log(`${dataCount} < ${this.count}`);
+    //   const lastDateItem = data.pop();
+    //   const newDateTo = new Date(lastDateItem.adsDate);
 
-      setTimeout(() => {
-        console.log(`tick: ${newDateTo}`);
-        this.loadData(dateFrom, newDateTo);
-      }, 5000);
-    }
+    //   setTimeout(() => {
+    //     console.log(`tick: ${newDateTo}`);
+    //     this.loadData(dateFrom, newDateTo);
+    //   }, 5000);
+    // }
     if (dataCount >= this.count) {
       console.log(`${dataCount} >= ${this.count}`);
       const lastDateItem = data.pop();
