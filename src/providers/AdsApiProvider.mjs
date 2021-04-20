@@ -12,7 +12,7 @@ export default class AdsApiProvider extends AdsProvider {
    */
   async getAdsByDate(dateFrom, dateTo) {
     const url = await this.setUrlParams(dateFrom, dateTo);
-    console.log('Send query to server');
+    console.log('Loading ', url);
     const uriAccessor = this.uriAccessorFactory.getUriAccessor(url);
     const result = await uriAccessor.getContent();
     const parse = JSON.parse(result);

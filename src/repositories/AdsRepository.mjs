@@ -1,6 +1,7 @@
 export default class AdsRepository {
-  constructor({ prisma }) {
+  constructor({ prisma, regionService }) {
     this.prisma = prisma;
+    this.regionService = regionService;
   }
 
   async all(arg) {
@@ -114,29 +115,12 @@ export default class AdsRepository {
       }
     });
   }
-  /**
-   *
-   * @returns array
-   */
-  async regionList() {
-    return this.prisma.region.findMany({
-      select: {
-        id: true,
-        name: true
-      }
-    });
-  }
+
   /**
    *
    * @param data
    */
   async save(data) {
-    const regions = await this.regionList();
-    // eslint-disable-next-line no-undef
-    const regionsMap = new Map();
-    regions.forEach((item) => {
-      regionsMap.set(item.name, item.id);
-    });
     // eslint-disable-next-line no-undef
     await Promise.all(
       data.map(async (adsItem) => {
@@ -149,13 +133,14 @@ export default class AdsRepository {
           typeId,
           data,
           categoryId,
-          region,
+          region: regionName,
           idSource,
           links,
           person
         } = adsItem;
 
-        const regionId = regionsMap.get(region);
+        const regionId = await this.regionService.getRegionIdByName(regionName);
+
         return await this.prisma.ads.upsert({
           where: {
             idSource

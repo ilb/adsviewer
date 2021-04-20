@@ -39,6 +39,7 @@
     "semantic-ui-react": "^2.0.1",
     "serverless-mysql": "^1.5.4",
     "styled-components": "^5.2.1",
+    "transliterate": "^1.0.1",
     "uniforms": "^3.2.1",
     "uniforms-bridge-json-schema": "^3.2.1",
     "uniforms-semantic": "^3.2.1"

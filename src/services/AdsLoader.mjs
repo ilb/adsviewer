@@ -1,5 +1,5 @@
 export default class AdsLoader {
-  constructor(adsProvider, lastDateRepository, adsRepository, nameSource, prisma) {
+  constructor({ adsProvider, lastDateRepository, adsRepository, nameSource, prisma }) {
     this.adsProvider = adsProvider;
     this.lastDateRepository = lastDateRepository;
     this.nameSource = nameSource;
