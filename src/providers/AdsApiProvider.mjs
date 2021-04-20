@@ -16,18 +16,15 @@ export default class AdsApiProvider extends AdsProvider {
     const url = await this.setUrlParams(dateFrom, dateTo);
     console.log('Loading ', url);
     const uriAccessor = this.uriAccessorFactory.getUriAccessor(url);
-    const result = await uriAccessor.getContent();
-    const parse = JSON.parse(result);
+    const resultSource = await uriAccessor.getContent();
+    const parse = JSON.parse(resultSource);
     console.log(`(Provider)Get server answer ${parse.code}`);
 
     if (parse.code !== 200) {
       throw new Error(`${parse.code} : ${parse.error}`);
     }
-    const adsAdapter = this.adsAdapterFactory.get(parse.data.cat2_id);
-
-    const data = parse.data.map((item) => adsAdapter.convert(item));
-
-    return data;
+    const result = parse.data.map((item) => this.adsAdapterFactory.get(item.cat2_id).convert(item));
+    return result;
   }
   /**
    *

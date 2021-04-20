@@ -1,31 +1,31 @@
 export default class DefaultAdsApiAdapter {
   /**
    *
-   * @param ads
+   * @param data
    * @returns Object with convert data
    */
-  convert(ads) {
-    if (!ads) {
-      throw new Error('Adapter: no data from provider');
+  convert(data) {
+    if (!data) {
+      throw new Error('data required');
     }
-    const links = ads.images.map((item) => ({
+    const links = data.images.map((item) => ({
       href: item.imgurl,
       rel: 'image'
     }));
     return {
-      idSource: ads.id,
-      title: ads.title,
-      adsDate: ads.time,
-      price: ads.price,
-      person: ads.person,
-      description: ads.description,
-      phone: ads.phone.substring(0, 20),
-      typeId: Number(ads.nedvigimost_type_id),
-      data: ads.params,
+      idSource: data.id,
+      title: data.title,
+      adsDate: data.time,
+      price: data.price,
+      person: data.person,
+      description: data.description,
+      phone: data.phone.substring(0, 20),
+      typeId: Number(data.nedvigimost_type_id),
+      data: data.params,
       links,
-      category: ads.cat2,
-      categoryId: ads.cat2_id,
-      region: ads.region
+      category: data.cat2,
+      categoryId: data.cat2_id,
+      region: data.region
     };
   }
 }

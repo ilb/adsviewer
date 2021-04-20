@@ -1,48 +1,30 @@
-export default class AutoAdsApiAdapter {
+import DefaultAdsApiAdapter from './DefaultAdsApiAdapter.mjs';
+
+export default class AutoAdsApiAdapter extends DefaultAdsApiAdapter {
   /**
    *
-   * @param ads
+   * @param data
    * @returns Object with convert data
    */
-  convert(ads) {
-    if (!ads) {
-      throw new Error('Adapter: no data from provider');
-    }
-    const links = ads.images.map((item) => ({
-      href: item.imgurl,
-      rel: 'image'
-    }));
-    const params = {
-      doorCount: ads.params['Количество дверей'],
-      usedType: ads.params['Тип автомобиля'],
-      carModel: ads.params['Модель'],
-      carBody: ads.params['Тип кузова'],
-      condition: ads.params['Состояние'],
-      carTransmission: ads.params['Коробка передач'],
-      yearOfProduction: ads.params['Год выпуска'],
-      carManufacturer: ads.params['Марка'],
-      wheelPosition: ads.params['Руль'],
-      driveAuto: ads.params['Привод'],
-      carEngineType: ads.params['Тип двигателя'],
-      carMileage: ads.params['Пробег'],
-      owners: ads.params['Владельцев по ПТС'],
-      engineLiters: ads.params['Объём двигателя, л'],
-      color: ads.params['Цвет']
+  convert(data) {
+    const result = super.convert(data);
+    result.data = {
+      doorCount: data.params['Количество дверей'],
+      usedType: data.params['Тип автомобиля'],
+      carModel: data.params['Модель'],
+      carBody: data.params['Тип кузова'],
+      condition: data.params['Состояние'],
+      carTransmission: data.params['Коробка передач'],
+      yearOfProduction: data.params['Год выпуска'],
+      carManufacturer: data.params['Марка'],
+      wheelPosition: data.params['Руль'],
+      driveAuto: data.params['Привод'],
+      carEngineType: data.params['Тип двигателя'],
+      carMileage: data.params['Пробег'],
+      owners: data.params['Владельцев по ПТС'],
+      engineLiters: data.params['Объём двигателя, л'],
+      color: data.params['Цвет']
     };
-    return {
-      idSource: ads.id,
-      title: ads.title,
-      adsDate: ads.time,
-      price: ads.price,
-      person: ads.person,
-      description: ads.description,
-      phone: ads.phone.substring(0, 20),
-      typeId: Number(ads.nedvigimost_type_id),
-      data: params,
-      links,
-      category: ads.cat2,
-      categoryId: ads.cat2_id,
-      region: ads.region
-    };
+    return result;
   }
 }
