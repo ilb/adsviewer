@@ -12,8 +12,16 @@ export default class DefaultAdsApiAdapter {
       href: item.imgurl,
       rel: 'image'
     }));
-    return {
+    const result = {
       idSource: data.id,
+      idSource2: data.avitoId,
+      url: data.url,
+      phoneProtected: data.phone_protected,
+      personTypeId: data.person_type_id,
+      sourceId: data.source_id,
+      countSamePhone: data.count_ads_same_phone,
+      phoneOperator: data.phone_operator,
+      phoneRegion: data.phone_region,
       title: data.title,
       adsDate: data.time,
       price: data.price,
@@ -25,7 +33,19 @@ export default class DefaultAdsApiAdapter {
       links,
       category: data.cat2,
       categoryId: data.cat2_id,
-      region: data.region
+      region: data.region,
+      address: data.address
     };
+    if (data.coords) {
+      result.lat = data.coords.lat;
+      result.lng = data.coords.lng;
+    }
+    if (data.metro) {
+      result.data.metro = data.metro;
+    }
+    if (data.km_do_metro) {
+      result.data.metroDistance = data.km_do_metro.km_do_metro;
+    }
+    return result;
   }
 }
