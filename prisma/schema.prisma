@@ -22,6 +22,7 @@ model ads {
   lat            Decimal? @db.Decimal(9, 6)
   lng            Decimal? @db.Decimal(9, 6)
   address        String?  @db.VarChar(250)
+  city           String?  @db.VarChar(250)
   adsDate        DateTime
   price          Int?
   person         String?  @db.VarChar(250)

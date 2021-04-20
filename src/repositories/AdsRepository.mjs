@@ -145,7 +145,16 @@ export default class AdsRepository {
       region: regionName,
       idSource,
       links,
-      person
+      person,
+      idSource2,
+      url,
+      phoneProtected,
+      personTypeId,
+      sourceId,
+      countSamePhone,
+      phoneOperator,
+      phoneRegion,
+      address
     } = adsItem;
 
     const categoryId = await this.categoryService.getCategoryIdByName(
@@ -154,6 +163,15 @@ export default class AdsRepository {
     );
     const row = {
       idSource,
+      idSource2,
+      url,
+      phoneProtected,
+      personTypeId,
+      sourceId,
+      countSamePhone,
+      phoneOperator,
+      phoneRegion,
+      address,
       adsDate: new Date(adsDate),
       price,
       person,

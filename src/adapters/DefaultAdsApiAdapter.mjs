@@ -14,14 +14,16 @@ export default class DefaultAdsApiAdapter {
     }));
     const result = {
       idSource: data.id,
-      idSource2: data.avitoId,
+      idSource2: Number(data.avitoid),
       url: data.url,
-      phoneProtected: data.phone_protected,
+      phoneProtected: !!data.phone_protected,
       personTypeId: data.person_type_id,
       sourceId: data.source_id,
       countSamePhone: data.count_ads_same_phone,
       phoneOperator: data.phone_operator,
       phoneRegion: data.phone_region,
+      address: data.address,
+      city: data.city,
       title: data.title,
       adsDate: data.time,
       price: data.price,
@@ -33,8 +35,7 @@ export default class DefaultAdsApiAdapter {
       links,
       category: data.cat2,
       categoryId: data.cat2_id,
-      region: data.region,
-      address: data.address
+      region: data.region
     };
     if (data.coords) {
       result.lat = data.coords.lat;
