@@ -45,7 +45,6 @@ export default class AdsLoader {
       ) {
         console.log(dateFrom);
         const message = `Нельзя задавать значение даты начала загрузки ${dateOffset}`;
-        await this.prisma.$disconnect();
         throw message;
       }
     }
@@ -57,14 +56,14 @@ export default class AdsLoader {
     const data = await this.adsProvider.getAdsByDate(dateFrom, dateTo);
     const dataCount = data.length;
 
-    if (dataCount < 1) {
+    if (dataCount > 0) {
+      await this.adsRepository.saveAll(data);
+      console.log(`saved data to repo`);
+    } else {
       console.log(
         `${dataCount} < 1, За данный период времени: ${dateFrom} - ${dateTo} обьявлений не найдено, задайте другой интервал времени`
       );
-      await this.prisma.$disconnect();
     }
-    await this.adsRepository.saveAll(data);
-    console.log(`save data to repo`);
 
     // if (dataCount > 1 && dataCount < this.count) {
     //   console.log(`${dataCount} < ${this.count}`);
