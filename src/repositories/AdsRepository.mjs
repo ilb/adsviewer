@@ -154,7 +154,10 @@ export default class AdsRepository {
       countSamePhone,
       phoneOperator,
       phoneRegion,
-      address
+      address,
+      city,
+      lat,
+      lng
     } = adsItem;
 
     const categoryId = await this.categoryService.getCategoryIdByName(
@@ -172,6 +175,9 @@ export default class AdsRepository {
       phoneOperator,
       phoneRegion,
       address,
+      city,
+      lat,
+      lng,
       adsDate: new Date(adsDate),
       price,
       person,

@@ -19,8 +19,8 @@ model ads {
   countSamePhone Int?
   phoneOperator  String?  @db.VarChar(50)
   phoneRegion    String?  @db.VarChar(50)
-  lat            Decimal? @db.Decimal(9, 6)
-  lng            Decimal? @db.Decimal(9, 6)
+  lat            Decimal? @db.Decimal(15, 12)
+  lng            Decimal? @db.Decimal(15, 12)
   address        String?  @db.VarChar(250)
   city           String?  @db.VarChar(250)
   adsDate        DateTime
