@@ -66,7 +66,7 @@ export default class AdsLoader {
       );
       await this.prisma.$disconnect();
     }
-    await this.adsRepository.save(data);
+    await this.adsRepository.saveAll(data);
     console.log(`save data to repo`);
 
     if (dataCount > 1 && dataCount < this.count) {

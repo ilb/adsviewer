@@ -121,77 +121,76 @@ export default class AdsRepository {
    *
    * @param data
    */
-  async save(data) {
-    // eslint-disable-next-line no-undef
-    await Promise.all(
-      data.map(async (adsItem) => {
-        const {
-          title,
-          adsDate,
-          price,
-          description,
-          phone,
-          typeId,
-          data,
-          category: categoryName,
-          categoryId: categoryIdSource,
-          region: regionName,
-          idSource,
-          links,
-          person
-        } = adsItem;
+  async saveAll(data) {
+    for (const item of data) {
+      await this.save(item);
+    }
+  }
+  /**
+   *
+   * @param data
+   */
+  async save(adsItem) {
+    console.log({ adsItem });
+    const {
+      title,
+      adsDate,
+      price,
+      description,
+      phone,
+      typeId,
+      data,
+      category: categoryName,
+      categoryId: categoryIdSource,
+      region: regionName,
+      idSource,
+      links,
+      person
+    } = adsItem;
 
-        const categoryId = await this.categoryService.getCategoryIdByName(
-          categoryName,
-          categoryIdSource
-        );
+    const categoryId = await this.categoryService.getCategoryIdByName(
+      categoryName,
+      categoryIdSource
+    );
 
-        const params = {
-          where: {
-            idSource
-          },
-          update: {
-            adsDate: new Date(adsDate)
-          },
-          create: {
-            idSource,
-            adsDate: new Date(adsDate),
-            price,
-            person,
-            title,
-            description,
-            phone,
-            type: {
-              connect: {
-                id: typeId
-              }
-            },
-            data: data,
-            links,
-            category: {
-              connect: {
-                id: categoryId
-              }
-            }
+    const params = {
+      where: {
+        idSource
+      },
+      update: {
+        adsDate: new Date(adsDate)
+      },
+      create: {
+        idSource,
+        adsDate: new Date(adsDate),
+        price,
+        person,
+        title,
+        description,
+        phone,
+        type: {
+          connect: {
+            id: typeId
           }
-        };
-        const regionId = await this.regionService.getRegionIdByName(regionName);
-
-        if (regionId) {
-          params.create.region = {
-            connect: {
-              id: regionId
-            }
-          };
+        },
+        data: data,
+        links,
+        category: {
+          connect: {
+            id: categoryId
+          }
         }
-        return await this.prisma.ads.upsert(params);
-      })
-    )
-      .catch((e) => {
-        throw e;
-      })
-      .finally(async () => {
-        await this.prisma.$disconnect();
-      });
+      }
+    };
+    const regionId = await this.regionService.getRegionIdByName(regionName);
+
+    if (regionId) {
+      params.create.region = {
+        connect: {
+          id: regionId
+        }
+      };
+    }
+    return await this.prisma.ads.upsert(params);
   }
 }
