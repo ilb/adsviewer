@@ -54,15 +54,12 @@ export default class AdsLoader {
       await this.setLastDate(dateTo);
     }
 
-    const formatDateFrom =
-      typeof dateFrom === 'string' ? dateFrom : this.dateFormatOffset(dateFrom);
-    const formatDateTo = typeof dateTo === 'string' ? dateTo : this.dateFormatOffset(dateTo);
-    const data = await this.adsProvider.getAdsByDate(formatDateFrom, formatDateTo);
+    const data = await this.adsProvider.getAdsByDate(dateFrom, dateTo);
     const dataCount = data.length;
 
     if (dataCount < 1) {
       console.log(
-        `${dataCount} < 1, За данный период времени: ${formatDateFrom} - ${formatDateTo} обьявлений не найдено, задайте другой интервал времени`
+        `${dataCount} < 1, За данный период времени: ${dateFrom} - ${dateTo} обьявлений не найдено, задайте другой интервал времени`
       );
       await this.prisma.$disconnect();
     }
@@ -72,21 +69,21 @@ export default class AdsLoader {
     if (dataCount > 1 && dataCount < this.count) {
       console.log(`${dataCount} < ${this.count}`);
       const lastDateItem = data.pop();
-      const newDateTo = this.dateFormat(new Date(lastDateItem.adsDate));
+      const newDateTo = new Date(lastDateItem.adsDate);
 
       setTimeout(() => {
         console.log(`tick: ${newDateTo}`);
-        this.loadData(formatDateFrom, newDateTo);
+        this.loadData(dateFrom, newDateTo);
       }, 5000);
     }
     if (dataCount >= this.count) {
       console.log(`${dataCount} >= ${this.count}`);
       const lastDateItem = data.pop();
-      const newDateTo = this.dateFormat(new Date(lastDateItem.adsDate));
+      const newDateTo = new Date(lastDateItem.adsDate);
 
       setTimeout(() => {
         console.log(`tick: ${newDateTo}`);
-        this.loadData(formatDateFrom, newDateTo);
+        this.loadData(dateFrom, newDateTo);
       }, 5000);
     }
   }
@@ -95,35 +92,35 @@ export default class AdsLoader {
    * @param date
    * @returns string
    */
-  dateFormatOffset(date) {
-    let days = date.getDate();
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    // соответствие часовому поясу
-    let hours = date.getHours() + date.getTimezoneOffset() / 60;
-    let minutes = date.getMinutes();
-    days = days < 10 ? '0' + days : days;
-    month = month < 10 ? '0' + month : month;
-    hours = hours < 10 ? '0' + hours : hours;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    const urlTimeString =
-      year + '-' + month + '-' + days + '+' + hours + ':' + minutes + ':' + '00';
-    return urlTimeString;
-  }
+  // dateFormatOffset(date) {
+  //   let days = date.getDate();
+  //   let year = date.getFullYear();
+  //   let month = date.getMonth() + 1;
+  //   // соответствие часовому поясу
+  //   let hours = date.getHours() + date.getTimezoneOffset() / 60;
+  //   let minutes = date.getMinutes();
+  //   days = days < 10 ? '0' + days : days;
+  //   month = month < 10 ? '0' + month : month;
+  //   hours = hours < 10 ? '0' + hours : hours;
+  //   minutes = minutes < 10 ? '0' + minutes : minutes;
+  //   const urlTimeString =
+  //     year + '-' + month + '-' + days + '+' + hours + ':' + minutes + ':' + '00';
+  //   return urlTimeString;
+  // }
 
-  dateFormat(date) {
-    let days = date.getDate();
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    // соответствие часовому поясу
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    days = days < 10 ? '0' + days : days;
-    month = month < 10 ? '0' + month : month;
-    hours = hours < 10 ? '0' + hours : hours;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    const urlTimeString =
-      year + '-' + month + '-' + days + '+' + hours + ':' + minutes + ':' + '00';
-    return urlTimeString;
-  }
+  // dateFormat(date) {
+  //   let days = date.getDate();
+  //   let year = date.getFullYear();
+  //   let month = date.getMonth() + 1;
+  //   // соответствие часовому поясу
+  //   let hours = date.getHours();
+  //   let minutes = date.getMinutes();
+  //   days = days < 10 ? '0' + days : days;
+  //   month = month < 10 ? '0' + month : month;
+  //   hours = hours < 10 ? '0' + hours : hours;
+  //   minutes = minutes < 10 ? '0' + minutes : minutes;
+  //   const urlTimeString =
+  //     year + '-' + month + '-' + days + '+' + hours + ':' + minutes + ':' + '00';
+  //   return urlTimeString;
+  // }
 }

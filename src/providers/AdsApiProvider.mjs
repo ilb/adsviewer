@@ -1,13 +1,15 @@
+import { format } from 'date-fns';
 import AdsProvider from './AdsProvider.mjs';
 
 export default class AdsApiProvider extends AdsProvider {
   constructor(sourceAdsUrl, adsAdapterFactory, uriAccessorFactory) {
     super(sourceAdsUrl, adsAdapterFactory, uriAccessorFactory);
+    this.dateTimeFormat = 'yyyy-MM-dd hh:mm:ss';
   }
   /**
    *
    * @param dateFrom
-   * @param dateTo
+   * @param dateToi
    * @returns Object with convert data
    */
   async getAdsByDate(dateFrom, dateTo) {
@@ -36,15 +38,14 @@ export default class AdsApiProvider extends AdsProvider {
   async setUrlParams(dateFrom, dateTo) {
     const url = new URL(this.sourceAdsUrl);
 
-    if (dateFrom) {
-      url.searchParams.append('date1', dateFrom);
-    }
-    if (dateTo) {
-      url.searchParams.append('date2', dateTo);
-    }
+    const dateFromStr = format(dateFrom, this.dateTimeFormat);
+    const dateToStr = format(dateTo, this.dateTimeFormat);
 
-    console.log(`dateFrom: ${dateFrom}`);
-    console.log(`dateTo: ${dateTo}`);
+    url.searchParams.append('date1', dateFromStr);
+    url.searchParams.append('date2', dateToStr);
+
+    console.log(`dateFrom: ${dateFromStr}`);
+    console.log(`dateTo: ${dateToStr}`);
     return decodeURIComponent(url);
   }
 }
