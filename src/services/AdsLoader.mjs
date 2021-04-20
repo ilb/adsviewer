@@ -73,7 +73,7 @@ export default class AdsLoader {
       const newDateTo = new Date(lastDateItem.adsDate);
 
       await Timeout.set(5000);
-      this.loadData(dateFrom, newDateTo);
+      await this.loadData(dateFrom, newDateTo);
     }
     await this.setLastDate(dateTo);
   }
