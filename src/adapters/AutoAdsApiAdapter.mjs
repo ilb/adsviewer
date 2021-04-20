@@ -20,11 +20,24 @@ export default class AutoAdsApiAdapter extends DefaultAdsApiAdapter {
       wheelPosition: data.params['Руль'],
       driveAuto: data.params['Привод'],
       carEngineType: data.params['Тип двигателя'],
-      carMileage: data.params['Пробег'],
       owners: data.params['Владельцев по ПТС'],
       engineLiters: data.params['Объём двигателя, л'],
       color: data.params['Цвет']
     };
+    // remove mileage from model
+    const mileagePos = result.data.carModel.indexOf(' ');
+    // console.log(
+    //   mileagePos,
+    //   result.data.carModel,
+    //   data.params['Пробег'],
+    //   result.data.carModel.substring(0, mileagePos).trim()
+    // );
+    if (mileagePos > 0) {
+      result.data.carModel = result.data.carModel.substring(0, mileagePos).trim();
+    }
+    if (data.params['Пробег']) {
+      result.data.carMileage = Number(data.params['Пробег'].replace(/\s/g, ''));
+    }
     return result;
   }
 }
