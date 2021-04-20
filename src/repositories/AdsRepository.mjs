@@ -131,7 +131,7 @@ export default class AdsRepository {
    * @param data
    */
   async save(adsItem) {
-    console.log({ adsItem });
+    // console.log({ adsItem });
     const {
       title,
       adsDate,
