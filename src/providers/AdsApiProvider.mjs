@@ -18,7 +18,7 @@ export default class AdsApiProvider extends AdsProvider {
     const uriAccessor = this.uriAccessorFactory.getUriAccessor(url);
     const result = await uriAccessor.getContent();
     const parse = JSON.parse(result);
-    console.log(`(Provider)Get server ansver ${parse.code}`);
+    console.log(`(Provider)Get server answer ${parse.code}`);
 
     if (parse.code !== 200) {
       throw new Error(`${parse.code} : ${parse.error}`);

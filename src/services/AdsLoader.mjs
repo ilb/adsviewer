@@ -1,3 +1,5 @@
+import Timeout from 'await-timeout';
+
 export default class AdsLoader {
   constructor({ adsProvider, lastDateRepository, adsRepository, nameSource, prisma }) {
     this.adsProvider = adsProvider;
@@ -50,41 +52,30 @@ export default class AdsLoader {
     }
     if (!dateTo) {
       dateTo = new Date(dateFrom.valueOf() + this.timeInterval * 60000);
-      await this.setLastDate(dateTo);
     }
 
     const data = await this.adsProvider.getAdsByDate(dateFrom, dateTo);
     const dataCount = data.length;
 
     if (dataCount > 0) {
+      console.log(`start save data to repo`, new Date());
       await this.adsRepository.saveAll(data);
-      console.log(`saved data to repo`);
+      console.log(`saved data to repo`, new Date());
     } else {
       console.log(
         `${dataCount} < 1, За данный период времени: ${dateFrom} - ${dateTo} обьявлений не найдено, задайте другой интервал времени`
       );
     }
 
-    // if (dataCount > 1 && dataCount < this.count) {
-    //   console.log(`${dataCount} < ${this.count}`);
-    //   const lastDateItem = data.pop();
-    //   const newDateTo = new Date(lastDateItem.adsDate);
-
-    //   setTimeout(() => {
-    //     console.log(`tick: ${newDateTo}`);
-    //     this.loadData(dateFrom, newDateTo);
-    //   }, 5000);
-    // }
     if (dataCount >= this.count) {
       console.log(`${dataCount} >= ${this.count}`);
       const lastDateItem = data.pop();
       const newDateTo = new Date(lastDateItem.adsDate);
 
-      setTimeout(() => {
-        console.log(`tick: ${newDateTo}`);
-        this.loadData(dateFrom, newDateTo);
-      }, 5000);
+      await Timeout.set(5000);
+      this.loadData(dateFrom, newDateTo);
     }
+    await this.setLastDate(dateTo);
   }
   /**
    *

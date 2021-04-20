@@ -41,6 +41,7 @@ const adsLoader = new AdsLoader({
 async function uploaded() {
   try {
     await adsLoader.loadData();
+    console.log('all done');
   } catch (error) {
     console.log(error);
   } finally {
