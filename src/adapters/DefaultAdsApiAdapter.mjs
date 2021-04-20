@@ -19,7 +19,7 @@ export default class DefaultAdsApiAdapter {
       price: ads.price,
       person: ads.person,
       description: ads.description,
-      phone: ads.phone,
+      phone: ads.phone.substring(0, 20),
       typeId: Number(ads.nedvigimost_type_id),
       data: ads.params,
       links,
