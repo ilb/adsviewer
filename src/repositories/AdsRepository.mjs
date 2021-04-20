@@ -1,7 +1,8 @@
 export default class AdsRepository {
-  constructor({ prisma, regionService }) {
+  constructor({ prisma, regionService, categoryService }) {
     this.prisma = prisma;
     this.regionService = regionService;
+    this.categoryService = categoryService;
   }
 
   async all(arg) {
@@ -132,16 +133,20 @@ export default class AdsRepository {
           phone,
           typeId,
           data,
-          categoryId,
+          category: categoryName,
+          categoryId: categoryIdSource,
           region: regionName,
           idSource,
           links,
           person
         } = adsItem;
 
-        const regionId = await this.regionService.getRegionIdByName(regionName);
+        const categoryId = await this.categoryService.getCategoryIdByName(
+          categoryName,
+          categoryIdSource
+        );
 
-        return await this.prisma.ads.upsert({
+        const params = {
           where: {
             idSource
           },
@@ -167,14 +172,19 @@ export default class AdsRepository {
               connect: {
                 id: categoryId
               }
-            },
-            region: {
-              connect: {
-                id: regionId
-              }
             }
           }
-        });
+        };
+        const regionId = await this.regionService.getRegionIdByName(regionName);
+
+        if (regionId) {
+          params.create.region = {
+            connect: {
+              id: regionId
+            }
+          };
+        }
+        return await this.prisma.ads.upsert(params);
       })
     )
       .catch((e) => {

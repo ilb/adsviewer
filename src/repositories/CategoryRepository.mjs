@@ -9,4 +9,11 @@ export default class CategoryRepository {
   async getCategoryNames() {
     return this.prisma.category.findMany();
   }
+
+  async save(data) {
+    const result = await this.prisma.category.create({
+      data
+    });
+    return result;
+  }
 }

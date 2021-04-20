@@ -17,16 +17,19 @@ export default class RegionService {
     }
   }
   async getRegionIdByName(name) {
-    await this.fillRegionsMap();
-    let id = this.regionsMap.get(name);
-    // console.log({ id, name });
-    if (!id) {
-      const code = transliterate(name).replace(/\s/g, '_');
-      const data = { code, name, active: true };
-      console.log('create new region', data);
-      const region = this.regionRepository.save(data);
-      id = region.id;
-      this.regionsMap.set(name, id);
+    let id = null;
+    if (name) {
+      await this.fillRegionsMap();
+      id = this.regionsMap.get(name);
+      // console.log({ id, name });
+      if (!id) {
+        const code = transliterate(name).replace(/\s/g, '_');
+        const data = { code, name, active: true };
+        console.log('create new region', data);
+        const region = this.regionRepository.save(data);
+        id = region.id;
+        this.regionsMap.set(name, id);
+      }
     }
     return id;
   }
