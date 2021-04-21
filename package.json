@@ -22,7 +22,7 @@
   "dependencies": {
     "@ilb/uniformscomponents": "^1.0.3",
     "@ilb/uriaccessorjs": "^1.0.5",
-    "@prisma/client": "^2.21.0",
+    "@prisma/client": "^2.21.2",
     "ajv": "^6.12.6",
     "ajv-i18n": "^3.6.0",
     "await-timeout": "^1.1.1",
@@ -59,7 +59,7 @@
     "file-loader": "^6.2.0",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
-    "prisma": "^2.21.0",
+    "prisma": "^2.21.2",
     "url-loader": "^4.1.1"
   }
 }

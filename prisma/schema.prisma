@@ -9,35 +9,35 @@ datasource db {
 
 // Объявление
 model ads {
-  id             BigInt   @id @default(autoincrement())
-  idSource       BigInt?  @unique
-  idSource2      String?  @db.VarChar(40)
-  url            String?  @db.VarChar(250)
+  id             BigInt    @id @default(autoincrement())
+  idSource       BigInt?   @unique
+  idSource2      String?   @db.VarChar(40)
+  url            String?   @db.VarChar(250)
   phoneProtected Boolean?
   personTypeId   Int?
   sourceId       Int?
   countSamePhone Int?
-  phoneOperator  String?  @db.VarChar(50)
-  phoneRegion    String?  @db.VarChar(50)
-  lat            Decimal? @db.Decimal(15, 12)
-  lng            Decimal? @db.Decimal(15, 12)
-  address        String?  @db.VarChar(250)
-  city           String?  @db.VarChar(250)
+  phoneOperator  String?   @db.VarChar(50)
+  phoneRegion    String?   @db.VarChar(50)
+  lat            Decimal?  @db.Decimal(15, 12)
+  lng            Decimal?  @db.Decimal(15, 12)
+  address        String?   @db.VarChar(250)
+  city           String?   @db.VarChar(250)
   adsDate        DateTime
-  price          Decimal? @db.Decimal(15, 2)
-  person         String?  @db.VarChar(250)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  title          String   @db.VarChar(1000)
-  description    String   @db.VarChar(20000)
-  phone          String?  @db.VarChar(20)
-  type           type     @relation(fields: [typeId], references: [id])
+  price          Decimal?  @db.Decimal(15, 2)
+  person         String?   @db.VarChar(250)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  title          String    @db.VarChar(1000)
+  description    String    @db.VarChar(20000)
+  phone          String?   @db.VarChar(20)
+  type           type      @relation(fields: [typeId], references: [id])
   typeId         Int
   data           Json?
   links          Json?
-  category       category @relation(fields: [categoryId], references: [id])
-  categoryId     Int
-  region         region?  @relation(fields: [regionId], references: [id])
+  category       category? @relation(fields: [categoryId], references: [id])
+  categoryId     Int?
+  region         region?   @relation(fields: [regionId], references: [id])
   regionId       Int?
 }
 

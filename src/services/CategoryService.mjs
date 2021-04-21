@@ -17,16 +17,19 @@ export default class CategoryService {
     }
   }
   async getCategoryIdByName(name, sourceId) {
-    await this.fillCategoriesMap();
-    let id = this.categoriesMap.get(name);
-    // console.log({ id, name });
-    if (!id) {
-      const code = transliterate(name).replace(/\s/g, '_');
-      const data = { id: sourceId, code, name, avitoId: sourceId }; // , active: true
-      console.log('create new category', data);
-      const category = this.categoryRepository.save(data);
-      id = category.id;
-      this.categoriesMap.set(name, id);
+    let id = null;
+    if (name) {
+      await this.fillCategoriesMap();
+      id = this.categoriesMap.get(name);
+      // console.log({ id, name });
+      if (!id) {
+        const code = transliterate(name).replace(/\s/g, '_');
+        const data = { id: sourceId, code, name, avitoId: sourceId }; // , active: true
+        console.log('create new category', data);
+        const category = this.categoryRepository.save(data);
+        id = category.id;
+        this.categoriesMap.set(name, id);
+      }
     }
     return id;
   }

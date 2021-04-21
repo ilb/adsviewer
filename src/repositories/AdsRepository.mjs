@@ -160,10 +160,6 @@ export default class AdsRepository {
       lng
     } = adsItem;
 
-    const categoryId = await this.categoryService.getCategoryIdByName(
-      categoryName,
-      categoryIdSource
-    );
     const row = {
       idSource,
       idSource2,
@@ -190,13 +186,31 @@ export default class AdsRepository {
         }
       },
       data: data,
-      links,
-      category: {
+      links
+    };
+    const categoryId = await this.categoryService.getCategoryIdByName(
+      categoryName,
+      categoryIdSource
+    );
+
+    if (categoryId) {
+      row.category = {
         connect: {
           id: categoryId
         }
-      }
-    };
+      };
+    }
+
+    const regionId = await this.regionService.getRegionIdByName(regionName);
+
+    if (regionId) {
+      row.region = {
+        connect: {
+          id: regionId
+        }
+      };
+    }
+
     const params = {
       where: {
         idSource
@@ -204,15 +218,7 @@ export default class AdsRepository {
       update: row,
       create: row
     };
-    const regionId = await this.regionService.getRegionIdByName(regionName);
 
-    if (regionId) {
-      params.create.region = {
-        connect: {
-          id: regionId
-        }
-      };
-    }
     return await this.prisma.ads.upsert(params);
   }
 }
