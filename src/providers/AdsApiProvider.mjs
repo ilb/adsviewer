@@ -1,10 +1,14 @@
 import { format } from 'date-fns';
+import fs from 'fs';
+import path from 'path';
 import AdsProvider from './AdsProvider.mjs';
 
 export default class AdsApiProvider extends AdsProvider {
   constructor(sourceAdsUrl, adsAdapterFactory, uriAccessorFactory) {
     super(sourceAdsUrl, adsAdapterFactory, uriAccessorFactory);
     this.dateTimeFormat = 'yyyy-MM-dd hh:mm:ss';
+    this.dateTimeFormatLog = 'yyyyMMddhhmmss';
+    this.storePath = process.env.LOG_PATH;
   }
   /**
    *
@@ -17,6 +21,7 @@ export default class AdsApiProvider extends AdsProvider {
     console.log('Loading ', url);
     const uriAccessor = this.uriAccessorFactory.getUriAccessor(url);
     const resultSource = await uriAccessor.getContent();
+    this.saveLog(dateFrom, dateTo, resultSource);
     const parse = JSON.parse(resultSource);
     console.log(`(Provider)Get server answer ${parse.code}`);
 
@@ -25,6 +30,19 @@ export default class AdsApiProvider extends AdsProvider {
     }
     const result = parse.data.map((item) => this.adsAdapterFactory.get(item.cat2_id).convert(item));
     return result;
+  }
+  /**
+   * save file
+   * @param dateFrom
+   * @param dateTo
+   * @param data
+   */
+  saveLog(dateFrom, dateTo, data) {
+    const dateFromStr = format(dateFrom, this.dateTimeFormatLog);
+    const dateToStr = format(dateTo, this.dateTimeFormatLog);
+
+    const filePath = path.join(this.storePath, 'adsapi_' + dateFromStr + '_' + dateToStr + '.json');
+    fs.writeFileSync(filePath, data);
   }
   /**
    *
