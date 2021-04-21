@@ -34,7 +34,7 @@ export default class AdsLoader {
    * @param dateTo date string
    * upload data to database
    */
-  async loadData(dateFrom, dateTo) {
+  async loadData(dateFrom, dateTo, callCount = 0) {
     if (!dateFrom) {
       let date = await this.getLastDate();
       dateFrom = date.lastloaddate;
@@ -81,9 +81,12 @@ export default class AdsLoader {
         console.log('waiting ', toWait);
         await Timeout.set(toWait);
       }
-      await this.loadData(dateFrom, newDateTo);
+      await this.loadData(dateFrom, newDateTo, callCount + 1);
     }
-    await this.setLastDate(dateTo);
+    // сохраняем дату только у головного вызова
+    if (callCount == 0) {
+      await this.setLastDate(dateTo);
+    }
   }
   /**
    *
