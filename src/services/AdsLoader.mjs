@@ -70,7 +70,7 @@ export default class AdsLoader {
     }
 
     const lastDateItem = data.pop();
-    const lastDate = new Date(lastDateItem.adsDate);
+    const lastDate = new Date(lastDateItem ? lastDateItem.adsDate : dateTo);
     await this.setLastDate(lastDate);
 
     if (dataCount >= this.count) {
