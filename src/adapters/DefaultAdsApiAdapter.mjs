@@ -22,7 +22,7 @@ export default class DefaultAdsApiAdapter {
       countSamePhone: data.count_ads_same_phone,
       phoneOperator: data.phone_operator,
       phoneRegion: data.phone_region,
-      address: data.address,
+      address: data.address ? data.address : null,
       city: data.city,
       title: data.title,
       adsDate: data.time,
