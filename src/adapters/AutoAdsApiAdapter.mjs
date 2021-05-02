@@ -25,15 +25,11 @@ export default class AutoAdsApiAdapter extends DefaultAdsApiAdapter {
       color: data.params['Цвет']
     };
     // remove mileage from model
-    const mileagePos = result.data.carModel.indexOf(' ');
-    // console.log(
-    //   mileagePos,
-    //   result.data.carModel,
-    //   data.params['Пробег'],
-    //   result.data.carModel.substring(0, mileagePos).trim()
-    // );
-    if (mileagePos > 0) {
-      result.data.carModel = result.data.carModel.substring(0, mileagePos).trim();
+    if (result.data.carModel) {
+      const mileagePos = result.data.carModel.indexOf(' ');
+      if (mileagePos > 0) {
+        result.data.carModel = result.data.carModel.substring(0, mileagePos).trim();
+      }
     }
     if (data.params['Пробег']) {
       result.data.carMileage = Number(data.params['Пробег'].replace(/\s/g, ''));
