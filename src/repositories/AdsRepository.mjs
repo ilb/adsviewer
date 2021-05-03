@@ -121,16 +121,32 @@ export default class AdsRepository {
    *
    * @param data
    */
-  async saveAll(data) {
-    for (const item of data) {
-      await this.save(item);
+  async saveAll(data, options = {}) {
+    if (options.saveParallel) {
+      await this.saveParallel(data, options);
+    } else {
+      for (const item of data) {
+        await this.save(item);
+      }
     }
+  }
+
+  async saveParallel(data, options = {}) {
+    const rows = [];
+    for (const item of data) {
+      rows.push(await this.prepareSaveParallel(item));
+    }
+
+    await this.prisma.ads.createMany({
+      data: rows,
+      skipDuplicates: options.skipDuplicates
+    });
   }
   /**
    *
    * @param data
    */
-  async save(adsItem) {
+  async prepareSave(adsItem) {
     // console.log({ adsItem });
     const {
       title,
@@ -210,10 +226,89 @@ export default class AdsRepository {
         }
       };
     }
+    return row;
+  }
 
+  /**
+   *
+   * @param data
+   */
+  async prepareSaveParallel(adsItem) {
+    // console.log({ adsItem });
+    const {
+      title,
+      adsDate,
+      price,
+      description,
+      phone,
+      typeId,
+      data,
+      category: categoryName,
+      categoryId: categoryIdSource,
+      region: regionName,
+      idSource,
+      links,
+      person,
+      idSource2,
+      url,
+      phoneProtected,
+      personTypeId,
+      sourceId,
+      countSamePhone,
+      phoneOperator,
+      phoneRegion,
+      address,
+      city,
+      lat,
+      lng
+    } = adsItem;
+
+    const row = {
+      idSource,
+      idSource2,
+      url,
+      phoneProtected,
+      personTypeId,
+      sourceId,
+      countSamePhone,
+      phoneOperator,
+      phoneRegion,
+      address,
+      city,
+      lat,
+      lng,
+      adsDate: new Date(adsDate),
+      price,
+      person,
+      title,
+      description,
+      phone,
+      typeId,
+      data: data,
+      links
+    };
+    const categoryId = await this.categoryService.getCategoryIdByName(
+      categoryName,
+      categoryIdSource
+    );
+
+    if (categoryId) {
+      row.categoryId = categoryId;
+    }
+
+    const regionId = await this.regionService.getRegionIdByName(regionName);
+
+    if (regionId) {
+      row.regionId = regionId;
+    }
+    return row;
+  }
+
+  async save(adsItem) {
+    const row = await this.prepareSave(adsItem);
     const params = {
       where: {
-        idSource
+        idSource: row.idSource
       },
       update: row,
       create: row

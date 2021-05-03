@@ -12,6 +12,10 @@ export default class AdsLoader {
     this.timeFreshAds = process.env.TIME_FRESH_ADS;
     this.adsServerDelay = process.env.ADS_SERVER_DELAY;
     this.adsApiApiDelay = Number(process.env.ADSAPI_API_DELAY);
+    this.saveOptions = {
+      saveParallel: !!process.env.SAVE_PARALLEL,
+      skipDuplicates: !!process.env.SKIP_DUPLICATES
+    };
   }
   /**
    *
@@ -61,7 +65,7 @@ export default class AdsLoader {
 
     if (dataCount > 0) {
       console.log(`start save data to repo`, new Date());
-      await this.adsRepository.saveAll(data);
+      await this.adsRepository.saveAll(data, this.saveOptions);
       console.log(`saved data to repo`, new Date());
     } else {
       console.log(
