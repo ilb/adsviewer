@@ -313,7 +313,11 @@ export default class AdsRepository {
       update: row,
       create: row
     };
-
-    return await this.prisma.ads.upsert(params);
+    try {
+      return await this.prisma.ads.upsert(params);
+    } catch (e) {
+      console.log('error saving', adsItem, e);
+      throw e;
+    }
   }
 }
