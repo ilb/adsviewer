@@ -37,7 +37,7 @@ export default class DefaultAdsApiAdapter {
       categoryId: data.cat2_id,
       region: data.region
     };
-    if (data.coords) {
+    if (data.coords && data.coords.lat && data.coords.lng) {
       result.lat = data.coords.lat;
       result.lng = data.coords.lng;
     }
