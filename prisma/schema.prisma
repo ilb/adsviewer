@@ -39,6 +39,12 @@ model ads {
   categoryId     Int?
   region         region?   @relation(fields: [regionId], references: [id])
   regionId       Int?
+
+  @@index([sourceId, idSource2])
+  @@index([phone])
+  @@index([createdAt])
+  @@index([updatedAt])
+  @@index([adsDate])
 }
 
 /// Тип объявления: куплю, продам, аренда...
