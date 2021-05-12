@@ -18,7 +18,7 @@ model ads {
   sourceId       Int?
   countSamePhone Int?
   phoneOperator  String?   @db.VarChar(50)
-  phoneRegion    String?   @db.VarChar(50)
+  phoneRegion    String?   @db.VarChar(70)
   lat            Decimal?  @db.Decimal(15, 12)
   lng            Decimal?  @db.Decimal(15, 12)
   address        String?   @db.VarChar(250)
