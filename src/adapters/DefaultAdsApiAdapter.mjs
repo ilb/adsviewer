@@ -8,10 +8,12 @@ export default class DefaultAdsApiAdapter {
     if (!data) {
       throw new Error('data required');
     }
-    const links = data.images.map((item) => ({
-      href: item.imgurl,
-      rel: 'image'
-    }));
+    const links = data.images
+      ? data.images.map((item) => ({
+          href: item.imgurl,
+          rel: 'image'
+        }))
+      : [];
     const result = {
       idSource: data.id,
       idSource2: data.avitoid.toString(),
