@@ -22,6 +22,7 @@ export default class AutoAdsApiAdapter extends DefaultAdsApiAdapter {
       carEngineType: data.params['Тип двигателя'],
       owners: data.params['Владельцев по ПТС'],
       engineLiters: data.params['Объём двигателя, л'],
+      enginePower: data.params['Мощность двигателя, л.с.'],
       color: data.params['Цвет']
     };
     // remove mileage from model
