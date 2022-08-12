@@ -4,8 +4,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon server.js",
-    "next": "next",
+    "dev": "next",
     "build": "next build",
     "start": "next start",
     "prisma:push": "prisma db push",
