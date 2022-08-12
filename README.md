@@ -26,7 +26,7 @@ cp .env.example .env
 ### Создать таблицы
 
 ```bash
-npx prisma db push --preview-feature
+npm run prisma:push
 ```
 
 ### Загрузить данные
@@ -39,15 +39,3 @@ cat sql/comment.sql sql/data.sql | sudo -u postgres psql adsviewer
 ```bash
 npx prisma studio
 ```
-
-## Администрирование
-
-### Запуск pgadmin в docker
-
-```
-docker run --rm -e PGADMIN_DEFAULT_EMAIL=admin@localhost -e PGADMIN_DEFAULT_PASSWORD=admin -e PGADMIN_LISTEN_PORT=5050 --network="host" -d dpage/pgadmin4
-```
-
-После запуска открываем localhost:5050, логинимся с admin@localhost / admin,
-добавляем сервер localhost
-TODO: хранение настроек серверов
