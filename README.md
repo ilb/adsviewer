@@ -33,6 +33,8 @@ npm run prisma:push
 ```bash
 cat sql/comment.sql sql/data.sql | sudo -u postgres psql adsviewer
 ```
+### Загрузка объявлений
+npm run loadads
 
 ### Prisma Studio
 
