@@ -11,20 +11,10 @@ const withTM = require('next-transpile-modules')([
 const basePath = '/adsviewer';
 module.exports = withPlugins([withTM], {
   basePath,
-  trailingSlash: false,
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.(png|svg)$/,
-      use: {
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
-          publicPath: basePath + '/_next/static/',
-          outputPath: 'static/',
-          name: '[name].[ext]'
-        }
-      }
-    });
-    return config;
+  assetPrefix: basePath,
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true
   }
 });
