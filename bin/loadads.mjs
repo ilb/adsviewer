@@ -40,7 +40,7 @@ const adsLoader = new AdsLoader({
 
 async function uploaded() {
   try {
-    await adsLoader.loadData();
+    await adsLoader.loadData(new Date('2021-05-01'), new Date('2021-08-01'));
     console.log('all done');
   } catch (error) {
     console.log(error);
