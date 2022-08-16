@@ -26,6 +26,7 @@
     "ajv-i18n": "^4.2.0",
     "await-timeout": "^1.1.1",
     "awilix": "^7.0.3",
+    "compute-quantile": "^1.0.1",
     "dotenv": "^16.0.1",
     "next": "^12.2.5",
     "next-compose-plugins": "^2.2.1",
