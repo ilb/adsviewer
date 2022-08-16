@@ -1,12 +1,12 @@
 import urlapi from 'url';
 
 export default class DataSource {
-  constructor({ url, user, password }) {
-    const dbconf = urlapi.parse(url);
+  constructor({ dataSourceUrl, dataSourceUser, dataSourcePassword }) {
+    const dbconf = urlapi.parse(dataSourceUrl);
     this.host = dbconf.hostname;
     this.database = dbconf.pathname.replace('/', '');
-    this.user = user;
-    this.password = password;
+    this.user = dataSourceUser;
+    this.password = dataSourcePassword;
     this.dateStrings = ['DATE', 'DATETIME'];
   }
 }
