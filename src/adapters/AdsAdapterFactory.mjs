@@ -1,12 +1,9 @@
-import AutoAdsApiAdapter from './AutoAdsApiAdapter.mjs';
-import DefaultAdsApiAdapter from './DefaultAdsApiAdapter.mjs';
-
 export default class AdsAdapterFactory {
-  constructor() {
+  constructor({ autoAdsApiAdapter, defaultAdsApiAdapter }) {
     // eslint-disable-next-line no-undef
     this.adapters = new Map();
-    this.adapters.set(22, new AutoAdsApiAdapter());
-    this.defaultAdapter = new DefaultAdsApiAdapter();
+    this.adapters.set(22, autoAdsApiAdapter);
+    this.defaultAdapter = defaultAdsApiAdapter;
   }
   get(categoryId) {
     // console.log({ categoryId }, this.adapters.get(parseInt(categoryId)));
