@@ -1,8 +1,10 @@
 import awilix from 'awilix';
-const { asFunction, asValue } = awilix;
+import ContextFactory from '@ilb/node_context';
+
+const { asValue, asFunction, asClass } = awilix;
+import container from './container.mjs';
+import prisma from '../libs/prisma/prisma.mjs';
 import DataSourceFactory from './database/DataSourceFactory';
-import Prisma from '@prisma/client';
-const { PrismaClient } = Prisma;
 
 export default class Application {
   constructor() {
@@ -13,38 +15,43 @@ export default class Application {
    * initialize application
    */
   async createContainer() {
+    this.contextFactory = new ContextFactory({});
+
+    await this.contextFactory.build();
+
     this.container = awilix.createContainer();
-    const prisma = new PrismaClient({ log: ['query'] });
-    // register currentUser, datasource
+    // register currentUser, datasource, prisma
     this.container.register({
       currentUser: asValue(process.env.USER),
       dataSource: asFunction(DataSourceFactory),
       prisma: asValue(prisma)
     });
 
-    // autoscan modules
-    await this.container.loadModules(['src/repositories/**/*.mjs', 'src/usecases/**/*.mjs', 'src/services/**/*.mjs'], {
-      formatName: 'camelCase',
-      esModules: true
-    });
+    const classes = {};
+    for (var [key, value] of container) {
+      classes[key] = asClass(value);
+    }
+    this.container.register(classes);
   }
 
   /**
    * create scope for http request
    * @param {*} req
    */
-  async createScope(req) {
+  async createScope(req, withSession = false, addScope = null) {
     if (this.container == null) {
       await this.createContainer();
     }
-    // console.log(this.container);
-
-    const xRemoteUser = req && req.headers && req.headers['x-remote-user'];
-    const currentUser = xRemoteUser || process.env.USER;
 
     const scope = this.container.createScope();
-    scope.register({ currentUser });
 
+    if (addScope) {
+      const addScopeValues = {};
+      for (var [key, value] of addScope) {
+        addScopeValues[key] = asValue(value);
+      }
+      this.container.register(addScopeValues);
+    }
     return scope;
   }
 
