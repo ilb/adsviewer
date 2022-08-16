@@ -19,6 +19,7 @@
     "loadads": "node -r dotenv/config bin/loadads.mjs"
   },
   "dependencies": {
+    "@ilb/node_context": "^1.0.31",
     "@ilb/uniformscomponents": "^1.0.44",
     "@ilb/uriaccessorjs": "^1.0.26",
     "@prisma/client": "^4.2.1",
