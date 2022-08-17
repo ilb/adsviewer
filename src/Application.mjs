@@ -1,10 +1,10 @@
 import awilix from 'awilix';
 import ContextFactory from '@ilb/node_context';
 
-const { asValue, asFunction, asClass } = awilix;
+const { asValue, asClass } = awilix;
+import { UriAccessorFactory, UriAgentFactory } from '@ilb/uriaccessorjs';
 import container from './container.mjs';
 import prisma from '../libs/prisma/prisma.mjs';
-import DataSourceFactory from './database/DataSourceFactory';
 
 export default class Application {
   constructor() {
@@ -23,8 +23,14 @@ export default class Application {
     // register currentUser, datasource, prisma
     this.container.register({
       currentUser: asValue(process.env.USER),
-      dataSource: asFunction(DataSourceFactory),
-      prisma: asValue(prisma)
+      sourceAdsUrl: asValue(process.env.ADSAPI_URL),
+      nameSource: asValue(process.env.NAME_SOURCE),
+      uriAccessorFactory: asClass(UriAccessorFactory),
+      uriAgentFactory: asClass(UriAgentFactory),
+      prisma: asValue(prisma),
+      dataSourceUrl: asValue(process.env.DATASOURCE_URL),
+      dataSourceUser: asValue(process.env.DATASOURCE_USER),
+      dataSourcePassword: asValue(process.env.DATASOURCE_PASSWORD)
     });
 
     const classes = {};
