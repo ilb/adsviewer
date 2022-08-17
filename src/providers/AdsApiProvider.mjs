@@ -4,8 +4,8 @@ import path from 'path';
 import AdsProvider from './AdsProvider.mjs';
 
 export default class AdsApiProvider extends AdsProvider {
-  constructor(sourceAdsUrl, adsAdapterFactory, uriAccessorFactory) {
-    super(sourceAdsUrl, adsAdapterFactory, uriAccessorFactory);
+  constructor({ sourceAdsUrl, adsAdapterFactory, uriAccessorFactory }) {
+    super({ sourceAdsUrl, adsAdapterFactory, uriAccessorFactory });
     this.dateTimeFormat = 'yyyy-MM-dd HH:mm:ss';
     this.dateTimeFormatLog = 'yyyyMMddHHmmss';
     this.storePath = process.env.LOG_PATH;
