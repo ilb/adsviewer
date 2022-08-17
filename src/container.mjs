@@ -11,6 +11,7 @@ import LastDateRepository from './repositories/LastDateRepository.mjs';
 import AdsRepository from './repositories/AdsRepository.mjs';
 import CategoryRepository from './repositories/CategoryRepository.mjs';
 import RegionRepository from './repositories/RegionRepository.mjs';
+import DictionaryRepository from './repositories/DictionaryRepository.mjs';
 
 container.set('autoAdsApiAdapter', AutoAdsApiAdapter);
 container.set('defaultAdsApiAdapter', DefaultAdsApiAdapter);
@@ -23,5 +24,6 @@ container.set('lastDateRepository', LastDateRepository);
 container.set('adsRepository', AdsRepository);
 container.set('categoryRepository', CategoryRepository);
 container.set('regionRepository', RegionRepository);
+container.set('dictionaryRepository', DictionaryRepository);
 
 export default container;
