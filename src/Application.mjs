@@ -5,6 +5,7 @@ const { asValue, asClass } = awilix;
 import { UriAccessorFactory, UriAgentFactory } from '@ilb/uriaccessorjs';
 import container from './container.mjs';
 import prisma from '../libs/prisma/prisma.mjs';
+import { uriAgentMap } from '../libs/cert.mjs';
 
 export default class Application {
   constructor() {
@@ -25,6 +26,7 @@ export default class Application {
       currentUser: asValue(process.env.USER),
       sourceAdsUrl: asValue(process.env.ADSAPI_URL),
       nameSource: asValue(process.env.NAME_SOURCE),
+      uriAgentMap: asValue(uriAgentMap),
       uriAccessorFileEnabled: asValue(true),
       uriAccessorFactory: asClass(UriAccessorFactory),
       uriAgentFactory: asClass(UriAgentFactory),
