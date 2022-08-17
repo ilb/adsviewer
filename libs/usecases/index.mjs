@@ -11,3 +11,12 @@ export async function processUsecase({ query: request, req }, useCase) {
   };
   return { props };
 }
+
+/**
+ * create scope for usecase processing
+ * @param req The HTTP IncomingMessage object
+ * @returns
+ */
+export async function createScope(req, withSession = true, addScope = null) {
+  return application.createScope(req, withSession, addScope);
+}

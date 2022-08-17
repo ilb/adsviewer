@@ -25,6 +25,7 @@ export default class Application {
       currentUser: asValue(process.env.USER),
       sourceAdsUrl: asValue(process.env.ADSAPI_URL),
       nameSource: asValue(process.env.NAME_SOURCE),
+      uriAccessorFileEnabled: asValue(true),
       uriAccessorFactory: asClass(UriAccessorFactory),
       uriAgentFactory: asClass(UriAgentFactory),
       prisma: asValue(prisma),
