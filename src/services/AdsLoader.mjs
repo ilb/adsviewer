@@ -1,4 +1,5 @@
 import Timeout from 'await-timeout';
+import { addDays } from 'date-fns';
 
 export default class AdsLoader {
   constructor({ adsProvider, lastDateRepository, adsRepository, nameSource, prisma }) {
@@ -41,7 +42,7 @@ export default class AdsLoader {
   async loadData(dateFrom, dateTo) {
     if (!dateFrom) {
       let date = await this.getLastDate();
-      dateFrom = date.lastloaddate;
+      dateFrom = date ? date.lastloaddate : addDays(new Date(), -2);
       const dateTrue = new Date();
       const offset = dateTrue.getTimezoneOffset() / 60;
       const dateOffset = new Date(dateTrue.setHours(dateTrue.getHours() - offset));
