@@ -1,7 +1,6 @@
-import fetch from 'node-fetch';
 import { XMLParser } from 'fast-xml-parser';
 import got from 'got';
-import { createWriteStream, createReadStream } from 'fs';
+import { createWriteStream, createReadStream, readFileSync } from 'fs';
 import { Transform } from 'stream';
 
 const CATALOG_URL = 'https://autoload.avito.ru/format/Autocatalog.xml';
@@ -10,11 +9,6 @@ const TRANSFORMED_FILE_WRITER = 'test/data/catalog.json';
 
 export default class CatalogProvider {
   constructor() {}
-
-  // async getAdsByDate() {
-  //   const parser = new XMLParser();
-  //   let jObj = parser.parse(XMLdata);
-  // }
 
   getCatalogXML() {
     const downloadStream = got.stream(CATALOG_URL);
@@ -39,15 +33,30 @@ export default class CatalogProvider {
     downloadStream.pipe(fileWriterStream);
   }
 
+  // dkwefkewkf() {
+  //   const parser = new XMLParser();
+  //   const tasdasdas = readFileSync(FILE_WRITER);
+  //   const fkdfkvdf = parser.parse(tasdasdas);
+  //   return fkdfkvdf['Catalog']['Make'][0]['Model'][0];
+  // }
+
   getCatalogJSON() {
     const sourceFile = createReadStream(FILE_WRITER);
     const destFile = createWriteStream(TRANSFORMED_FILE_WRITER);
-    const transformToJSON = () => {
-      
-    }
+    const parser = new XMLParser();
 
-    const
+    const transformToJSON = () => {
+      return new Transform({
+        transform(chunk, enc, callback) {
+          const xmlToString = chunk.toString();
+          // const jsonData = parser.parse xmlToString);
+          callback(null, xmlToString);
+        }
+      });
+    };
+
+    const dataToJSON = transformToJSON();
     destFile.on(`finish`, () => console.log(`Файл скопирован…`));
-    sourceFile.pipe(destFile);
+    sourceFile.pipe(dataToJSON).pipe(destFile);
   }
 }
