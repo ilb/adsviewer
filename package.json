@@ -29,6 +29,8 @@
     "awilix": "^7.0.3",
     "compute-quantile": "^1.0.1",
     "dotenv": "^16.0.1",
+    "fast-xml-parser": "^4.0.9",
+    "got": "^12.3.1",
     "next": "^12.2.5",
     "next-compose-plugins": "^2.2.1",
     "next-transpile-modules": "^9.0.0",
