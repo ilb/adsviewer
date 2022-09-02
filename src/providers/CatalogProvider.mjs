@@ -1,7 +1,10 @@
 import { XMLParser } from 'fast-xml-parser';
 import got from 'got';
-import { createWriteStream, createReadStream, readFileSync } from 'fs';
+import { createWriteStream, createReadStream } from 'fs';
+import stream from 'stream';
 import { Transform } from 'stream';
+import { promisify } from 'util';
+const pipeline = promisify(stream.pipeline);
 
 const CATALOG_URL = 'https://autoload.avito.ru/format/Autocatalog.xml';
 const FILE_WRITER = 'test/data/catalog.xml';
@@ -10,7 +13,7 @@ const TRANSFORMED_FILE_WRITER = 'test/data/catalog.json';
 export default class CatalogProvider {
   constructor() {}
 
-  getCatalogXML() {
+  async getCatalogXML() {
     const downloadStream = got.stream(CATALOG_URL);
     const fileWriterStream = createWriteStream(FILE_WRITER);
 
@@ -22,15 +25,12 @@ export default class CatalogProvider {
         console.error(`Download failed: ${error.message}`);
       });
 
-    fileWriterStream
-      .on('error', (error) => {
-        console.error(`Could not write file to system: ${error.message}`);
-      })
-      .on('finish', () => {
-        console.log(`File downloaded to ${FILE_WRITER}`);
-      });
-
-    downloadStream.pipe(fileWriterStream);
+    try {
+      await pipeline(downloadStream, fileWriterStream);
+      console.log(`File downloaded to ${FILE_WRITER}`);
+    } catch (error) {
+      console.error(`Something went wrong. ${error.message}`);
+    }
   }
 
   // dkwefkewkf() {
@@ -40,7 +40,8 @@ export default class CatalogProvider {
   //   return fkdfkvdf['Catalog']['Make'][0]['Model'][0];
   // }
 
-  getCatalogJSON() {
+  async getCatalogJSON() {
+    await this.getCatalogXML();
     const sourceFile = createReadStream(FILE_WRITER);
     const destFile = createWriteStream(TRANSFORMED_FILE_WRITER);
     const parser = new XMLParser();
@@ -48,9 +49,9 @@ export default class CatalogProvider {
     const transformToJSON = () => {
       return new Transform({
         transform(chunk, enc, callback) {
-          const xmlToString = chunk.toString();
-          // const jsonData = parser.parse xmlToString);
-          callback(null, xmlToString);
+          // const jsonData = parser.parse(chunk.toString());
+          // console.log(jsonData);
+          callback(null, chunk);
         }
       });
     };
