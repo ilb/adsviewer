@@ -1,6 +1,6 @@
 import xml2js from 'xml2js';
 
-export default class CatalogsAdapter {
+export default class CatalogAdapter {
   constructor() {}
   /**
    *

@@ -6,7 +6,7 @@ import { Transform } from 'stream';
 const CATALOG_URL = 'https://autoload.avito.ru/format/Autocatalog.xml';
 const FILE_WRITER = 'test/data/catalog.xml';
 const TRANSFORMED_FILE_WRITER = 'test/data/catalog.json';
-import CatalogsAdapter from '../adapters/CatalogsAdapter.mjs';
+import CatalogsAdapter from '../adapters/CatalogAdapter.mjs';
 export default class CatalogProvider {
   constructor({ uriAccessorFactory }) {
     this.uriAccessorFactory = uriAccessorFactory;
