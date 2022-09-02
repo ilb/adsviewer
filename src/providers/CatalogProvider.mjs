@@ -9,9 +9,13 @@ const pipeline = promisify(stream.pipeline);
 const CATALOG_URL = 'https://autoload.avito.ru/format/Autocatalog.xml';
 const FILE_WRITER = 'test/data/catalog.xml';
 const TRANSFORMED_FILE_WRITER = 'test/data/catalog.json';
-
+import CatalogsAdapter from '../adapters/CatalogAdapter.mjs';
 export default class CatalogProvider {
-  constructor() {}
+  constructor({ uriAccessorFactory }) {
+    this.uriAccessorFactory = uriAccessorFactory;
+    this.catalogsAdapter = new CatalogsAdapter();
+    this.url = process.env.CATALOG_URL;
+  }
 
   async getCatalogXML() {
     const downloadStream = got.stream(CATALOG_URL);
@@ -59,5 +63,11 @@ export default class CatalogProvider {
     const dataToJSON = transformToJSON();
     destFile.on(`finish`, () => console.log(`Файл скопирован…`));
     sourceFile.pipe(dataToJSON).pipe(destFile);
+  }
+
+  async getData() {
+    const uriAccessor = this.uriAccessorFactory.getUriAccessor(this.url);
+    const data = await uriAccessor.getContent();
+    return this.catalogsAdapter.convert(data);
   }
 }
