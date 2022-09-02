@@ -1,4 +1,7 @@
 import xml2js from 'xml2js';
+import { promises as fs} from 'fs';
+import { promisify } from 'util';
+const readFileAsync = promisify(fs.readFile);
 
 export default class CatalogAdapter {
   constructor() {}
@@ -7,11 +10,9 @@ export default class CatalogAdapter {
    * @param {XML} data
    * @returns Object
    */
-  async convert(data) {
-    // var parser = new xml2js.Parser();
+  async convert() {
     const parser = new xml2js.Parser();
-    const result = await parser.parseStringPromise(data);
-
-    return result;
+    const fileData = await fs.readFile(process.env.XML_FILE_WRITER);
+    return await parser.parseStringPromise(fileData);
   }
 }
