@@ -13,7 +13,8 @@ export default class CatalogAdapter {
   async convert() {
     const parser = new xml2js.Parser();
     const fileData = await fs.readFile(process.env.XML_FILE_WRITER);
-    const parsedData =  await parser.parseStringPromise(fileData);
+    const parsedData = await parser.parseStringPromise(fileData);
     await fs.writeFile(process.env.JS_FILE_WRITER, JSON.stringify(parsedData));
+    return parsedData;
   }
 }
