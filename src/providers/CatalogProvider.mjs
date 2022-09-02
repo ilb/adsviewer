@@ -36,6 +36,7 @@ export default class CatalogProvider {
   }
 
   async getData() {
+    await this.getCatalogXML();
     const uriAccessor = this.uriAccessorFactory.getUriAccessor(this.url);
     const data = await uriAccessor.getContent();
     return await this.catalogsAdapter.convert();
