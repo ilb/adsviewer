@@ -2,6 +2,7 @@
   "name": "adsviewer",
   "description": "Сервис просмотра объявлений",
   "version": "1.0.0",
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "dev": "next",
@@ -15,7 +16,7 @@
     "escheck": "npm run clean && npm run build && npm run check:es:build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "jest",
+    "test": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js",
     "loadads": "node -r dotenv/config bin/loadads.mjs"
   },
   "dependencies": {
@@ -44,7 +45,8 @@
     "transliterate": "^1.0.1",
     "uniforms": "^3.10.0",
     "uniforms-bridge-json-schema": "^3.10.0",
-    "uniforms-semantic": "^3.10.0"
+    "uniforms-semantic": "^3.10.0",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
