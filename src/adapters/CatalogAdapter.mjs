@@ -10,10 +10,10 @@ export default class CatalogAdapter {
    * @param {XML} data
    * @returns Object
    */
-  async convert() {
+  async convert(data) {
     const parser = new xml2js.Parser();
-    const fileData = await fs.readFile(process.env.XML_FILE_WRITER);
-    const parsedData = await parser.parseStringPromise(fileData);
+    // const fileData = await fs.readFile(process.env.XML_FILE_WRITER);
+    const parsedData = await parser.parseStringPromise(data);
     await fs.writeFile(process.env.JS_FILE_WRITER, JSON.stringify(parsedData));
     return parsedData;
   }
