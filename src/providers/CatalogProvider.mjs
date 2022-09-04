@@ -4,42 +4,37 @@ import { createWriteStream, createReadStream } from 'fs';
 import stream from 'stream';
 // import { Transform } from 'stream';
 import { promisify } from 'util';
-const pipeline = promisify(stream.pipeline);
 
 const TRANSFORMED_FILE_WRITER = 'test/data/catalog.json';
-import CatalogsAdapter from '../adapters/CatalogAdapter.mjs';
 export default class CatalogProvider {
-  constructor({ uriAccessorFactory }) {
+  constructor({ uriAccessorFactory, catalogAdapter }) {
     this.uriAccessorFactory = uriAccessorFactory;
-    this.catalogsAdapter = new CatalogsAdapter();
+    this.catalogsAdapter = catalogAdapter;
     this.url = process.env.CATALOG_URL;
+    this.content = null;
   }
 
-  async getCatalogXML() {
+  async getData() {
     const downloadStream = got.stream(this.url);
-    const fileWriterStream = createWriteStream(process.env.XML_FILE_WRITER);
+    const chunks = [];
 
-    downloadStream
+    downloadStream // stream.isReadable(downloadStream) === true;
       .on('downloadProgress', ({ transferred }) => {
         console.log(`progress: ${transferred}`);
+      })
+      .on('readable', () => {
+        let chunk;
+        while (null !== (chunk = downloadStream.read())) {
+          chunks.push(chunk);
+        }
+      })
+      .on('end', async () => {
+        this.content = chunks.join('');
+        await this.catalogsAdapter.convert(this.content);
       })
       .on('error', (error) => {
         console.error(`Download failed: ${error.message}`);
       });
-
-    try {
-      await pipeline(downloadStream, fileWriterStream);
-      console.log(`File downloaded to ${process.env.XML_FILE_WRITER}`);
-    } catch (error) {
-      console.error(`Something went wrong. ${error.message}`);
-    }
-  }
-
-  async getData() {
-    await this.getCatalogXML();
-    const uriAccessor = this.uriAccessorFactory.getUriAccessor(this.url);
-    const data = await uriAccessor.getContent();
-    return await this.catalogsAdapter.convert();
   }
 
   // async getCatalogJSON() {
