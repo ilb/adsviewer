@@ -107,7 +107,7 @@ model carmanufacturer {
 model carmodel {
   id                   Int                    @id @default(autoincrement())
   name                 String                 @db.VarChar(50)
-  code                 String                 @db.VarChar(70)
+  code                 String?                @db.VarChar(70)
   enginecapacity       Decimal?               @db.Decimal(6, 1)
   enginepower          Int?
   avitocode            String?                @db.VarChar(70)
@@ -117,6 +117,8 @@ model carmodel {
   carbodyid            Int?
   carmodeltransmission carmodeltransmission[]
   cartransmissionid    Int?
+  carmodelgeneration   String?                @db.VarChar(70)
+  carmodelmodification String?                @db.VarChar(70)
 }
 
 // Справочник кузовов моделей
