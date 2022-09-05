@@ -11,7 +11,7 @@ export default class CatalogAdapter {
    * @returns Object
    */
   async convert(data) {
-    const parser = new xml2js.Parser();
+    const parser = new xml2js.Parser({ mergeAttrs: true });
     const parsedData = await parser.parseStringPromise(data);
     return parsedData;
   }
