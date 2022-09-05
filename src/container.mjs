@@ -14,6 +14,7 @@ import RegionRepository from './repositories/RegionRepository.mjs';
 import DictionaryRepository from './repositories/DictionaryRepository.mjs';
 import CatalogProvider from './providers/CatalogProvider.mjs';
 import CatalogAdapter from './adapters/CatalogAdapter.mjs';
+import CatalogRepository from './repositories/CatalogRepository.mjs';
 
 container.set('autoAdsApiAdapter', AutoAdsApiAdapter);
 container.set('defaultAdsApiAdapter', DefaultAdsApiAdapter);
@@ -29,5 +30,6 @@ container.set('regionRepository', RegionRepository);
 container.set('dictionaryRepository', DictionaryRepository);
 container.set('catalogProvider', CatalogProvider);
 container.set('catalogAdapter', CatalogAdapter);
+container.set('catalogRepository', CatalogRepository);
 
 export default container;
