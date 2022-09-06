@@ -6,6 +6,9 @@ export default class CatalogRepository {
   async saveAll(data, options = {}) {
     if (options.saveParallel) {
       await this.saveParallel(data, options);
+      for (const row of data) {
+        await this.updateReferences(row);
+      }
     } else {
       for (const item of data) {
         await this.save(item);
@@ -25,6 +28,52 @@ export default class CatalogRepository {
     });
   }
 
+  async updateReferences(row) {
+    const {
+      Modification,
+      BodyType
+    } = row;
+
+    // const carmodelbody = {
+    //   create: [
+    //     {
+    //       carbody: {
+    //         create: {
+    //           name: BodyType[0]['_'].toLowerCase(),
+    //           code: BodyType[0]['_'].toLowerCase(),
+    //           avitocode: BodyType[0]['_'].toLowerCase()
+    //         }
+    //       }
+    //     }
+    //   ]
+    // }
+
+    const carmodelbody = {
+      create: [
+        {
+          carbody: {
+            connectOrCreate: {
+              create: {
+                name: BodyType[0]['_'].toLowerCase(),
+                code: BodyType[0]['_'].toLowerCase(),
+                avitocode: BodyType[0]['_'].toLowerCase()
+              },
+              // В схеме у присоединенной таблицы "carbody" поле "name" должно быть @unique
+              where: { name: BodyType[0]['_'].toLowerCase() }
+            }
+          }
+        }
+      ]
+    };
+
+    await this.prisma.carmodel.update({
+      where: { id: Number(Modification[0].id[0]) },
+      data: {
+        carmodelbody
+      }
+    })
+  }
+
   async prepareSaveParallel(catalogItem) {
     const {
       Make,
@@ -38,36 +87,17 @@ export default class CatalogRepository {
       BodyType
     } = catalogItem;
 
-    // const carmanufacturer = {
-    //   connectOrCreate: {
-    //     create: {
-    //       name: Make[0]['_'].toLowerCase(),
-    //       code: Make[0]['_'].toLowerCase(),
-    //       avitocode: Make[0]['_'].toLowerCase(),
-    //     },
-    //     where: {
-    //       code: Make[0]['_'].toLowerCase()
-    //     },
-    //   }
-    // };
-
-    const carmodelbody = {
-      create: [
-        {
-          carbody: {
-            connectOrCreate: [
-              {
-                create: {
-                  name: BodyType[0]['_'].toLowerCase(),
-                  code: BodyType[0]['_'].toLowerCase(),
-                  avitocode: BodyType[0]['_'].toLowerCase()
-                },
-                where: { name: BodyType[0]['_'].toLowerCase() }
-              }
-            ]
-          }
-        }
-      ]
+    const carmanufacturer = {
+      connectOrCreate: {
+        create: {
+          name: Make[0]['_'].toLowerCase(),
+          code: Make[0]['_'].toLowerCase(),
+          avitocode: Make[0]['_'].toLowerCase(),
+        },
+        where: {
+          code: Make[0]['_'].toLowerCase()
+        },
+      }
     };
 
     const carmodeltransmission = {

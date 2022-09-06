@@ -88,7 +88,7 @@ model region {
 // Справочник названий кузовов
 model carbody {
   id           Int            @id @default(autoincrement())
-  name         String         @db.VarChar(15)
+  name         String         @db.VarChar(15) @unique
   code         String         @db.VarChar(15)
   avitocode    String         @db.VarChar(15)
   carmodelbody carmodelbody[]
