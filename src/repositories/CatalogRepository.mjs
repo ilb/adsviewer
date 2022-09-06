@@ -38,22 +38,18 @@ export default class CatalogRepository {
       BodyType
     } = catalogItem;
 
-    const manufacturer = await this.findManufactureByCode(Make[0]['_'].toLowerCase());
-    const carbody = await this.findCarbodyByName(BodyType[0]['_'].toLowerCase());
-    const cartransmission = await this.findCartransmissionByName(Transmission[0]['_'].toLowerCase());
-
-    const carmanufacturer = {
-      connectOrCreate: {
-        create: {
-          name: Make[0]['_'].toLowerCase(),
-          code: Make[0]['_'].toLowerCase(),
-          avitocode: Make[0]['_'].toLowerCase(),
-        },
-        where: {
-          code: Make[0]['_'].toLowerCase()
-        },
-      }
-    };
+    // const carmanufacturer = {
+    //   connectOrCreate: {
+    //     create: {
+    //       name: Make[0]['_'].toLowerCase(),
+    //       code: Make[0]['_'].toLowerCase(),
+    //       avitocode: Make[0]['_'].toLowerCase(),
+    //     },
+    //     where: {
+    //       code: Make[0]['_'].toLowerCase()
+    //     },
+    //   }
+    // };
 
     const carmodelbody = {
       create: [
@@ -94,18 +90,14 @@ export default class CatalogRepository {
     }
 
     return {
-      id: Modification[0].id,
+      id: Number(Modification[0].id[0]),
       name: Model[0]['_'],
       code: null,
       enginecapacity: EngineSize[0]['_'],
-      enginepower: Power[0]['_'],
+      enginepower: Number(Power[0]['_']),
       avitocode: null,
-      carmanufacturer,
-      carmanufacturerid: manufacturer.id,
-      carmodelbody,
-      carbodyid: carbody.id,
-      cartransmissionid: cartransmission.id,
-      carmodeltransmission,
+      carbodyid: null,
+      cartransmissionid: null,
       carmodelgeneration: Generation[0]['_'],
       carmodelmodification: Modification[0]['_']
     }
