@@ -28,7 +28,7 @@ model ads {
   person         String?   @db.VarChar(250)
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
-  title          String?   
+  title          String?
   description    String?   @db.Text
   phone          String?   @db.VarChar(20)
   type           type      @relation(fields: [typeId], references: [id])
@@ -111,8 +111,8 @@ model carmodel {
   enginecapacity       Decimal?               @db.Decimal(6, 1)
   enginepower          Int?
   avitocode            String?                @db.VarChar(70)
-  carmanufacturer      carmanufacturer        @relation(fields: [carmanufacturerid], references: [id])
-  carmanufacturerid    Int
+  carmanufacturer      carmanufacturer?       @relation(fields: [carmanufacturerid], references: [id])
+  carmanufacturerid    Int?
   carmodelbody         carmodelbody[]
   carbodyid            Int?
   carmodeltransmission carmodeltransmission[]
