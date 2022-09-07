@@ -8,6 +8,7 @@ export default class CatalogRepository {
       await this.saveParallel(data, options);
       for (const row of data) {
         await this.updateReferences(row);
+        await this.updateCarmodelValues(row);
       }
     } else {
       for (const item of data) {
@@ -26,6 +27,28 @@ export default class CatalogRepository {
       data: rows,
       skipDuplicates: options.skipDuplicates
     });
+  }
+
+  async updateCarmodelValues(row) {
+    const {
+      Modification,
+      BodyType,
+      Transmission,
+      Make
+    } = row;
+
+    const { id: cartransmissionid } = await this.findCartransmissionByName(Transmission[0]['_'].toLowerCase());
+    const { id: carbodyid } = await this.findCarbodyByName(BodyType[0]['_'].toLowerCase());
+    const { id: carmanufacturerid } = await this.findManufactureByCode(Make[0]['_'].toLowerCase());
+
+    await this.prisma.carmodel.update({
+      where: { id: Number(Modification[0].id[0]) },
+      data: {
+        cartransmissionid,
+        carbodyid,
+        carmanufacturerid
+      }
+    })
   }
 
   async updateReferences(row) {
@@ -122,7 +145,7 @@ export default class CatalogRepository {
   }
 
   async findCartransmissionByName(name) {
-    return await this.prisma.cartransmission.findFirst({
+    return await this.prisma.cartransmission.findUnique({
       where: {
         name
       },
@@ -130,7 +153,7 @@ export default class CatalogRepository {
   }
 
   async findManufactureByCode(code) {
-    return await this.prisma.carmanufacturer.findFirst({
+    return await this.prisma.carmanufacturer.findUnique({
       where: {
         code
       },
@@ -138,7 +161,7 @@ export default class CatalogRepository {
   }
 
   async findCarbodyByName(name) {
-    return await this.prisma.carbody.findFirst({
+    return await this.prisma.carbody.findUnique({
       where: {
         name
       }
