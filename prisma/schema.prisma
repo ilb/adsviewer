@@ -142,7 +142,7 @@ model carmodeltransmission {
 // Справочник названий КПП
 model cartransmission {
   id                   Int                    @id @default(autoincrement())
-  name                 String                 @db.VarChar(10)
+  name                 String                 @db.VarChar(10) @unique
   code                 String                 @db.VarChar(10)
   avitocode            String                 @db.VarChar(10)
   carmodeltransmission carmodeltransmission[]

@@ -31,22 +31,26 @@ export default class CatalogRepository {
   async updateReferences(row) {
     const {
       Modification,
-      BodyType
+      BodyType,
+      Transmission
     } = row;
 
-    // const carmodelbody = {
-    //   create: [
-    //     {
-    //       carbody: {
-    //         create: {
-    //           name: BodyType[0]['_'].toLowerCase(),
-    //           code: BodyType[0]['_'].toLowerCase(),
-    //           avitocode: BodyType[0]['_'].toLowerCase()
-    //         }
-    //       }
-    //     }
-    //   ]
-    // }
+    const carmodeltransmission = {
+      create: [
+        {
+          cartransmission: {
+            connectOrCreate: {
+              create: {
+                name: Transmission[0]['_'].toLowerCase(),
+                code: Transmission[0]['_'].toLowerCase(),
+                avitocode: Transmission[0]['_'].toLowerCase()
+              },
+              where: { name: Transmission[0]['_'].toLowerCase()}
+            }
+          }
+        }
+      ]
+    }
 
     const carmodelbody = {
       create: [
@@ -69,7 +73,8 @@ export default class CatalogRepository {
     await this.prisma.carmodel.update({
       where: { id: Number(Modification[0].id[0]) },
       data: {
-        carmodelbody
+        carmodelbody,
+        carmodeltransmission
       }
     })
   }
@@ -99,25 +104,6 @@ export default class CatalogRepository {
         },
       }
     };
-
-    const carmodeltransmission = {
-      create: [
-        {
-          cartransmission: {
-            connectOrCreate: [
-              {
-                create: {
-                  name: Transmission[0]['_'].toLowerCase(),
-                  code: Transmission[0]['_'].toLowerCase(),
-                  avitocode: Transmission[0]['_'].toLowerCase()
-                },
-                where: { name: Transmission[0]['_'].toLowerCase()}
-              }
-            ]
-          }
-        }
-      ]
-    }
 
     return {
       id: Number(Modification[0].id[0]),
