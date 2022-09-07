@@ -98,7 +98,7 @@ model carbody {
 model carmanufacturer {
   id        Int        @id @default(autoincrement())
   name      String     @db.VarChar(20)
-  code      String     @db.VarChar(30)
+  code      String     @db.VarChar(30) @unique
   avitocode String     @db.VarChar(30)
   carmodel  carmodel[]
 }
