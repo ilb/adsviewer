@@ -90,13 +90,15 @@ CREATE TABLE "carmanufacturer" (
 CREATE TABLE "carmodel" (
     "id" SERIAL NOT NULL,
     "name" VARCHAR(50) NOT NULL,
-    "code" VARCHAR(70) NOT NULL,
+    "code" VARCHAR(70),
     "enginecapacity" DECIMAL(6,1),
     "enginepower" INTEGER,
     "avitocode" VARCHAR(70),
-    "carmanufacturerid" INTEGER NOT NULL,
+    "carmanufacturerid" INTEGER,
     "carbodyid" INTEGER,
     "cartransmissionid" INTEGER,
+    "carmodelgeneration" VARCHAR(70),
+    "carmodelmodification" VARCHAR(70),
 
     CONSTRAINT "carmodel_pkey" PRIMARY KEY ("id")
 );
@@ -176,7 +178,7 @@ ALTER TABLE "ads" ADD CONSTRAINT "ads_regionId_fkey" FOREIGN KEY ("regionId") RE
 ALTER TABLE "category" ADD CONSTRAINT "category_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "category"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "carmodel" ADD CONSTRAINT "carmodel_carmanufacturerid_fkey" FOREIGN KEY ("carmanufacturerid") REFERENCES "carmanufacturer"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "carmodel" ADD CONSTRAINT "carmodel_carmanufacturerid_fkey" FOREIGN KEY ("carmanufacturerid") REFERENCES "carmanufacturer"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "carmodelbody" ADD CONSTRAINT "carmodelbody_carbodyid_fkey" FOREIGN KEY ("carbodyid") REFERENCES "carbody"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

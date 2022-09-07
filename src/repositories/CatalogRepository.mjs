@@ -6,6 +6,10 @@ export default class CatalogRepository {
   async saveAll(data, options = {}) {
     if (options.saveParallel) {
       await this.saveParallel(data, options);
+      for (const row of data) {
+        await this.updateReferences(row);
+        await this.updateCarmodelValues(row);
+      }
     } else {
       for (const item of data) {
         await this.save(item);
@@ -25,6 +29,94 @@ export default class CatalogRepository {
     });
   }
 
+  async updateCarmodelValues(row) {
+    const {
+      Modification,
+      BodyType,
+      Transmission,
+      Make
+    } = row;
+
+    const { id: cartransmissionid } = await this.findCartransmissionByName(Transmission[0]['_'].toLowerCase());
+    const { id: carbodyid } = await this.findCarbodyByName(BodyType[0]['_'].toLowerCase());
+    const { id: carmanufacturerid } = await this.findManufactureByCode(Make[0]['_'].toLowerCase());
+
+    await this.prisma.carmodel.update({
+      where: { id: Number(Modification[0].id[0]) },
+      data: {
+        cartransmissionid,
+        carbodyid,
+        carmanufacturerid
+      }
+    })
+  }
+
+  async updateReferences(row) {
+    const {
+      Modification,
+      BodyType,
+      Transmission,
+      Make
+    } = row;
+
+    const carmodeltransmission = {
+      create: [
+        {
+          cartransmission: {
+            connectOrCreate: {
+              create: {
+                name: Transmission[0]['_'].toLowerCase(),
+                code: Transmission[0]['_'].toLowerCase(),
+                avitocode: Transmission[0]['_'].toLowerCase()
+              },
+              where: { name: Transmission[0]['_'].toLowerCase()}
+            }
+          }
+        }
+      ]
+    };
+
+    const carmodelbody = {
+      create: [
+        {
+          carbody: {
+            connectOrCreate: {
+              create: {
+                name: BodyType[0]['_'].toLowerCase(),
+                code: BodyType[0]['_'].toLowerCase(),
+                avitocode: BodyType[0]['_'].toLowerCase()
+              },
+              // В схеме у присоединенной таблицы "carbody" поле "name" должно быть @unique
+              where: { name: BodyType[0]['_'].toLowerCase() }
+            }
+          }
+        }
+      ]
+    };
+
+    const carmanufacturer = {
+      connectOrCreate: {
+        create: {
+          name: Make[0]['_'].toLowerCase(),
+          code: Make[0]['_'].toLowerCase(),
+          avitocode: Make[0]['_'].toLowerCase(),
+        },
+        where: {
+          code: Make[0]['_'].toLowerCase()
+        },
+      }
+    };
+
+    await this.prisma.carmodel.update({
+      where: { id: Number(Modification[0].id[0]) },
+      data: {
+        carmodelbody,
+        carmodeltransmission,
+        carmanufacturer
+      }
+    })
+  }
+
   async prepareSaveParallel(catalogItem) {
     const {
       Make,
@@ -38,27 +130,22 @@ export default class CatalogRepository {
       BodyType
     } = catalogItem;
 
-    const carmanufacturer = await this.findManufactureByCode(Make[0]['_'].toLowerCase());
-    const carbody = await this.findCarbodyByName(BodyType[0]['_'].toLowerCase());
-    const cartransmission = await this.findCartransmissionByName(Transmission[0]['_'].toLowerCase());
-
     return {
-      id: Modification[0].id,
-      name: Make[0]['_'],
+      id: Number(Modification[0].id[0]),
+      name: Model[0]['_'],
       code: null,
       enginecapacity: EngineSize[0]['_'],
-      enginepower: Power[0]['_'],
+      enginepower: Number(Power[0]['_']),
       avitocode: null,
-      carmanufacturerid: carmanufacturer.id,
-      carbodyid: carbody.id,
-      cartransmissionid: cartransmission.id,
+      carbodyid: null,
+      cartransmissionid: null,
       carmodelgeneration: Generation[0]['_'],
       carmodelmodification: Modification[0]['_']
     }
   }
 
   async findCartransmissionByName(name) {
-    return await this.prisma.cartransmission.findFirst({
+    return await this.prisma.cartransmission.findUnique({
       where: {
         name
       },
@@ -66,7 +153,7 @@ export default class CatalogRepository {
   }
 
   async findManufactureByCode(code) {
-    return await this.prisma.carmanufacturer.findFirst({
+    return await this.prisma.carmanufacturer.findUnique({
       where: {
         code
       },
@@ -74,7 +161,7 @@ export default class CatalogRepository {
   }
 
   async findCarbodyByName(name) {
-    return await this.prisma.carbody.findFirst({
+    return await this.prisma.carbody.findUnique({
       where: {
         name
       }
