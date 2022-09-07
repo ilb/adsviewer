@@ -196,19 +196,12 @@ it('should list car Manufacturer', async () => {
   expect(carManufacturer).toStrictEqual(expected);
 });
 
-
 it('should list car Transmission', async () => {
   const res = await repository.carTransmission();
   const carTransmission = res.map((row) => row.name);
-  const expected = [
-    'механика',
-    'автомат',
-    'робот',
-    'вариатор'
-  ];
+  const expected = ['механика', 'автомат', 'робот', 'вариатор'];
   expect(carTransmission).toStrictEqual(expected);
 });
-
 
 it('should list car Body', async () => {
   const res = await repository.carBody();
