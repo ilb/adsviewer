@@ -28,13 +28,17 @@ test('Let load catalog data', async () => {
     carmodelmodification: expect.any(String)
   };
 
-  await service.loadData();
+  await repository.deleteAll();
   let allRows = await repository.getAll();
-  expect(allRows.length).toBe(149);
+  expect(allRows.length).toBe(0);
 
   await service.loadData();
   allRows = await repository.getAll();
-  expect(allRows.length).toBe(149);
+  expect(allRows.length).toBe(137);
+
+  await service.loadData();
+  allRows = await repository.getAll();
+  expect(allRows.length).toBe(137);
 
   expect(allRows[0]).toMatchObject(expectedRow);
 });
