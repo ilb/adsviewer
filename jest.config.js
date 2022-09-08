@@ -1,4 +1,5 @@
 export default {
+  testTimeout: 20000,
   collectCoverageFrom: ['**/*.{js,jsx,ts,tsx}', '!**/*.d.ts', '!**/node_modules/**'],
   moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node', 'mjs'],
   testPathIgnorePatterns: ['/node_modules/', '/.next/'],
