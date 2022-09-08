@@ -26,7 +26,7 @@ test('Let load catalog data', async () => {
     cartransmissionid: expect.any(Number),
     carmodelgeneration: expect.any(String),
     carmodelmodification: expect.any(String)
-  }
+  };
 
   await service.loadData();
   let allRows = await repository.getAll();

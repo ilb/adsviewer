@@ -12,8 +12,8 @@ afterAll(async () => {
 test('get catalog', async () => {
   const scope = await createScope({}, false);
   const provider = new CatalogProvider(scope.cradle);
-  provider.url = "file:C:/Users/Lenovo/OneDrive/Рабочий стол/JS2/adsviewer/test/data/catalog.xml"
 
   const catalogData = await provider.getData();
+  console.log(catalogData.Catalog.Make[0].Model[0].Generation[0].Modification);
   expect(catalogData).toStrictEqual(catalogJs);
 });
