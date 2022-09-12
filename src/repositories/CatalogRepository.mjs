@@ -1,19 +1,30 @@
+import { getLogger } from '../../libs/logger/logger.mjs';
+const logger = getLogger({ name: 'CatalogRepository' });
+
 export default class CatalogRepository {
   constructor({ prisma }) {
     this.prisma = prisma;
   }
 
   async getAll() {
-    return await this.prisma.carmodel.findMany();
+    try {
+      return await this.prisma.carmodel.findMany();
+    } catch (err) {
+      logger.error(err.message);
+    }
   }
 
   async deleteAll() {
-    await this.prisma.carmodeltransmission.deleteMany({});
-    await this.prisma.carmodelbody.deleteMany({});
-    await this.prisma.carmanufacturer.deleteMany({});
-    await this.prisma.carmodel.deleteMany({});
-    await this.prisma.cartransmission.deleteMany({});
-    await this.prisma.carbody.deleteMany({});
+    try {
+      await this.prisma.carmodeltransmission.deleteMany({});
+      await this.prisma.carmodelbody.deleteMany({});
+      await this.prisma.carmanufacturer.deleteMany({});
+      await this.prisma.carmodel.deleteMany({});
+      await this.prisma.cartransmission.deleteMany({});
+      await this.prisma.carbody.deleteMany({});
+    } catch (err) {
+      logger.error(err.message);
+    }
   }
 
   async saveAll(data, { saveParallel, skipDuplicates }) {
