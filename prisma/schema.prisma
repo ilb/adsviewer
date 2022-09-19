@@ -135,9 +135,9 @@ model carmodification {
   name                String             @db.VarChar(25)
   generation          String             @db.VarChar(50)
   doors               Int
-}
 
-// (2,18478,1,1979,2.1,52,'2.1 MT (52 л.с.)','MANUAL__52__2_1')
+  @@unique([carmodificationid, doors, carbodyid], map: "real_unique_combination")
+}
 
 // Справочник кузовов моделей
 model carmodelbody {

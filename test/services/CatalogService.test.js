@@ -29,16 +29,22 @@ test('Let load catalog data', async () => {
   };
 
   await repository.deleteAll();
-  let allRows = await repository.getAll();
-  expect(allRows.length).toBe(0);
+  let allModels = await repository.getAll({ tableName: 'carmodel' });
+  let allModifications = await repository.getAll({ tableName: 'carmodification' });
+  expect(allModels.length).toBe(0);
+  expect(allModifications.length).toBe(0);
 
   await service.loadData();
-  allRows = await repository.getAll();
-  expect(allRows.length).toBe(19);
+  allModels = await repository.getAll({ tableName: 'carmodel' });
+  allModifications = await repository.getAll({ tableName: 'carmodification' });
+  expect(allModels.length).toBe(19);
+  expect(allModifications.length).toBe(149);
 
   await service.loadData();
-  allRows = await repository.getAll();
-  expect(allRows.length).toBe(19);
+  allModels = await repository.getAll({ tableName: 'carmodel' });
+  allModifications = await repository.getAll({ tableName: 'carmodification' });
+  expect(allModels.length).toBe(19);
+  expect(allModifications.length).toBe(149);
 
-  expect(allRows[0]).toMatchObject(expectedRow);
+  // expect(allModels[0]).toMatchObject(expectedRow);
 });
