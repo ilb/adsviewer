@@ -51,7 +51,41 @@ export default class CatalogRepository {
 
     for (const item of data) {
       await this.updateReferences(item);
-      // await this.updateCarmodelValues(item);
+      await this.createCarmodifications(item);
+    }
+  }
+
+  async createCarmodifications(catalogItem) {
+    try {
+      const {
+        Modification,
+        Model,
+        Make,
+        Transmission,
+        BodyType,
+        Doors,
+        YearFrom,
+        Generation,
+        Power,
+        EngineSize
+      } = catalogItem;
+
+      await this.prisma.carmodification.create({
+        data: {
+          carmodificationid: Number(Modification[0].id[0]),
+          carmodel: { connect: { code: Model[0]['_'] } },
+          cartransmission: { connect: { name: Transmission[0]['_'].toLowerCase() } },
+          carbody: { connect: { name: BodyType[0]['_'].toLowerCase() } },
+          caryear: Number(YearFrom[0]['_']),
+          enginecapacity: EngineSize[0]['_'],
+          enginepower: Number(Power[0]['_']),
+          name: Model[0]['_'],
+          generation: Generation[0]['_'],
+          doors: Number(Doors[0]['_'])
+        }
+      });
+    } catch (err) {
+      console.log(err);
     }
   }
 

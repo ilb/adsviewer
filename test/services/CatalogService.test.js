@@ -34,11 +34,11 @@ test('Let load catalog data', async () => {
 
   await service.loadData();
   allRows = await repository.getAll();
-  expect(allRows.length).toBe(137);
+  expect(allRows.length).toBe(19);
 
   await service.loadData();
   allRows = await repository.getAll();
-  expect(allRows.length).toBe(137);
+  expect(allRows.length).toBe(19);
 
   expect(allRows[0]).toMatchObject(expectedRow);
 });

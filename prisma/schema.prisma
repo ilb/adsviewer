@@ -122,6 +122,7 @@ model carmodel {
 // Справочник модификаций моделей автомобилей
 model carmodification {
   id                  Int                @id @default(autoincrement())
+  carmodificationid   Int
   carmodel            carmodel           @relation(fields: [carmodelid], references: [id])
   carmodelid          Int
   cartransmission     cartransmission    @relation(fields: [cartransmissionid], references: [id])
