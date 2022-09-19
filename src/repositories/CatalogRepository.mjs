@@ -22,6 +22,7 @@ export default class CatalogRepository {
       await this.prisma.carmodel.deleteMany({});
       await this.prisma.cartransmission.deleteMany({});
       await this.prisma.carbody.deleteMany({});
+      await this.prisma.carmodification.deleteMany({});
     } catch (err) {
       logger.error(err.message);
     }
@@ -50,7 +51,7 @@ export default class CatalogRepository {
 
     for (const item of data) {
       await this.updateReferences(item);
-      await this.updateCarmodelValues(item);
+      // await this.updateCarmodelValues(item);
     }
   }
 
@@ -74,7 +75,7 @@ export default class CatalogRepository {
   }
 
   async updateReferences(row) {
-    const { Modification, BodyType, Transmission, Make } = row;
+    const { Model, BodyType, Transmission, Make } = row;
 
     const carmodeltransmission = {
       create: [
@@ -125,7 +126,7 @@ export default class CatalogRepository {
     };
 
     await this.prisma.carmodel.update({
-      where: { id: Number(Modification[0].id[0]) },
+      where: { code: Model[0]['_'] },
       data: {
         carmodelbody,
         carmodeltransmission,
@@ -135,20 +136,16 @@ export default class CatalogRepository {
   }
 
   async prepareSaveParallel(catalogItem) {
-    const { Model, Generation, Modification, Power, EngineSize } = catalogItem;
+    const { Model, Power, EngineSize } = catalogItem;
 
     return {
-      id: Number(Modification[0].id[0]),
       name: Model[0]['_'],
-      code: null,
+      code: Model[0]['_'],
       enginecapacity: EngineSize[0]['_'],
       enginepower: Number(Power[0]['_']),
-      avitocode: null,
-      carbodyid: null,
-      cartransmissionid: null,
-      carmodelgeneration: Generation[0]['_'],
-      carmodelmodification: Modification[0]['_']
+      avitocode: null
     };
+    // carmanufacturerid - появится автоматически
   }
 
   async findCartransmissionByName(name) {

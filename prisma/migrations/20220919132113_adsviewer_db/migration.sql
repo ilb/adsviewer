@@ -90,17 +90,29 @@ CREATE TABLE "carmanufacturer" (
 CREATE TABLE "carmodel" (
     "id" SERIAL NOT NULL,
     "name" VARCHAR(50) NOT NULL,
-    "code" VARCHAR(70),
+    "code" VARCHAR(70) NOT NULL,
     "enginecapacity" DECIMAL(6,1),
     "enginepower" INTEGER NOT NULL,
     "avitocode" VARCHAR(70),
     "carmanufacturerid" INTEGER,
-    "carbodyid" INTEGER,
-    "cartransmissionid" INTEGER,
-    "carmodelgeneration" VARCHAR(70) NOT NULL,
-    "carmodelmodification" VARCHAR(70) NOT NULL,
 
     CONSTRAINT "carmodel_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "carmodification" (
+    "id" SERIAL NOT NULL,
+    "carmodelid" INTEGER NOT NULL,
+    "cartransmissionid" INTEGER NOT NULL,
+    "carbodyid" INTEGER NOT NULL,
+    "caryear" SMALLINT NOT NULL,
+    "enginecapacity" DECIMAL(6,1) NOT NULL,
+    "enginepower" SMALLINT NOT NULL,
+    "name" VARCHAR(25) NOT NULL,
+    "generation" VARCHAR(50) NOT NULL,
+    "doors" INTEGER NOT NULL,
+
+    CONSTRAINT "carmodification_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -169,6 +181,9 @@ CREATE UNIQUE INDEX "carbody_name_key" ON "carbody"("name");
 CREATE UNIQUE INDEX "carmanufacturer_code_key" ON "carmanufacturer"("code");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "carmodel_code_key" ON "carmodel"("code");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "cartransmission_name_key" ON "cartransmission"("name");
 
 -- CreateIndex
@@ -188,6 +203,15 @@ ALTER TABLE "category" ADD CONSTRAINT "category_parentId_fkey" FOREIGN KEY ("par
 
 -- AddForeignKey
 ALTER TABLE "carmodel" ADD CONSTRAINT "carmodel_carmanufacturerid_fkey" FOREIGN KEY ("carmanufacturerid") REFERENCES "carmanufacturer"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "carmodification" ADD CONSTRAINT "carmodification_carmodelid_fkey" FOREIGN KEY ("carmodelid") REFERENCES "carmodel"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "carmodification" ADD CONSTRAINT "carmodification_cartransmissionid_fkey" FOREIGN KEY ("cartransmissionid") REFERENCES "cartransmission"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "carmodification" ADD CONSTRAINT "carmodification_carbodyid_fkey" FOREIGN KEY ("carbodyid") REFERENCES "carbody"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "carmodelbody" ADD CONSTRAINT "carmodelbody_carbodyid_fkey" FOREIGN KEY ("carbodyid") REFERENCES "carbody"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

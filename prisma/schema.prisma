@@ -87,11 +87,12 @@ model region {
 
 // Справочник названий кузовов
 model carbody {
-  id           Int            @id @default(autoincrement())
-  name         String         @db.VarChar(15) @unique
-  code         String         @db.VarChar(15)
-  avitocode    String         @db.VarChar(15)
-  carmodelbody carmodelbody[]
+  id                 Int            @id @default(autoincrement())
+  name               String         @db.VarChar(15) @unique
+  code               String         @db.VarChar(15)
+  avitocode          String         @db.VarChar(15)
+  carmodelbody       carmodelbody[]
+  carmodification    carmodification[]
 }
 
 //Справочник фирм-производителей автомобилей
@@ -107,19 +108,35 @@ model carmanufacturer {
 model carmodel {
   id                   Int                    @id @default(autoincrement())
   name                 String                 @db.VarChar(50)
-  code                 String?                @db.VarChar(70)
+  code                 String                 @db.VarChar(70) @unique
   enginecapacity       Decimal?               @db.Decimal(6, 1)
   enginepower          Int
   avitocode            String?                @db.VarChar(70)
   carmanufacturer      carmanufacturer?       @relation(fields: [carmanufacturerid], references: [id])
   carmanufacturerid    Int?
   carmodelbody         carmodelbody[]
-  carbodyid            Int?
   carmodeltransmission carmodeltransmission[]
-  cartransmissionid    Int?
-  carmodelgeneration   String                 @db.VarChar(70)
-  carmodelmodification String                 @db.VarChar(70)
+  carmodification      carmodification[]
 }
+
+// Справочник модификаций моделей автомобилей
+model carmodification {
+  id                  Int                @id @default(autoincrement())
+  carmodel            carmodel           @relation(fields: [carmodelid], references: [id])
+  carmodelid          Int
+  cartransmission     cartransmission    @relation(fields: [cartransmissionid], references: [id])
+  cartransmissionid   Int
+  carbody             carbody            @relation(fields: [carbodyid], references: [id])
+  carbodyid           Int
+  caryear             Int                @db.SmallInt
+  enginecapacity      Decimal            @db.Decimal(6, 1)
+  enginepower         Int                @db.SmallInt
+  name                String             @db.VarChar(25)
+  generation          String             @db.VarChar(50)
+  doors               Int
+}
+
+// (2,18478,1,1979,2.1,52,'2.1 MT (52 л.с.)','MANUAL__52__2_1')
 
 // Справочник кузовов моделей
 model carmodelbody {
@@ -146,6 +163,7 @@ model cartransmission {
   code                 String                 @db.VarChar(10)
   avitocode            String                 @db.VarChar(10)
   carmodeltransmission carmodeltransmission[]
+  carmodification      carmodification[]
 }
 
 model lastload {
