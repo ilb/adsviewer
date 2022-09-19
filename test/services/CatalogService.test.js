@@ -17,15 +17,25 @@ test('Let load catalog data', async () => {
   const expectedRow = {
     id: expect.any(Number),
     name: expect.any(String),
-    code: null,
+    code: expect.any(String),
     enginecapacity: expect.anything(),
     enginepower: expect.any(Number),
     avitocode: null,
-    carmanufacturerid: expect.any(Number),
-    carbodyid: expect.any(Number),
+    carmanufacturerid: expect.any(Number)
+  };
+
+  const sdfsdf = {
+    id: expect.any(Number),
+    carmodificationid: expect.any(Number),
     cartransmissionid: expect.any(Number),
-    carmodelgeneration: expect.any(String),
-    carmodelmodification: expect.any(String)
+    carbodyid: expect.any(Number),
+    carmodelid: expect.any(Number),
+    caryear: expect.any(Number),
+    enginecapacity: expect.anything(),
+    enginepower: expect.any(Number),
+    name: expect.any(String),
+    generation: expect.any(String),
+    doors: expect.any(Number)
   };
 
   await repository.deleteAll();
@@ -46,5 +56,6 @@ test('Let load catalog data', async () => {
   expect(allModels.length).toBe(19);
   expect(allModifications.length).toBe(149);
 
-  // expect(allModels[0]).toMatchObject(expectedRow);
+  expect(allModels[0]).toMatchObject(expectedRow);
+  expect(allModifications[0]).toMatchObject(sdfsdf);
 });
