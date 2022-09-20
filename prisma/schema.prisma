@@ -121,8 +121,7 @@ model carmodel {
 
 // Справочник модификаций моделей автомобилей
 model carmodification {
-  id                  Int                @id @default(autoincrement())
-  carmodificationid   Int
+  id                  Int                @id
   carmodel            carmodel           @relation(fields: [carmodelid], references: [id])
   carmodelid          Int
   cartransmission     cartransmission    @relation(fields: [cartransmissionid], references: [id])
@@ -134,9 +133,6 @@ model carmodification {
   enginepower         Int                @db.SmallInt
   name                String             @db.VarChar(25)
   generation          String             @db.VarChar(50)
-  doors               Int
-
-  @@unique([carmodificationid, doors, carbodyid], map: "real_unique_combination")
 }
 
 // Справочник кузовов моделей
