@@ -28,9 +28,9 @@ export default class CatalogRepository {
     }
   }
 
-  async saveAll(data, { saveParallel, skipDuplicates }) {
+  async saveAll(data, { saveParallel }) {
     if (saveParallel) {
-      await this.saveParallel(data, { skipDuplicates });
+      await this.saveParallel(data);
     } else {
       for (const item of data) {
         console.log(`env SAVE_PARALLEL = false`);
@@ -38,8 +38,21 @@ export default class CatalogRepository {
     }
   }
 
+  async createCarmanufacturerRow(data) {
+    const carManufacturerRow = await this.prepareSaveParallel(data, {
+      tableName: 'carmanufacturer'
+    });
+    await this.prisma.carmanufacturer.upsert({
+      where: {
+        code: carManufacturerRow.code
+      },
+      update: carManufacturerRow,
+      create: carManufacturerRow
+    });
+  }
+
   async createCarmodelRow(data) {
-    const carModelRow = await this.prepareSaveParallel(data);
+    const carModelRow = await this.prepareSaveParallel(data, { tableName: 'carmodel' });
     await this.prisma.carmodel.upsert({
       where: {
         code: carModelRow.code
@@ -49,8 +62,9 @@ export default class CatalogRepository {
     });
   }
 
-  async saveParallel(data, { skipDuplicates }) {
+  async saveParallel(data) {
     for (const item of data) {
+      await this.createCarmanufacturerRow(item);
       await this.createCarmodelRow(item);
       await this.updateReferences(item);
       await this.createCarmodifications(item);
@@ -83,7 +97,7 @@ export default class CatalogRepository {
   }
 
   async updateReferences(row) {
-    const { Model, BodyType, Transmission, Make } = row;
+    const { Model, BodyType, Transmission } = row;
 
     const carmodeltransmission = {
       create: [
@@ -120,39 +134,39 @@ export default class CatalogRepository {
       ]
     };
 
-    const carmanufacturer = {
-      connectOrCreate: {
-        create: {
-          name: Make[0]['_'].toLowerCase(),
-          code: Make[0]['_'].toLowerCase(),
-          avitocode: Make[0]['_'].toLowerCase()
-        },
-        where: {
-          code: Make[0]['_'].toLowerCase()
-        }
-      }
-    };
-
     await this.prisma.carmodel.update({
       where: { code: Model[0]['_'] },
       data: {
         carmodelbody,
-        carmodeltransmission,
-        carmanufacturer
+        carmodeltransmission
       }
     });
   }
 
-  async prepareSaveParallel(catalogItem) {
-    const { Model, Power, EngineSize } = catalogItem;
+  async prepareSaveParallel(catalogItem, { tableName }) {
+    const { Make, Model, Power, EngineSize } = catalogItem;
 
-    return {
-      name: Model[0]['_'],
-      code: Model[0]['_'],
-      enginecapacity: EngineSize[0]['_'],
-      enginepower: Number(Power[0]['_']),
-      avitocode: null
-    };
-    // carmanufacturerid - появится автоматически
+    switch (tableName) {
+      case 'carmodel':
+        return {
+          name: Model[0]['_'],
+          code: Model[0]['_'],
+          enginecapacity: EngineSize[0]['_'],
+          enginepower: Number(Power[0]['_']),
+          avitocode: null,
+          carmanufacturer: {
+            connect: {
+              code: Make[0]['_'].toLowerCase()
+            }
+          }
+        };
+      // carmanufacturerid - появится автоматически
+      case 'carmanufacturer':
+        return {
+          name: Make[0]['_'].toLowerCase(),
+          code: Make[0]['_'].toLowerCase(),
+          avitocode: Make[0]['_'].toLowerCase()
+        };
+    }
   }
 }
