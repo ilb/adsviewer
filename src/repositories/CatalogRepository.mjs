@@ -38,18 +38,20 @@ export default class CatalogRepository {
     }
   }
 
-  async saveParallel(data, { skipDuplicates }) {
-    const rows = [];
-    for (const item of data) {
-      rows.push(await this.prepareSaveParallel(item));
-    }
-
-    await this.prisma.carmodel.createMany({
-      data: rows,
-      skipDuplicates: skipDuplicates
+  async createCarmodelRow(data) {
+    const carModelRow = await this.prepareSaveParallel(data);
+    await this.prisma.carmodel.upsert({
+      where: {
+        code: carModelRow.code
+      },
+      update: carModelRow,
+      create: carModelRow
     });
+  }
 
+  async saveParallel(data, { skipDuplicates }) {
     for (const item of data) {
+      await this.createCarmodelRow(item);
       await this.updateReferences(item);
       await this.createCarmodifications(item);
     }
@@ -152,29 +154,5 @@ export default class CatalogRepository {
       avitocode: null
     };
     // carmanufacturerid - появится автоматически
-  }
-
-  async findCartransmissionByName(name) {
-    return await this.prisma.cartransmission.findUnique({
-      where: {
-        name
-      }
-    });
-  }
-
-  async findManufactureByCode(code) {
-    return await this.prisma.carmanufacturer.findUnique({
-      where: {
-        code
-      }
-    });
-  }
-
-  async findCarbodyByName(name) {
-    return await this.prisma.carbody.findUnique({
-      where: {
-        name
-      }
-    });
   }
 }
