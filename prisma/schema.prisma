@@ -137,11 +137,12 @@ model carmodification {
 
 // Справочник кузовов моделей
 model carmodelbody {
-  id         Int      @id @default(autoincrement())
   carmodelid Int
   carbodyid  Int
   carbody    carbody  @relation(fields: [carbodyid], references: [id])
   carmodel   carmodel @relation(fields: [carmodelid], references: [id])
+
+  @@id([carmodelid, carbodyid])
 }
 
 // Справочник КПП моделей

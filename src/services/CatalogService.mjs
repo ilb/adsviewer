@@ -21,6 +21,7 @@ export default class CatalogService {
         .reduce((accumulator, generation) => [...accumulator, ...generation.Modification], []);
       await this.catalogRepository.saveAll(allModifications, this.saveOptions);
     } catch (err) {
+      console.log(err);
       logger.error(err.message);
     }
   }

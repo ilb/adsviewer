@@ -38,6 +38,32 @@ export default class CatalogRepository {
     }
   }
 
+  async saveParallel(data) {
+    for (const item of data) {
+      await this.createCarmanufacturerRow(item);
+      await this.createCartransmissionRow(item);
+      await this.createCarbodyRow(item);
+      await this.createCarmodelRow(item);
+      await this.createCarmodeltransmissionRow(item);
+      await this.createCarmodelbodyRow(item);
+      await this.createCarmodifications(item);
+    }
+  }
+
+  async createCarbodyRow(data) {
+    const carBodyRow = await this.prepareSaveParallel(data, {
+      tableName: 'carbody'
+    });
+
+    await this.prisma.carbody.upsert({
+      where: {
+        name: carBodyRow.name
+      },
+      update: carBodyRow,
+      create: carBodyRow
+    });
+  }
+
   async createCartransmissionRow(data) {
     const carTransmissionRow = await this.prepareSaveParallel(data, {
       tableName: 'cartransmission'
@@ -107,15 +133,34 @@ export default class CatalogRepository {
     });
   }
 
-  async saveParallel(data) {
-    for (const item of data) {
-      await this.createCarmanufacturerRow(item);
-      await this.createCartransmissionRow(item);
-      await this.createCarmodelRow(item);
-      await this.createCarmodeltransmissionRow(item);
-      await this.updateReferences(item);
-      await this.createCarmodifications(item);
-    }
+  async createCarmodelbodyRow(data) {
+    const { Model, BodyType } = data;
+
+    const currentCarmodel = await this.findCarmodelByCode(Model[0]['_']);
+    const currentCarbody = await this.findCarbodyByName(BodyType[0]['_'].toLowerCase());
+
+    const carmodelbody = {
+      connectOrCreate: {
+        create: {
+          carbody: {
+            connect: { name: BodyType[0]['_'].toLowerCase() }
+          }
+        },
+        where: {
+          carmodelid_carbodyid: {
+            carmodelid: currentCarmodel.id,
+            carbodyid: currentCarbody.id
+          }
+        }
+      }
+    };
+
+    await this.prisma.carmodel.update({
+      where: { code: Model[0]['_'] },
+      data: {
+        carmodelbody
+      }
+    });
   }
 
   async createCarmodifications(catalogItem) {
@@ -143,37 +188,8 @@ export default class CatalogRepository {
     });
   }
 
-  async updateReferences(row) {
-    const { Model, BodyType } = row;
-
-    const carmodelbody = {
-      create: [
-        {
-          carbody: {
-            connectOrCreate: {
-              create: {
-                name: BodyType[0]['_'].toLowerCase(),
-                code: BodyType[0]['_'].toLowerCase(),
-                avitocode: BodyType[0]['_'].toLowerCase()
-              },
-              // В схеме у присоединенной таблицы "carbody" поле "name" должно быть @unique
-              where: { name: BodyType[0]['_'].toLowerCase() }
-            }
-          }
-        }
-      ]
-    };
-
-    await this.prisma.carmodel.update({
-      where: { code: Model[0]['_'] },
-      data: {
-        carmodelbody
-      }
-    });
-  }
-
   async prepareSaveParallel(catalogItem, { tableName }) {
-    const { Make, Model, Power, EngineSize, Transmission } = catalogItem;
+    const { Make, Model, Power, EngineSize, Transmission, BodyType } = catalogItem;
 
     switch (tableName) {
       case 'carmodel':
@@ -202,6 +218,12 @@ export default class CatalogRepository {
           code: Transmission[0]['_'].toLowerCase(),
           avitocode: Transmission[0]['_'].toLowerCase()
         };
+      case 'carbody':
+        return {
+          name: BodyType[0]['_'].toLowerCase(),
+          code: BodyType[0]['_'].toLowerCase(),
+          avitocode: BodyType[0]['_'].toLowerCase()
+        };
     }
   }
 
@@ -209,6 +231,14 @@ export default class CatalogRepository {
     return await this.prisma.carmodel.findUnique({
       where: {
         code
+      }
+    });
+  }
+
+  async findCarbodyByName(name) {
+    return await this.prisma.carbody.findUnique({
+      where: {
+        name
       }
     });
   }

@@ -116,11 +116,10 @@ CREATE TABLE "carmodification" (
 
 -- CreateTable
 CREATE TABLE "carmodelbody" (
-    "id" SERIAL NOT NULL,
     "carmodelid" INTEGER NOT NULL,
     "carbodyid" INTEGER NOT NULL,
 
-    CONSTRAINT "carmodelbody_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "carmodelbody_pkey" PRIMARY KEY ("carmodelid","carbodyid")
 );
 
 -- CreateTable
