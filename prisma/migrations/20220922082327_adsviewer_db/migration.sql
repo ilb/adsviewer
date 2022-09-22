@@ -125,11 +125,10 @@ CREATE TABLE "carmodelbody" (
 
 -- CreateTable
 CREATE TABLE "carmodeltransmission" (
-    "id" SERIAL NOT NULL,
     "carmodelid" INTEGER NOT NULL,
     "cartransmissionid" INTEGER NOT NULL,
 
-    CONSTRAINT "carmodeltransmission_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "carmodeltransmission_pkey" PRIMARY KEY ("carmodelid","cartransmissionid")
 );
 
 -- CreateTable

@@ -38,6 +38,19 @@ export default class CatalogRepository {
     }
   }
 
+  async createCartransmissionRow(data) {
+    const carTransmissionRow = await this.prepareSaveParallel(data, {
+      tableName: 'cartransmission'
+    });
+    await this.prisma.cartransmission.upsert({
+      where: {
+        name: carTransmissionRow.name
+      },
+      update: carTransmissionRow,
+      create: carTransmissionRow
+    });
+  }
+
   async createCarmanufacturerRow(data) {
     const carManufacturerRow = await this.prepareSaveParallel(data, {
       tableName: 'carmanufacturer'
@@ -62,10 +75,44 @@ export default class CatalogRepository {
     });
   }
 
+  async createCarmodeltransmissionRow(data) {
+    const { Model, Transmission } = data;
+
+    const currentCarmodel = await this.findCarmodelByCode(Model[0]['_']);
+    const currentCartransmission = await this.findCartransmissionByName(
+      Transmission[0]['_'].toLowerCase()
+    );
+
+    const carmodeltransmission = {
+      connectOrCreate: {
+        create: {
+          cartransmission: {
+            connect: { name: Transmission[0]['_'].toLowerCase() }
+          }
+        },
+        where: {
+          carmodelid_cartransmissionid: {
+            carmodelid: currentCarmodel.id,
+            cartransmissionid: currentCartransmission.id
+          }
+        }
+      }
+    };
+
+    await this.prisma.carmodel.update({
+      where: { code: Model[0]['_'] },
+      data: {
+        carmodeltransmission
+      }
+    });
+  }
+
   async saveParallel(data) {
     for (const item of data) {
       await this.createCarmanufacturerRow(item);
+      await this.createCartransmissionRow(item);
       await this.createCarmodelRow(item);
+      await this.createCarmodeltransmissionRow(item);
       await this.updateReferences(item);
       await this.createCarmodifications(item);
     }
@@ -97,24 +144,7 @@ export default class CatalogRepository {
   }
 
   async updateReferences(row) {
-    const { Model, BodyType, Transmission } = row;
-
-    const carmodeltransmission = {
-      create: [
-        {
-          cartransmission: {
-            connectOrCreate: {
-              create: {
-                name: Transmission[0]['_'].toLowerCase(),
-                code: Transmission[0]['_'].toLowerCase(),
-                avitocode: Transmission[0]['_'].toLowerCase()
-              },
-              where: { name: Transmission[0]['_'].toLowerCase() }
-            }
-          }
-        }
-      ]
-    };
+    const { Model, BodyType } = row;
 
     const carmodelbody = {
       create: [
@@ -137,14 +167,13 @@ export default class CatalogRepository {
     await this.prisma.carmodel.update({
       where: { code: Model[0]['_'] },
       data: {
-        carmodelbody,
-        carmodeltransmission
+        carmodelbody
       }
     });
   }
 
   async prepareSaveParallel(catalogItem, { tableName }) {
-    const { Make, Model, Power, EngineSize } = catalogItem;
+    const { Make, Model, Power, EngineSize, Transmission } = catalogItem;
 
     switch (tableName) {
       case 'carmodel':
@@ -167,6 +196,28 @@ export default class CatalogRepository {
           code: Make[0]['_'].toLowerCase(),
           avitocode: Make[0]['_'].toLowerCase()
         };
+      case 'cartransmission':
+        return {
+          name: Transmission[0]['_'].toLowerCase(),
+          code: Transmission[0]['_'].toLowerCase(),
+          avitocode: Transmission[0]['_'].toLowerCase()
+        };
     }
+  }
+
+  async findCarmodelByCode(code) {
+    return await this.prisma.carmodel.findUnique({
+      where: {
+        code
+      }
+    });
+  }
+
+  async findCartransmissionByName(name) {
+    return await this.prisma.cartransmission.findUnique({
+      where: {
+        name
+      }
+    });
   }
 }

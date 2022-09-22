@@ -33,7 +33,7 @@ test('Let load catalog data', async () => {
     enginecapacity: expect.anything(),
     enginepower: expect.any(Number),
     name: expect.any(String),
-    generation: expect.any(String),
+    generation: expect.any(String)
   };
 
   await repository.deleteAll();
@@ -53,6 +53,8 @@ test('Let load catalog data', async () => {
   allModifications = await repository.getAll({ tableName: 'carmodification' });
   expect(allModels.length).toBe(19);
   expect(allModifications.length).toBe(137);
+
+  await service.loadData();
 
   expect(allModels[0]).toMatchObject(expectedRow);
   expect(allModifications[0]).toMatchObject(sdfsdf);

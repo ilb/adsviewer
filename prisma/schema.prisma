@@ -146,11 +146,12 @@ model carmodelbody {
 
 // Справочник КПП моделей
 model carmodeltransmission {
-  id                Int             @id @default(autoincrement())
   carmodelid        Int
   cartransmissionid Int
   carmodel          carmodel        @relation(fields: [carmodelid], references: [id])
   cartransmission   cartransmission @relation(fields: [cartransmissionid], references: [id])
+
+  @@id([carmodelid, cartransmissionid])
 }
 
 // Справочник названий КПП
