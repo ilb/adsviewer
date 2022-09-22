@@ -190,4 +190,28 @@ export default class CatalogTablesRepository {
         };
     }
   }
+
+  async findCarmodelByCode(code) {
+    return await this.prisma.carmodel.findUnique({
+      where: {
+        code
+      }
+    });
+  }
+
+  async findCarbodyByName(name) {
+    return await this.prisma.carbody.findUnique({
+      where: {
+        name
+      }
+    });
+  }
+
+  async findCartransmissionByName(name) {
+    return await this.prisma.cartransmission.findUnique({
+      where: {
+        name
+      }
+    });
+  }
 }
