@@ -50,17 +50,16 @@ export default class CatalogRepository {
     }
   }
 
-  async createCarbodyRow(data) {
-    const carBodyRow = await this.prepareSaveParallel(data, {
-      tableName: 'carbody'
+  async createCarmanufacturerRow(data) {
+    const carManufacturerRow = await this.prepareSaveParallel(data, {
+      tableName: 'carmanufacturer'
     });
-
-    await this.prisma.carbody.upsert({
+    await this.prisma.carmanufacturer.upsert({
       where: {
-        name: carBodyRow.name
+        code: carManufacturerRow.code
       },
-      update: carBodyRow,
-      create: carBodyRow
+      update: carManufacturerRow,
+      create: carManufacturerRow
     });
   }
 
@@ -77,16 +76,17 @@ export default class CatalogRepository {
     });
   }
 
-  async createCarmanufacturerRow(data) {
-    const carManufacturerRow = await this.prepareSaveParallel(data, {
-      tableName: 'carmanufacturer'
+  async createCarbodyRow(data) {
+    const carBodyRow = await this.prepareSaveParallel(data, {
+      tableName: 'carbody'
     });
-    await this.prisma.carmanufacturer.upsert({
+
+    await this.prisma.carbody.upsert({
       where: {
-        code: carManufacturerRow.code
+        name: carBodyRow.name
       },
-      update: carManufacturerRow,
-      create: carManufacturerRow
+      update: carBodyRow,
+      create: carBodyRow
     });
   }
 
@@ -163,33 +163,32 @@ export default class CatalogRepository {
     });
   }
 
-  async createCarmodifications(catalogItem) {
-    const { Modification, Model, Transmission, BodyType, YearFrom, Generation, Power, EngineSize } =
-      catalogItem;
-
-    const itemData = {
-      id: Number(Modification[0].id[0]),
-      carmodel: { connect: { code: Model[0]['_'] } },
-      cartransmission: { connect: { name: Transmission[0]['_'].toLowerCase() } },
-      carbody: { connect: { name: BodyType[0]['_'].toLowerCase() } },
-      caryear: Number(YearFrom[0]['_']),
-      enginecapacity: EngineSize[0]['_'],
-      enginepower: Number(Power[0]['_']),
-      name: Model[0]['_'],
-      generation: Generation[0]['_']
-    };
+  async createCarmodifications(data) {
+    const carModificationRow = await this.prepareSaveParallel(data, {
+      tableName: 'carmodification'
+    });
 
     await this.prisma.carmodification.upsert({
       where: {
-        id: Number(Modification[0].id[0])
+        id: carModificationRow.id
       },
-      update: itemData,
-      create: itemData
+      update: carModificationRow,
+      create: carModificationRow
     });
   }
 
   async prepareSaveParallel(catalogItem, { tableName }) {
-    const { Make, Model, Power, EngineSize, Transmission, BodyType } = catalogItem;
+    const {
+      YearFrom,
+      Generation,
+      Modification,
+      Make,
+      Model,
+      Power,
+      EngineSize,
+      Transmission,
+      BodyType
+    } = catalogItem;
 
     switch (tableName) {
       case 'carmodel':
@@ -223,6 +222,18 @@ export default class CatalogRepository {
           name: BodyType[0]['_'].toLowerCase(),
           code: BodyType[0]['_'].toLowerCase(),
           avitocode: BodyType[0]['_'].toLowerCase()
+        };
+      case 'carmodification':
+        return {
+          id: Number(Modification[0].id[0]),
+          carmodel: { connect: { code: Model[0]['_'] } },
+          cartransmission: { connect: { name: Transmission[0]['_'].toLowerCase() } },
+          carbody: { connect: { name: BodyType[0]['_'].toLowerCase() } },
+          caryear: Number(YearFrom[0]['_']),
+          enginecapacity: EngineSize[0]['_'],
+          enginepower: Number(Power[0]['_']),
+          name: Model[0]['_'],
+          generation: Generation[0]['_']
         };
     }
   }
