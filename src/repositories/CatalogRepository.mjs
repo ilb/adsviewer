@@ -51,4 +51,10 @@ export default class CatalogRepository extends CatalogTablesRepository {
       await this.createCarmodifications(item);
     }
   }
+
+  async createMany(data) {
+    for (const item of data) {
+      console.log(item);
+    }
+  }
 }
