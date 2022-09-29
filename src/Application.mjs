@@ -1,7 +1,7 @@
 import awilix, { asFunction } from 'awilix';
 import ContextFactory from '@ilb/node_context';
-import CyrillicToTranslit from 'cyrillic-to-translit-js';
-const cyrillicToTranslit = new CyrillicToTranslit();
+import CyrillicToTranslate from 'cyrillic-to-translit-js';
+const cyrillicToTranslate = new CyrillicToTranslate();
 const { asValue, asClass } = awilix;
 import { UriAccessorFactory, UriAgentFactory } from '@ilb/uriaccessorjs';
 import container from './container.mjs';
@@ -29,7 +29,7 @@ export default class Application {
       nameSource: asValue(process.env.NAME_SOURCE),
       uriAgentMap: asValue(uriAgentMap),
       uriAccessorFileEnabled: asValue(true),
-      cyrillicToTranslit: asValue(cyrillicToTranslit),
+      cyrillicToTranslate: asValue(cyrillicToTranslate),
       uriAccessorFactory: asClass(UriAccessorFactory),
       uriAgentFactory: asClass(UriAgentFactory),
       prisma: asValue(prisma),

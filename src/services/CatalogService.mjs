@@ -1,7 +1,4 @@
 import { getLogger } from '../../libs/logger/logger.mjs';
-import ManufacturerMapper from '../mappers/ManufacturerMapper.mjs';
-import ModelMapper from '../mappers/ModelMapper.mjs';
-import ModificationMapper from '../mappers/ModificationMapper.mjs';
 const logger = getLogger({ name: 'CatalogService' });
 
 export default class CatalogService {

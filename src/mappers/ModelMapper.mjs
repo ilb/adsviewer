@@ -1,4 +1,16 @@
 export default class ModelMapper {
+  constructor({ cyrillicToTranslate }) {
+    this.cyrillicToTranslate = cyrillicToTranslate;
+  }
+
+  /**
+   *
+   * @param {Array} modelsFromCatalog
+   * @returns {Object}
+   * models - массив отформатированных моделей для сохранения данных,
+   * modificationsFromCatalog - массив модификаций для передачи в следубщий маппер,
+   *  сделано чтоб не делать повторные обходы по массиву данных
+   */
   map(modelsFromCatalog) {
     const modificationsFromCatalog = [];
     const models = modelsFromCatalog.map((item) => {
@@ -7,8 +19,8 @@ export default class ModelMapper {
       return {
         id: Number(item.id[0]),
         name,
-        code: name.replaceAll(' ', '_').toLowerCase(),
-        avitocode: name.replaceAll(' ', '_').toLowerCase(),
+        code: this.cyrillicToTranslate.transform(name, '_').toLowerCase(),
+        avitocode: this.cyrillicToTranslate.transform(name, '_').toLowerCase(),
         carmanufacturerid: item.carManufacturerId
       };
     });
