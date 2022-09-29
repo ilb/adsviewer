@@ -37,9 +37,7 @@ export default class CatalogService {
       const data = await this.catalogProvider.getData();
       const makes = data.Catalog.Make;
       const result = this.getData(makes);
-      // console.log(result);
       return result;
-      // await this.catalogRepository.createMany(result);
     } catch (err) {
       console.log(err);
       logger.error(err.message);
@@ -64,10 +62,8 @@ export default class CatalogService {
   getData(data) {
     // получаем производителей и модели
     const { manufacturers, modelsFromCatalog } = this.getManufacturers(data);
-
     // Модели и модификации
     const { models, modificationsFromCatalog } = this.getModels(modelsFromCatalog);
-
     // Модификации
     const { modifications, transmissions, bodies } =
       this.getModificationParams(modificationsFromCatalog);
